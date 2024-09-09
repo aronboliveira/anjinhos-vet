@@ -1,0 +1,39 @@
+<!doctype html>
+<html lang="pt-BR">
+  <head>
+    <meta charset="UTF-8" />
+    <link rel="icon" type="image/svg+xml" href="/vite.svg" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Vite + Vue + TS</title>
+    <script
+      src="http://sozed-vet-rj.local/wp-includes/js/hoverintent-js.min.js?ver=2.2.1"
+      id="hoverintent-js-js"
+    ></script>
+    <script src="http://sozed-vet-rj.local/wp-includes/js/admin-bar.min.js?ver=6.6.1" id="admin-bar-js"></script>
+    <script id="wp-block-template-skip-link-js-after">
+      (() => {
+        let skipLinkTarget = document.querySelector("main"),
+          sibling,
+          skipLinkTargetID,
+          skipLink;
+        if (!skipLinkTarget) return;
+        sibling = document.querySelector(".wp-site-blocks");
+        if (!sibling) return;
+        skipLinkTargetID = skipLinkTarget.id;
+        if (!skipLinkTargetID) {
+          skipLinkTargetID = "wp--skip-link--target";
+          skipLinkTarget.id = skipLinkTargetID;
+        }
+        skipLink = document.createElement("a");
+        skipLink.classList.add("skip-link", "screen-reader-text");
+        skipLink.href = "#" + skipLinkTargetID;
+        skipLink.innerHTML = "Skip to content";
+        sibling.parentElement.insertBefore(skipLink, sibling);
+      })();
+    </script>
+  </head>
+  <body>
+    <div id="app"></div>
+    <script type="module" src="/src/main.ts"></script>
+  </body>
+</html>
