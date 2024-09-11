@@ -1,44 +1,19 @@
-import { defineComponent, ref, reactive, watch, onMounted, computed } from "vue";
-import { inpType, nDl, nInp, nLb } from "../../declarations/types";
-import { parseNotNaN } from "../../handlersMath";
-const FilterInp = (() =>
+import { defineComponent, ref, reactive, watch, onMounted } from "vue";
+import { nLb, nSl } from "../../declarations/types";
+import { OptGroupProps, OptProps } from "../../declarations/interfaceComponents";
+const FilterSelect = (() =>
   defineComponent({
-    name: "FilterInp",
+    name: "FilterSelect",
     props: {
       id: {
-        type: String as () => inpType,
+        type: String,
         required: true,
-        default: "text",
+        default: "",
       },
       lab: {
         type: String,
         required: false,
         default: "",
-      },
-      minLength: {
-        type: Number,
-        required: false,
-        default: 0,
-      },
-      maxLength: {
-        type: Number,
-        required: false,
-        default: Number.MAX_SAFE_INTEGER,
-      },
-      pattern: {
-        type: String,
-        required: false,
-        default: ".*",
-      },
-      autocomplete: {
-        type: String,
-        required: false,
-        default: "none",
-      },
-      autocapitalize: {
-        type: Boolean,
-        required: false,
-        default: false,
       },
       required: {
         type: Boolean,
@@ -55,48 +30,32 @@ const FilterInp = (() =>
         required: false,
         default: false,
       },
-      dataList: {
-        type: Array as () => string[],
+      defV: {
+        type: String,
         required: false,
+        default: "",
+      },
+      type: {
+        type: String as () => "select-one" | "select-multiple",
+        required: false,
+        default: "select-one",
+      },
+      opts: {
+        type: Array as (() => OptProps[]) | (() => OptGroupProps[]),
+        required: true,
         default: [],
       },
     },
     setup(props) {
-      const r = ref<nInp>(null);
+      const r = ref<nSl>(null);
       const rlb = ref<nLb>(null);
-      const dr = ref<nDl>(null);
       const rc = ref<{ [k: string]: string[] }>({});
       const s = reactive({
         req: props.required,
         ro: props.readOnly,
         dsb: props.disabled,
-        pt: props.pattern,
-        v: "",
-        vn: NaN,
+        v: props.defV,
       });
-      const nVl = computed(() => parseNotNaN(s.v) || s.vn);
-      const sVl = computed(() => s.v);
-      const updateDatalist = (n: string) => {
-        try {
-          if (!(r.value instanceof HTMLInputElement)) throw new Error(`Input reference for ${props.id} is not valid`);
-          if (!dr.value) {
-            dr.value = Object.assign(document.createElement("datalist"), {
-              id: `${props.id}List`,
-            });
-            r.value.insertAdjacentElement("afterend", dr.value);
-          }
-          const idf = `${r.value.id}`;
-          if (n !== "") {
-            if (!rc.value[idf]) rc.value[idf] = [];
-            if (!rc.value[idf].includes(n)) {
-              rc.value[idf].push(n);
-              if (rc.value[idf].length > 3) rc.value[idf].shift();
-            }
-          }
-        } catch (e) {
-          console.error(`Error updating datalist for ${props.id}: ${(e as Error).message}`);
-        }
-      };
       watch(
         () => s.req,
         n => (s.req = n),
@@ -104,13 +63,8 @@ const FilterInp = (() =>
       watch(
         () => s.v,
         n => {
-          s.vn = parseNotNaN(n);
-          updateDatalist(n);
+          s.v = n;
         },
-      );
-      watch(
-        () => s.vn,
-        n => (s.vn = parseNotNaN(s.v) || n),
       );
       if (s.req) {
         if (s.ro) r.value?.setAttribute("readonly", "true");
@@ -118,15 +72,7 @@ const FilterInp = (() =>
         if (s.dsb) r.value?.setAttribute("disabled", "true");
         else r.value?.removeAttribute("disabled");
       }
-      if (!/{/g.test(s.pt)) {
-        if (props.minLength > 0) {
-          s.pt = `${s.pt}{${props.minLength},`;
-          if (props.maxLength) s.pt += `{props.maxLength}}`;
-          else s.pt += `}`;
-        }
-      }
       onMounted(() => {
-        updateDatalist(s.v);
         try {
           if (!(r.value instanceof HTMLInputElement))
             throw new Error(`Couldn't validate the Reference for the input ${props.id}`);
@@ -164,29 +110,21 @@ const FilterInp = (() =>
           console.error(`Error executing procedure to define Dataset Label:\n${(e as Error).message}`);
         }
         try {
-          if (!(r.value instanceof HTMLInputElement)) throw new Error(`Failed to validate Input Reference`);
-          if (dr.value instanceof HTMLDataListElement && r.value.list && r.value.list.id !== dr.value.id)
-            r.value.setAttribute("list", dr.value.id);
-          if (!r.value.list) {
-            const dl =
-              dr.value instanceof HTMLDataListElement
-                ? dr.value.id
-                : r.value.parentElement?.querySelector("datalist")?.id;
-            if (!dl) throw new Error(`Failed to fetch datalist id`);
-            r.value.setAttribute("list", dl);
-          }
+          if (!(r.value instanceof HTMLSelectElement)) throw new Error(`Failed to validate main reference instance`);
+          s.v = props.defV;
+          if (s.v === "" && r.value.options.length > 0) s.v = r.value.options[0].value;
+          r.value.dataset.default = props.defV;
         } catch (e) {
-          console.error(`Error executing procedure to assing List:\n${(e as Error).message}`);
+          console.error(
+            `Error executing procedure for defining default value for Select ${props.id}:\n${(e as Error).message}`,
+          );
         }
       });
       return {
         s,
-        nVl,
-        sVl,
         r,
-        dr,
         rc,
       };
     },
   }))();
-export default FilterInp;
+export default FilterSelect;

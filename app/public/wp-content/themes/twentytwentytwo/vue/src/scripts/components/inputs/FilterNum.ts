@@ -1,14 +1,14 @@
 import { defineComponent, ref, reactive, watch, onMounted, computed } from "vue";
 import { inpType, nDl, nInp, nLb } from "../../declarations/types";
 import { parseNotNaN } from "../../handlersMath";
-const FilterInp = (() =>
+const FilterNum = (() =>
   defineComponent({
-    name: "FilterInp",
+    name: "FilterNum",
     props: {
       id: {
         type: String as () => inpType,
         required: true,
-        default: "text",
+        default: "number",
       },
       lab: {
         type: String,
@@ -28,17 +28,12 @@ const FilterInp = (() =>
       pattern: {
         type: String,
         required: false,
-        default: ".*",
+        default: "^[0-9]*$",
       },
       autocomplete: {
         type: String,
         required: false,
         default: "none",
-      },
-      autocapitalize: {
-        type: Boolean,
-        required: false,
-        default: false,
       },
       required: {
         type: Boolean,
@@ -59,6 +54,11 @@ const FilterInp = (() =>
         type: Array as () => string[],
         required: false,
         default: [],
+      },
+      step: {
+        type: Number,
+        required: false,
+        default: 1,
       },
     },
     setup(props) {
@@ -189,4 +189,4 @@ const FilterInp = (() =>
       };
     },
   }))();
-export default FilterInp;
+export default FilterNum;
