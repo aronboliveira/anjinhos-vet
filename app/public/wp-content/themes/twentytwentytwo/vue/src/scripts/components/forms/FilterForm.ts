@@ -3,6 +3,8 @@ import { InpProps } from "../../declarations/interfaceComponents";
 import { onMounted } from "vue/dist/vue.js";
 import { nFm } from "../../declarations/types";
 import FilterInp from "../inputs/FilterInp";
+import FilterCheck from "../inputs/FilterCheck";
+import FilterSelect from "../inputs/FilterSelect";
 const FilterForm = (() =>
   defineComponent({
     name: "FilterForm",
@@ -37,6 +39,8 @@ const FilterForm = (() =>
     },
     components: {
       FilterInp,
+      FilterCheck,
+      FilterSelect,
     },
     setup(props) {
       const r = ref<nFm>(null);

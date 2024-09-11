@@ -4,7 +4,7 @@
 </script>
 <template>
   <fieldset :id="`${id}Fs`">
-    <label :id="`${id}Lab`" :for="id" ref="rlb">{{ lab }}</label>
+    <label :id="`${id}Lab`" :for="id" ref="rlb">{{ tLab }}</label>
     <select
       ref="r"
       v-model="s.v"

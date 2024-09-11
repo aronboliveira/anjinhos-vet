@@ -1,5 +1,6 @@
 import { defineComponent, ref, reactive, watch, onMounted } from "vue";
 import { nInp, nLb } from "../../declarations/types";
+import { labMap } from "../../../vars";
 const FilterCheck = (() =>
   defineComponent({
     name: "FilterCheck",
@@ -44,6 +45,7 @@ const FilterCheck = (() =>
         ro: props.readOnly,
         dsb: props.disabled,
         v: r.value?.indeterminate || r.value?.defaultChecked || r.value?.checked || props.checked,
+        lb: props.lab,
       });
       watch(
         () => s.req,
@@ -55,6 +57,7 @@ const FilterCheck = (() =>
           s.v = n ? n : r.value?.indeterminate || r.value?.defaultChecked || r.value?.checked || props.checked || n;
         },
       );
+      if (s.lb === "" && props.id !== "") s.lb = labMap.get(props.id) || props.id || s.lb;
       if (s.req) {
         if (s.ro) r.value?.setAttribute("readonly", "true");
         else r.value?.removeAttribute("readonly");
@@ -103,6 +106,7 @@ const FilterCheck = (() =>
         s,
         r,
         rc,
+        tLab: labMap.get(s.lb) || s.lb || props.lab,
       };
     },
   }))();

@@ -4,7 +4,7 @@
 </script>
 <template>
   <fieldset :id="`${id}Fs`">
-    <label :id="`${id}Lab`" :for="id" ref="rlb">{{ lab }}</label>
+    <label :id="`${id}Lab`" :for="id" ref="rlb">{{ tLab }}</label>
     <input
       v-model="sVl"
       ref="r"
@@ -13,10 +13,10 @@
       dir="ltr"
       :dirName="`${lab.replace(/([A-Z])/g, '_$1').toLowerCase()?.direction ?? ''}`"
       :data-number="`${nVl}`"
-      :placeholder="`Digite o ${lab} aqui`"
+      :placeholder="`Digite o ${tLab} aqui`"
       :id="id"
-      :minlength="minLength"
-      :maxlength="maxLength"
+      :minLength="minLength"
+      :maxLength="maxLength"
       :autocomplete="autocomplete"
       :autocapitalize="autocapitalize"
       :pattern="s.pt"

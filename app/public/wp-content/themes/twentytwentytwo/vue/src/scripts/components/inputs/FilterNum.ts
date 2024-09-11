@@ -1,12 +1,13 @@
 import { defineComponent, ref, reactive, watch, onMounted, computed } from "vue";
-import { inpType, nDl, nInp, nLb } from "../../declarations/types";
-import { parseNotNaN } from "../../handlersMath";
+import { nDl, nInp, nLb } from "../../declarations/types";
+import { parseNotNaN } from "../../handlers/handlersMath";
+import { labMap } from "../../../vars";
 const FilterNum = (() =>
   defineComponent({
     name: "FilterNum",
     props: {
       id: {
-        type: String as () => inpType,
+        type: String,
         required: true,
         default: "number",
       },
@@ -73,6 +74,7 @@ const FilterNum = (() =>
         pt: props.pattern,
         v: "",
         vn: NaN,
+        lb: props.lab,
       });
       const nVl = computed(() => parseNotNaN(s.v) || s.vn);
       const sVl = computed(() => s.v);
@@ -97,6 +99,12 @@ const FilterNum = (() =>
           console.error(`Error updating datalist for ${props.id}: ${(e as Error).message}`);
         }
       };
+      const sanitazeValue = (n: string) => {
+        if (/[^0-9,\.]/g.test(n)) n = n.replace(/[^0-9,\.]/g, "");
+        if (n.length > 2) n = n.slice(0, 2);
+        const num = Math.abs(parseNotNaN(n, 0, "int"));
+        return num && Number.isFinite(num) ? Math.abs(parseNotNaN(n, 0, "int")).toFixed(0) : "0";
+      };
       watch(
         () => s.req,
         n => (s.req = n),
@@ -104,14 +112,15 @@ const FilterNum = (() =>
       watch(
         () => s.v,
         n => {
-          s.vn = parseNotNaN(n);
-          updateDatalist(n);
+          s.v = sanitazeValue(n);
+          updateDatalist(s.v);
         },
       );
       watch(
         () => s.vn,
         n => (s.vn = parseNotNaN(s.v) || n),
       );
+      if (s.lb === "" && props.id !== "") s.lb = labMap.get(props.id) || props.id || s.lb;
       if (s.req) {
         if (s.ro) r.value?.setAttribute("readonly", "true");
         else r.value?.removeAttribute("readonly");
@@ -186,6 +195,7 @@ const FilterNum = (() =>
         r,
         dr,
         rc,
+        tLab: labMap.get(s.lb) || s.lb || props.lab,
       };
     },
   }))();

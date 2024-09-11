@@ -1,6 +1,6 @@
 <script setup lang="ts">
-  import enqueuedScript from "../scripts/components/App";
-  enqueuedScript();
+  import SozedApp from "../scripts/components/App";
+  export default SozedApp;
 </script>
 
 <template>
@@ -158,6 +158,30 @@
             </div>
           </li>
         </ul>
+        <FilterForm
+          :id="'PetsTable'"
+          :inps="
+          [
+              { id: "name", minLength: 2, autocapitalize: true, autocomplete: "name", required: true },
+              { id: "age", type: "number", required: false, autocomplete: "age" },
+              {
+                id: "species",
+                type: "select-one",
+                opts: [
+                  {
+                    value: "male",
+                    text: "Macho",
+                  },
+                  {
+                    value: "female",
+                    text: "Fêmea",
+                  },
+                ],
+              },
+              { id: "castrated", type: "checkbox", required: true },
+            ];
+          "
+        />
       </main>
       <footer class="wp-block-template-part">
         <div

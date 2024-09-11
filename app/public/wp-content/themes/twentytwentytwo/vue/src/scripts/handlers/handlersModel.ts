@@ -1,26 +1,44 @@
-export function parseNotNaN(iniVal: string, def: number = 0, context: string = "float", fixed: number = 4): number {
-  let returnVal = 0;
+export function modelScripts(): void {
   try {
-    if (typeof iniVal !== "string") throw new Error("Failed to validate argument: iniVal must be a string.");
-    if (typeof context !== "string") throw new Error("Failed to validate argument: context must be a string.");
-    if (typeof def !== "number") throw new Error("Failed to validate argument: def must be a number.");
-    if (typeof fixed !== "number") throw new Error("Failed to validate argument: fixed must be a number.");
-    switch (context) {
-      case "int":
-        returnVal = parseInt(iniVal, 10) || def;
-        if (!Number.isFinite(returnVal) || Number.isNaN(returnVal) || isNaN(returnVal)) returnVal = def;
-        break;
-      case "float":
-        returnVal = parseFloat(parseFloat(iniVal).toFixed(fixed)) || def;
-        if (!Number.isFinite(returnVal) || isNaN(returnVal)) returnVal = def;
-        break;
-      default:
-        throw new Error(`Context of parsing invalid.`);
-    }
-    return returnVal || 0;
+    document.querySelectorAll("script").forEach((script, i) => {
+      try {
+        if (!(script instanceof HTMLScriptElement)) return;
+        if (script.type === "" && script.src !== "") script.type = "text/javascript";
+        if (script.id === "" && script.src !== "") {
+          const url = new URL(script.src);
+          script.id = url.pathname.replace(/[\-\?\=\+\s\.~,]/g, "__");
+        }
+        if (script.crossOrigin === "") script.crossOrigin = "anonymous";
+      } catch (e) {
+        console.error(`Error executing iteration ${i} for <script> tags in modelScripts:\n${(e as Error).message}`);
+      }
+    });
+    document.querySelectorAll("link").forEach((link, i) => {
+      try {
+        if (!(link instanceof HTMLLinkElement)) return;
+        if (link.id === "" && link.href !== "") {
+          const url = new URL(link.href);
+          link.id = url.pathname.replace(/[\-\?\=\+\s\.\&\<\>\^~,]/g, "__");
+        }
+        if (link.rel === "") link.rel = "alternate";
+        if (link.crossOrigin === "") link.crossOrigin = "anonymous";
+      } catch (e) {
+        console.error(`Error executing iteration ${i} for <link> tags in modelScripts:\n${(e as Error).message}`);
+      }
+    });
+    document.querySelectorAll("a").forEach((a, i) => {
+      try {
+        if (!(a instanceof HTMLAnchorElement)) return;
+        if (a.href !== "" && !(new RegExp(location.hostname, "g").test(a.href) || /https/.test(a.href))) {
+          if (!/noopener/g.test(a.rel)) a.rel += " noopener";
+          if (!/noreferrer/g.test(a.rel)) a.rel += " noreferrer";
+        }
+      } catch (e) {
+        console.error(`Error executing iteration ${i} for <a> tags in modelScripts:\n${(e as Error).message}`);
+      }
+    });
   } catch (e) {
-    console.error(`Error executing parseNotNaN:\n${(e as Error).message}`);
-    return returnVal || 0;
+    console.error(`Error executing modelScripts:\n${(e as Error).message}`);
   }
 }
 export function syncAriaStates(els: Array<Element> | NodeListOf<Element>): void {

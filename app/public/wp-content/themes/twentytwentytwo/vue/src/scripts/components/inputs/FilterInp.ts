@@ -1,14 +1,15 @@
 import { defineComponent, ref, reactive, watch, onMounted, computed } from "vue";
-import { inpType, nDl, nInp, nLb } from "../../declarations/types";
-import { parseNotNaN } from "../../handlersMath";
+import { nDl, nInp, nLb } from "../../declarations/types";
+import { parseNotNaN } from "../../handlers/handlersMath";
+import { labMap } from "../../../vars";
 const FilterInp = (() =>
   defineComponent({
     name: "FilterInp",
     props: {
       id: {
-        type: String as () => inpType,
+        type: String,
         required: true,
-        default: "text",
+        default: "",
       },
       lab: {
         type: String,
@@ -71,6 +72,7 @@ const FilterInp = (() =>
         ro: props.readOnly,
         dsb: props.disabled,
         pt: props.pattern,
+        lb: props.lab,
         v: "",
         vn: NaN,
       });
@@ -112,6 +114,7 @@ const FilterInp = (() =>
         () => s.vn,
         n => (s.vn = parseNotNaN(s.v) || n),
       );
+      if (s.lb === "" && props.id !== "") s.lb = labMap.get(props.id) || props.id || s.lb;
       if (s.req) {
         if (s.ro) r.value?.setAttribute("readonly", "true");
         else r.value?.removeAttribute("readonly");
@@ -186,6 +189,7 @@ const FilterInp = (() =>
         r,
         dr,
         rc,
+        tLab: labMap.get(s.lb) || s.lb || props.lab,
       };
     },
   }))();

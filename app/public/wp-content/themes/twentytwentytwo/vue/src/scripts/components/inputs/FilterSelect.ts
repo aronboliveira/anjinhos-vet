@@ -1,6 +1,7 @@
 import { defineComponent, ref, reactive, watch, onMounted } from "vue";
 import { nLb, nSl } from "../../declarations/types";
 import { OptGroupProps, OptProps } from "../../declarations/interfaceComponents";
+import { labMap } from "../../../vars";
 const FilterSelect = (() =>
   defineComponent({
     name: "FilterSelect",
@@ -55,6 +56,7 @@ const FilterSelect = (() =>
         ro: props.readOnly,
         dsb: props.disabled,
         v: props.defV,
+        lb: props.lab,
       });
       watch(
         () => s.req,
@@ -66,6 +68,7 @@ const FilterSelect = (() =>
           s.v = n;
         },
       );
+      if (s.lb === "" && props.id !== "") s.lb = labMap.get(props.id) || props.id || s.lb;
       if (s.req) {
         if (s.ro) r.value?.setAttribute("readonly", "true");
         else r.value?.removeAttribute("readonly");
@@ -124,6 +127,7 @@ const FilterSelect = (() =>
         s,
         r,
         rc,
+        tLab: labMap.get(s.lb) || s.lb || props.lab,
       };
     },
   }))();
