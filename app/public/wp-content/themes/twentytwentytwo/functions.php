@@ -59,13 +59,26 @@ if ( ! function_exists( 'twentytwentytwo_styles' ) ) :
 
 endif;
 
+add_action('admin_notices', function() {
+	echo '<div class="notice notice-success is-dismissible">
+						<p>functions.php is loaded successfully!</p>
+				</div>';
+});
 add_action( 'wp_enqueue_scripts', 'twentytwentytwo_styles' );
 require get_template_directory() . '/inc/block-patterns.php';
 function enqueue_vue() {
 	if (is_front_page()) {
-			wp_enqueue_script('vuejs', 'http://sozed-vet-rj.local/wp-content/themes/twentytwentytwo/vue/dist/main.js', array(), null, true);
-			wp_script_add_data('vuejs', 'type', 'module');
-			wp_script_add_data('vuejs', 'id', 'vue');
+    wp_register_script('vue', get_template_directory_uri().'/vue/dist/assets/index-Cu7nBgTW.js', array(), null, true);
+    wp_enqueue_script('vue');
 	}
 }
+function add_type_attribute($tag, $handle) {
+	if (($handle === 'vue' || $handle === 'react') && strpos($tag, '<script')) {
+		if (!strpos($tag, 'type=')) $tag = str_replace('<script ', '<script type="module"', $tag);
+		if (!strpos($tag, 'crossorigin=')) $tag = str_replace('<script ', '<script crossorigin="anonymous"', $tag);
+		return $tag;
+	}
+	return $tag;
+}
 add_action('wp_enqueue_scripts', 'enqueue_vue');
+add_filter('script_loader_tag', 'add_type_attribute', 10, 2);

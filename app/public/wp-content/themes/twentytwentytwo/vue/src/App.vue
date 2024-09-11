@@ -1,5 +1,5 @@
 <script setup lang="ts">
-  import enqueuedScript from "../scripts/components/App.ts";
+  import enqueuedScript from "../scripts/components/App";
   enqueuedScript();
 </script>
 
