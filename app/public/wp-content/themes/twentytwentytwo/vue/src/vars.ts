@@ -6,3 +6,4 @@ export const labMap = new Map<string, string>([
   ["castrated", "Castrado"],
   ["vacinated", "Vacinado"],
 ]);
+export const rc: { [k: string]: { [k: string]: string[] } } = {};

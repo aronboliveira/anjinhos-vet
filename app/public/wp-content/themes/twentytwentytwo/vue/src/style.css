@@ -58,6 +58,11 @@ button:focus-visible {
   padding: 2em;
 }
 
+.form-label {
+  padding-left: 0.2rem;
+  font-weight: 700;
+}
+
 #app {
   max-width: 1280px;
   margin: 0 auto;

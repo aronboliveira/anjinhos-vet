@@ -1,18 +1,162 @@
 <script lang="ts">
-  import FilterInp from "../../scripts/components/inputs/FilterInp";
-  export default FilterInp;
+  import { defineComponent, ref, reactive, watch, onMounted } from "vue";
+  import { nDl, nInp, nLb } from "../../declarations/types";
+  import { parseNotNaN } from "../../scripts/handlers/handlersMath.ts";
+  import { labMap } from "../../vars.ts";
+  import {
+    updateAttrs,
+    assignFormAttrs,
+    handleLabs,
+    handleDl,
+    handleDlUpdate,
+  } from "../../scripts/components/utils.ts";
+  export default defineComponent({
+    name: "FilterInp",
+    props: {
+      id: {
+        type: String,
+        required: true,
+        default: "",
+      },
+      lab: {
+        type: String,
+        required: false,
+        default: "",
+      },
+      minLength: {
+        type: Number,
+        required: false,
+        default: 0,
+      },
+      maxLength: {
+        type: Number,
+        required: false,
+        default: 4000,
+      },
+      pattern: {
+        type: String,
+        required: false,
+        default: ".*",
+      },
+      autocomplete: {
+        type: String,
+        required: false,
+        default: "none",
+      },
+      autocapitalize: {
+        type: Boolean,
+        required: false,
+        default: false,
+      },
+      required: {
+        type: Boolean,
+        required: false,
+        default: false,
+      },
+      disabled: {
+        type: Boolean,
+        required: false,
+        default: false,
+      },
+      readOnly: {
+        type: Boolean,
+        required: false,
+        default: false,
+      },
+      dataList: {
+        type: Array as () => string[],
+        required: false,
+        default: [],
+      },
+    },
+    setup(props) {
+      const r = ref<nInp>(null);
+      const rlb = ref<nLb>(null);
+      const dr = ref<nDl>(null);
+      const rc = ref<{ [k: string]: string[] }>({});
+      const s = reactive({
+        req: props.required,
+        ro: props.readOnly,
+        dsb: props.disabled,
+        pt: props.pattern,
+        lb: props.lab,
+        v: "",
+        vn: NaN,
+      });
+      const updateDatalist = (n: string) => {
+        try {
+          if (!(r.value instanceof HTMLInputElement)) throw new Error(`Input reference for ${props.id} is not valid`);
+          sessionStorage.setItem(`${props.id}_v`, s.v);
+          if (!dr.value) {
+            dr.value = Object.assign(document.createElement("datalist"), {
+              id: `${props.id}List`,
+            });
+            r.value.insertAdjacentElement("afterend", dr.value);
+          }
+          handleDlUpdate(r.value, dr.value, n);
+        } catch (e) {
+          console.error(`Error updating datalist for ${props.id}: ${(e as Error).message}`);
+        }
+      };
+      watch(
+        () => s.req,
+        n => updateAttrs(r.value, s.ro, s.dsb, r.req),
+      );
+      watch(
+        () => s.v,
+        n => {
+          s.vn = parseNotNaN(n);
+          updateDatalist(n);
+        },
+      );
+      watch(
+        () => s.vn,
+        n => (s.vn = parseNotNaN(s.v) || n),
+      );
+      if (s.lb === "" && props.id !== "") s.lb = labMap.get(props.id) || props.id || s.lb;
+      if (!/{/g.test(s.pt)) {
+        if (props.minLength > 0) {
+          s.pt = `${s.pt}{${props.minLength},`;
+          if (props.maxLength) s.pt += `{props.maxLength}}`;
+          else s.pt += `}`;
+        }
+      }
+      onMounted(() => {
+        updateDatalist(s.v);
+        try {
+          if (!(r.value instanceof HTMLInputElement))
+            throw new Error(`Couldn't validate the Reference for the input ${props.id}`);
+          const form = r.value?.closest("form");
+          if (!(form instanceof HTMLFormElement)) throw new Error(`Couldn't found Form for the Input ${props.id}`);
+          assignFormAttrs(r.value, form);
+        } catch (e) {
+          console.error(`Error on defining form properties to the input:\n${(e as Error).message}`);
+        }
+        handleLabs(r.value, rlb.value, props);
+        handleDl(r.value, dr.value);
+      });
+      return {
+        s,
+        r,
+        dr,
+        rc,
+        tLab: labMap.get(s.lb) || s.lb || props.lab,
+      };
+    },
+  });
 </script>
 <template>
-  <fieldset :id="`${id}Fs`">
-    <label :id="`${id}Lab`" :for="id" ref="rlb">{{ tLab }}</label>
+  <fieldset :id="`${id}Fs`" class="form-group">
+    <label :id="`${id}Lab`" :for="id" ref="rlb" class="form-label">{{ tLab }}</label>
     <input
-      v-model="sVl"
+      v-model="s.v"
+      class="form-control"
       ref="r"
       type="text"
-      :name="lab.replace(/([A-Z])/g, '_$1').toLowerCase()"
       dir="ltr"
-      :dirName="`${lab.replace(/([A-Z])/g, '_$1').toLowerCase()?.direction ?? ''}`"
-      :data-number="`${nVl}`"
+      :name="id.replace(/([A-Z])/g, (m, i) => (m === id.charAt(0) ? `${m.toLowerCase()}` : `_${m.toLowerCase()}`))"
+      :dirName="`${id.replace(/([A-Z])/g, (m, i) => (m === id.charAt(0) ? `${m.toLowerCase()}` : `_${m.toLowerCase()}`))?.direction ?? ''}`"
+      :data-number="s.vn"
       :placeholder="`Digite o ${tLab} aqui`"
       :id="id"
       :minLength="minLength"
