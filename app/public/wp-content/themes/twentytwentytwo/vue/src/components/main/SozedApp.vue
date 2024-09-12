@@ -186,7 +186,7 @@
             id: 'species',
             type: 'select-one',
             opts: [
-              { value: 'dog', text: 'Cachorro' },
+              { value: 'dog', text: 'Cão' },
               { value: 'cat', text: 'Gato' },
             ],
           },
@@ -217,7 +217,7 @@
             style="padding-top: 4rem; padding-bottom: 4rem"
           >
             <p class="wp-block-site-title">
-              <a href="http://sozed-vet-rj.local" target="_self" rel="home" aria-current="page">sozed-vet-rj</a>
+              <!-- <a href="http://sozed-vet-rj.local" target="_self" rel="home" aria-current="page">sozed-vet-rj</a> -->
             </p>
           </div>
         </div>

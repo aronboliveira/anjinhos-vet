@@ -1,5 +1,5 @@
 <script lang="ts">
-  import { defineComponent, ref, onMounted } from "vue";
+  import { defineComponent, ref, watch, onMounted } from "vue";
   import { InpProps } from "../../declarations/interfaceComponents";
   import { nFm } from "../../declarations/types";
   import FilterInp from "../inputs/FilterInp.vue";
@@ -45,6 +45,11 @@
     },
     setup(props) {
       const r = ref<nFm>(null);
+      const isCat = ref<boolean>(null);
+      const spr = ref<string>("dog");
+      watch(() => n => {
+        isCat.value = n === "cat";
+      });
       onMounted(() => {
         try {
           if (!(r.value instanceof HTMLFormElement)) throw new Error(`Failed to validate Form Reference`);
@@ -88,9 +93,14 @@
             console.error(`Error executing procedures for defining Dataset for Elements:\n${(e as Error).message}`);
           }
         } catch (e) {
-          console.error(`Error executing onMounted procedures for Form ${props.id}:${(e as Error).message}`);
+          console.error(`Error executing onMounted procedures for Form ${props.id}:\n${(e as Error).message}`);
         }
       });
+      return {
+        r,
+        isCat,
+        spr,
+      };
     },
   });
 </script>
@@ -106,9 +116,11 @@
     class="filterForm"
     @submit.prevent="handleSubmit"
   >
+    <legend>Pesquise pelo seu novo Pet!</legend>
     <div v-for="i in inps" :key="`inp__${id}__${i.id}`">
+      <FilterSelect v-if="i.id === 'species'" v-model="spr" :id="i.id" :lab="i.lab" :opts="i.opts" />
       <FilterSelect
-        v-if="i.type === 'select-one' || i.type === 'select-multiple'"
+        v-else-if="i.type === 'select-one' || i.type === 'select-multiple'"
         :type="i.type"
         :id="i.id"
         :lab="i.lab"
@@ -121,7 +133,7 @@
         :type="i.type"
         :required="i.required"
       />
-      <FilterInp
+      <FilterNum
         v-else-if="i.type === 'number'"
         :id="i.id"
         :lab="i.lab"
@@ -137,6 +149,10 @@
         :required="i.required"
       />
     </div>
+    <template v-if="isCat">
+      <FilterCheck id="felv" />
+      <FilterCheck id="fiv" />
+    </template>
   </form>
 </template>
 <style scoped>

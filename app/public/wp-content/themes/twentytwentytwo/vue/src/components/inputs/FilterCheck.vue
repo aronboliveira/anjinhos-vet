@@ -40,7 +40,6 @@
     setup(props) {
       const r = ref<nInp>(null);
       const rlb = ref<nLb>(null);
-      const rc = ref<{ [k: string]: string[] }>({});
       const s = reactive({
         req: props.required,
         ro: props.readOnly,
@@ -74,7 +73,7 @@
       return {
         s,
         r,
-        rc,
+        rlb,
         tLab: labMap.get(s.lb) || s.lb || props.lab,
       };
     },

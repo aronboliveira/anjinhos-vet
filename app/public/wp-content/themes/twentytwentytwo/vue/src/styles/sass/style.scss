@@ -25,10 +25,6 @@ body {
   min-width: 20rem;
   min-height: 100vh;
 }
-h1 {
-  font-size: 3.2em;
-  line-height: 1.1;
-}
 button {
   border-radius: 0.5rem;
   border: 1px solid transparent;
@@ -47,11 +43,30 @@ button {
     outline: 0.25rem auto -webkit-focus-ring-color;
   }
 }
+h1 {
+  font-size: 3.2em;
+  line-height: 1.1;
+}
+input {
+  &::selection {
+    background-color: #3f5f7b9d;
+  }
+}
+legend {
+  font-weight: 800;
+}
+ul {
+  list-style: none;
+  padding: 0;
+}
 .card {
   padding: 2em;
 }
 .form-check {
   padding: 0;
+  .form-check-input {
+    margin-left: 0.5rem;
+  }
 }
 .form-label,
 .form-check-label {
@@ -63,6 +78,25 @@ button {
   margin: 0 auto;
   padding: 2rem;
   text-align: center;
+  :where(:not(.wp-element-button)) {
+    text-decoration: none;
+  }
+  h2 {
+    font-weight: 900;
+    text-shadow: 1px 1px 1px rgba(43, 43, 43, 0.87);
+  }
+  time {
+    opacity: 0.7;
+  }
+  ul {
+    &.alignwide {
+      height: 12rem;
+    }
+  }
+  .wp-block-post-excerpt {
+    font-style: italic;
+    font-weight: 600;
+  }
 }
 @media (prefers-color-scheme: light) {
   :root {

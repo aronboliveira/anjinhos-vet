@@ -138,6 +138,7 @@
       return {
         s,
         r,
+        rlb,
         dr,
         rc,
         tLab: labMap.get(s.lb) || s.lb || props.lab,

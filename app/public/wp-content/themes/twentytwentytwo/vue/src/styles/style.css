@@ -28,11 +28,6 @@ body {
   min-height: 100vh;
 }
 
-h1 {
-  font-size: 3.2em;
-  line-height: 1.1;
-}
-
 button {
   border-radius: 0.5rem;
   border: 1px solid transparent;
@@ -51,12 +46,33 @@ button:focus, button:focus-visible {
   outline: 0.25rem auto -webkit-focus-ring-color;
 }
 
+h1 {
+  font-size: 3.2em;
+  line-height: 1.1;
+}
+
+input::selection {
+  background-color: rgba(63, 95, 123, 0.6156862745);
+}
+
+legend {
+  font-weight: 800;
+}
+
+ul {
+  list-style: none;
+  padding: 0;
+}
+
 .card {
   padding: 2em;
 }
 
 .form-check {
   padding: 0;
+}
+.form-check .form-check-input {
+  margin-left: 0.5rem;
 }
 
 .form-label,
@@ -70,6 +86,23 @@ button:focus, button:focus-visible {
   margin: 0 auto;
   padding: 2rem;
   text-align: center;
+}
+#app :where(:not(.wp-element-button)) {
+  text-decoration: none;
+}
+#app h2 {
+  font-weight: 900;
+  text-shadow: 1px 1px 1px rgba(43, 43, 43, 0.87);
+}
+#app time {
+  opacity: 0.7;
+}
+#app ul.alignwide {
+  height: 12rem;
+}
+#app .wp-block-post-excerpt {
+  font-style: italic;
+  font-weight: 600;
 }
 
 @media (prefers-color-scheme: light) {

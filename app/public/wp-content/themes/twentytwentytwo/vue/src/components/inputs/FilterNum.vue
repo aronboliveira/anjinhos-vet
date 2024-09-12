@@ -99,9 +99,9 @@
       };
       const sanitazeValue = (n: string) => {
         if (/[^0-9,\.]/g.test(n)) n = n.replace(/[^0-9,\.]/g, "");
+        if (parseNotNaN(n) < 0) n = 0;
         if (n.length > 2) n = n.slice(0, 2);
-        const num = Math.abs(parseNotNaN(n, 0, "int"));
-        return num && Number.isFinite(num) ? Math.abs(parseNotNaN(n, 0, "int")).toFixed(0) : "0";
+        return n && Number.isFinite(n) ? n : "0";
       };
       watch(
         () => s.req,
@@ -143,6 +143,7 @@
       return {
         s,
         r,
+        rlb,
         dr,
         tLab: labMap.get(s.lb) || s.lb || props.lab,
         setp: props.step,
@@ -157,17 +158,18 @@
       v-model="s.v"
       ref="r"
       class="form-control"
-      type="text"
+      type="number"
       dir="ltr"
+      min="0"
+      max="999"
       :name="id.replace(/([A-Z])/g, (m, i) => (m === id.charAt(0) ? `${m.toLowerCase()}` : `_${m.toLowerCase()}`))"
       :dirName="`${id.replace(/([A-Z])/g, (m, i) => (m === id.charAt(0) ? `${m.toLowerCase()}` : `_${m.toLowerCase()}`))?.direction ?? ''}`"
       :data-number="s.vn"
-      :placeholder="`Digite o ${tLab} aqui`"
+      :placeholder="`Digite ${tLab.toLowerCase() === 'idade' ? 'a' : 'o'} ${tLab} aqui`"
       :id="id"
       :minlength="minLength"
       :maxlength="maxLength"
       :autocomplete="autocomplete"
-      :autocapitalize="autocapitalize"
       :pattern="s.pt"
       :required="s.req"
       :disabled="s.dsb"

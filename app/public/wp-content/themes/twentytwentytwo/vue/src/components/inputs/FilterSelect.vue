@@ -51,7 +51,6 @@
     setup(props) {
       const r = ref<nSl>(null);
       const rlb = ref<nLb>(null);
-      const rc = ref<{ [k: string]: string[] }>({});
       const s = reactive({
         req: props.required,
         ro: props.readOnly,
@@ -72,11 +71,13 @@
       if (s.lb === "" && props.id !== "") s.lb = labMap.get(props.id) || props.id || s.lb;
       onMounted(() => {
         try {
-          if (!(r.value instanceof HTMLInputElement))
+          if (!(r.value instanceof HTMLInputElement || r.value instanceof HTMLSelectElement))
             throw new Error(`Couldn't validate the Reference for the input ${props.id}`);
           const form = r.value?.closest("form");
+          console.log(r.value);
+          console.log(form);
           if (!(form instanceof HTMLFormElement)) throw new Error(`Couldn't found Form for the Input ${props.id}`);
-          assignFormAttrs(r, value, form);
+          assignFormAttrs(r.value, form);
         } catch (e) {
           console.error(`Error on defining form properties to the input:\n${(e as Error).message}`);
         }
@@ -91,12 +92,11 @@
             `Error executing procedure for defining default value for Select ${props.id}:\n${(e as Error).message}`,
           );
         }
-        console.log(props.opts);
       });
       return {
         s,
         r,
-        rc,
+        rlb,
         tLab: labMap.get(s.lb) || s.lb || props.lab,
         o: props.opts,
       };
