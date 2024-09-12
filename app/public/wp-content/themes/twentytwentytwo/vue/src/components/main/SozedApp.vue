@@ -185,12 +185,23 @@
           {
             id: 'species',
             type: 'select-one',
-            required: false,
-            autocomplete: 'species',
             opts: [
-              { value: 'male', text: 'Macho' },
-              { value: 'female', text: 'Fêmea' },
+              { value: 'dog', text: 'Cachorro' },
+              { value: 'cat', text: 'Gato' },
             ],
+          },
+          {
+            id: 'sex',
+            type: 'select-one',
+            opts: [
+              { value: 'female', text: 'Fêmea' },
+              { value: 'male', text: 'Macho' },
+            ],
+          },
+          {
+            id: 'castrated',
+            type: 'checkbox',
+            required: false,
           },
         ]"
       />

@@ -6,15 +6,20 @@
   "scripts": {
     "dev": "vite",
     "build": "vue-tsc -b && vite build",
-    "preview": "vite preview"
+    "preview": "vite preview",
+    "ssb": "sass src/styles/sass:src/styles",
+    "sswt": "sass --watch src/styles/sass:src/styles",
+    "wt--all": "run-p sswt dev"
   },
   "dependencies": {
+    "typescript": "^5.6.2",
     "vue": "^3.4.37"
   },
   "devDependencies": {
     "@vitejs/plugin-vue": "^5.1.2",
+    "npm-run-all": "^4.1.5",
     "prettier": "^3.3.3",
-    "typescript": "^5.5.3",
+    "sass": "^1.78.0",
     "vite": "^5.4.1",
     "vue-tsc": "^2.0.29"
   }
