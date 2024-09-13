@@ -47,15 +47,21 @@
         required: true,
         default: [],
       },
+      modelV: {
+        type: String,
+        required: false,
+        default '',
+      }
     },
-    setup(props) {
+    emits: ['update:modelV'],
+    setup(props, { emit }) {
       const r = ref<nSl>(null);
       const rlb = ref<nLb>(null);
       const s = reactive({
         req: props.required,
         ro: props.readOnly,
         dsb: props.disabled,
-        v: props.defV,
+        v: props.modelV || props.defV,
         lb: props.lab,
       });
       watch(
@@ -63,10 +69,16 @@
         n => updateAttrs(r.value, s.ro, s.dsb, s.req),
       );
       watch(
+        () => props.modelV,
+        (n) => {
+          s.v = n || props.defV;
+        }
+      );
+      watch(
         () => s.v,
-        n => {
-          s.v = n;
-        },
+        (n) => {
+          emit('update:modelV', n);
+        }
       );
       if (s.lb === "" && props.id !== "") s.lb = labMap.get(props.id) || props.id || s.lb;
       onMounted(() => {
@@ -92,6 +104,13 @@
             `Error executing procedure for defining default value for Select ${props.id}:\n${(e as Error).message}`,
           );
         }
+        try{
+          if (props.defV !== '') {
+            s.v = props.defV;
+            emit('update:modelV', props.defV);
+          }
+        }
+        catch(e){console.error(`Error executing procedures for defining default Value:\n${(e as Error).message}`)}
       });
       return {
         s,
@@ -107,9 +126,10 @@
   <fieldset :id="`${id}Fs`" class="form-group">
     <label :id="`${id}Lab`" :for="id" ref="rlb" class="form-label">{{ tLab }}</label>
     <select
-      v-model="s.v"
       ref="r"
       class="form-select"
+      v-model="s.v"
+      :data-model="modelV"
       :id="id"
       :name="id.replace(/([A-Z])/g, (m, i) => (m === id.charAt(0) ? `${m.toLowerCase()}` : `_${m.toLowerCase()}`))"
       :required="s.req"
