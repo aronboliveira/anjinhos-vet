@@ -80,7 +80,7 @@
   });
 </script>
 <template>
-  <fieldset :id="`${id}Fs`" class="form-check form-group">
+  <fieldset :id="`${id}Fs`" :class="{ 'form-group form-check': true, fading: id === 'fiv' || id === 'felv' }">
     <label class="form-check-label" :id="`${id}Lab`" :for="id" ref="rlb">{{ tLab }}</label>
     <input
       v-model="s.v"

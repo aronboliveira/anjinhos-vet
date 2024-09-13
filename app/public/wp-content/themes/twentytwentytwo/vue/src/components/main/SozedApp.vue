@@ -23,7 +23,6 @@
     },
   });
 </script>
-
 <template>
   <div id="wp-body" class="home blog logged-in admin-bar no-customize-support wp-embed-responsive">
     <div class="wp-site-blocks">

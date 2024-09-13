@@ -47,21 +47,21 @@
         required: true,
         default: [],
       },
-      modelV: {
+      mv: {
         type: String,
         required: false,
-        default '',
-      }
+        default: "",
+      },
     },
-    emits: ['update:modelV'],
+    emits: ["update:mv"],
     setup(props, { emit }) {
       const r = ref<nSl>(null);
       const rlb = ref<nLb>(null);
+      const v = ref<string>(props.mv || props.defV || "dog");
       const s = reactive({
         req: props.required,
         ro: props.readOnly,
         dsb: props.disabled,
-        v: props.modelV || props.defV,
         lb: props.lab,
       });
       watch(
@@ -69,16 +69,12 @@
         n => updateAttrs(r.value, s.ro, s.dsb, s.req),
       );
       watch(
-        () => props.modelV,
-        (n) => {
-          s.v = n || props.defV;
-        }
-      );
-      watch(
-        () => s.v,
-        (n) => {
-          emit('update:modelV', n);
-        }
+        () => v.value,
+        n => {
+          v.value = n || props.defV;
+          emit("update:mv", n);
+          console.log([n || "undefined", props.mv || "undefined"]);
+        },
       );
       if (s.lb === "" && props.id !== "") s.lb = labMap.get(props.id) || props.id || s.lb;
       onMounted(() => {
@@ -86,8 +82,6 @@
           if (!(r.value instanceof HTMLInputElement || r.value instanceof HTMLSelectElement))
             throw new Error(`Couldn't validate the Reference for the input ${props.id}`);
           const form = r.value?.closest("form");
-          console.log(r.value);
-          console.log(form);
           if (!(form instanceof HTMLFormElement)) throw new Error(`Couldn't found Form for the Input ${props.id}`);
           assignFormAttrs(r.value, form);
         } catch (e) {
@@ -96,24 +90,28 @@
         handleLabs(r.value, rlb.value, props);
         try {
           if (!(r.value instanceof HTMLSelectElement)) throw new Error(`Failed to validate main reference instance`);
-          s.v = props.defV;
-          if (s.v === "" && r.value.options.length > 0) s.v = r.value.options[0].value;
+          v.value = props.defV;
+          if (v.value === "" && r.value.options.length > 0) v.value = r.value.options[0].value;
           r.value.dataset.default = props.defV;
         } catch (e) {
           console.error(
             `Error executing procedure for defining default value for Select ${props.id}:\n${(e as Error).message}`,
           );
         }
-        try{
-          if (props.defV !== '') {
-            s.v = props.defV;
-            emit('update:modelV', props.defV);
+        try {
+          if (props.defV !== "") {
+            console.log("defV is " + props.defV || "undefined");
+            v.value = props.defV;
+            console.log("v.value is " + v.value || "undefined");
+            emit("update:mv", props.defV);
           }
+        } catch (e) {
+          console.error(`Error executing procedures for defining default Value:\n${(e as Error).message}`);
         }
-        catch(e){console.error(`Error executing procedures for defining default Value:\n${(e as Error).message}`)}
       });
       return {
         s,
+        v,
         r,
         rlb,
         tLab: labMap.get(s.lb) || s.lb || props.lab,
@@ -123,13 +121,13 @@
   });
 </script>
 <template>
-  <fieldset :id="`${id}Fs`" class="form-group">
+  <fieldset :id="`${id}Fs`" :class="{ 'form-group': true, fading: id === 'size' }">
     <label :id="`${id}Lab`" :for="id" ref="rlb" class="form-label">{{ tLab }}</label>
     <select
       ref="r"
       class="form-select"
-      v-model="s.v"
-      :data-model="modelV"
+      v-model="v"
+      :data-model="mv"
       :id="id"
       :name="id.replace(/([A-Z])/g, (m, i) => (m === id.charAt(0) ? `${m.toLowerCase()}` : `_${m.toLowerCase()}`))"
       :required="s.req"

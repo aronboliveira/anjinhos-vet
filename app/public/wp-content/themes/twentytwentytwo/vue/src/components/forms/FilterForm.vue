@@ -45,11 +45,16 @@
     },
     setup(props) {
       const r = ref<nFm>(null);
-      const isCat = ref<boolean>(null);
       const spr = ref<string>("dog");
-      watch(() => n => {
-        isCat.value = n === "cat";
-      });
+      const isCat = ref<boolean>(spr.value === "cat");
+      watch(
+        () => spr.value,
+        n => {
+          isCat.value = n === "cat";
+          console.log("is cat? " + isCat.value);
+        },
+        { immediate: true },
+      );
       onMounted(() => {
         try {
           if (!(r.value instanceof HTMLFormElement)) throw new Error(`Failed to validate Form Reference`);
@@ -98,14 +103,15 @@
       });
       return {
         r,
-        isCat,
         spr,
+        isCat,
       };
     },
   });
 </script>
 <template>
   <form
+    v-cloak
     :id="`filterForm${id}`"
     :name="`filter_form_${id.replace(/([A-Z])/g, '_$1').toLowerCase()}`"
     :action="action"
@@ -118,7 +124,7 @@
   >
     <legend>Pesquise pelo seu novo Pet!</legend>
     <div v-for="i in inps" :key="`inp__${id}__${i.id}`">
-      <FilterSelect v-if="i.id === 'species'" v-model="spr" :id="i.id" :lab="i.lab" :opts="i.opts" />
+      <FilterSelect v-if="i.id === 'species'" v-model:mv="spr" :id="i.id" :lab="i.lab" :opts="i.opts" />
       <FilterSelect
         v-else-if="i.type === 'select-one' || i.type === 'select-multiple'"
         :type="i.type"
@@ -156,11 +162,21 @@
   </form>
 </template>
 <style scoped>
+  @keyframes fadeIn {
+    0% {
+      opacity: 0;
+    }
+    100% {
+      opacity: 1;
+    }
+  }
   form {
     display: flex;
     gap: 0.5rem;
     flex-flow: column wrap;
     min-width: 80%;
+    transition: width 1s ease-in-out;
+    animation: fadeIn 3s ease-in-out;
   }
   .filterForm {
     fieldset {
@@ -176,5 +192,8 @@
       padding-left: 0.2rem;
       font-weight: 800;
     }
+  }
+  [v-cloak] {
+    display: none;
   }
 </style>
