@@ -4,6 +4,7 @@
   import { OptGroupProps, OptProps } from "../../scripts/declarations/interfaceComponents";
   import { labMap } from "../../vars.ts";
   import { updateAttrs, assignFormAttrs, handleLabs } from "../../scripts/components/utils.ts";
+  import { recolorOpts } from "../../scripts/handlers/handlersStyles.ts";
   export default defineComponent({
     name: "FilterSelect",
     props: {
@@ -108,6 +109,7 @@
         } catch (e) {
           console.error(`Error executing procedures for defining default Value:\n${(e as Error).message}`);
         }
+        if (props.type === "select-multiple") recolorOpts(r.value, "red");
       });
       return {
         s,
@@ -134,6 +136,9 @@
       :readonly="s.ro"
       :disabled="s.dsb"
       :data-type="type"
+      :multiple="type === 'select-multiple' ? true : false"
+      :autofocus="id === 'size' ? true : false"
+      :size="type === 'select-multiple' ? 2 : null"
     >
       <optgroup v-if="o.options && o.lab" v-for="o in opts" :key="`optgrp__${o.lab}__${id}`" :label="o.lab">
         <option v-for="op in o.options" :key="`opt__${op.value}__${lab}__${id}`" :value="op.value">

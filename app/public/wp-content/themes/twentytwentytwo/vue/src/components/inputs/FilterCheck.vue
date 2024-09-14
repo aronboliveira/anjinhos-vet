@@ -80,7 +80,7 @@
   });
 </script>
 <template>
-  <fieldset :id="`${id}Fs`" :class="{ 'form-group form-check': true, fading: id === 'fiv' || id === 'felv' }">
+  <fieldset :id="`${id}Fs`" :class="{ 'form-group form-check': true, fading: id === 'felv' || id === 'fiv' }">
     <label class="form-check-label" :id="`${id}Lab`" :for="id" ref="rlb">{{ tLab }}</label>
     <input
       v-model="s.v"
@@ -93,6 +93,7 @@
       :disabled="s.dsb"
       :readonly="s.ro"
       :data-check="s.ck"
+      :autofocus="id === 'felv' ? true : false"
     />
   </fieldset>
 </template>

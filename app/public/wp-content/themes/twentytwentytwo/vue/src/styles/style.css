@@ -33,8 +33,29 @@
   text-rendering: optimizeLegibility;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  --murky-green: rgba(71, 123, 63, 0.6);
+  --d-murky-green: rgba(23, 75, 15, 0.6);
 }
 
+*:focus,
+* option:focus-within {
+  outline: black auto 1px;
+}
+
+@supports (-webkit-appearence: none) {
+  *:focus,
+  * option:focus-within {
+    outline: -webkit-focus-ring-color auto 1px;
+  }
+  select::-internal-list-box option:checked {
+    background-color: var(--murky-green);
+    color: #ffffff;
+  }
+  select[multiple]::-internal-list-box option:checked {
+    background-color: #242424;
+    color: #ffffff;
+  }
+}
 a {
   font-weight: 500;
   color: #646cff;
@@ -76,7 +97,14 @@ h1 {
 }
 
 input::selection {
-  background-color: rgba(63, 95, 123, 0.6156862745);
+  background-color: var(--murky-green);
+}
+input[type=checkbox] {
+  accent-color: var(--murky-green);
+}
+input[type=checkbox].form-check-input:checked {
+  background-color: var(--murky-green);
+  border-color: rgb(222, 226, 230);
 }
 
 legend {
@@ -86,6 +114,33 @@ legend {
 ul {
   list-style: none;
   padding: 0;
+}
+
+select[data-type=select-multiple] {
+  scrollbar-width: none;
+}
+select[data-type=select-multiple] option {
+  padding-block: 0.25rem;
+  margin-block: 0.25rem;
+  font-size: 0.9rem;
+}
+select[data-type=select-multiple] option:hover {
+  background-color: var(--d-murky-green);
+  color: rgb(255, 255, 255);
+}
+select[data-type=select-multiple] option:checked, select[data-type=select-multiple] option::selection {
+  background-color: var(--murky-green);
+  border-radius: 0.2rem;
+  outline: rgba(0, 0, 0, 0.2) solid 1px;
+}
+select[data-type=select-one] option {
+  padding-block: 0.25rem;
+  margin-block: 0.25rem;
+  font-size: 0.9rem;
+}
+select[data-type=select-one] option:checked {
+  background-color: var(--murky-green);
+  color: rgb(255, 255, 255);
 }
 
 .card {

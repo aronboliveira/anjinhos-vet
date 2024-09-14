@@ -47,11 +47,12 @@
       const r = ref<nFm>(null);
       const spr = ref<string>("dog");
       const isCat = ref<boolean>(spr.value === "cat");
+      const isDog = ref<boolean>(spr.value === "dog");
       watch(
         () => spr.value,
         n => {
           isCat.value = n === "cat";
-          console.log("is cat? " + isCat.value);
+          isDog.value = n === "dog";
         },
         { immediate: true },
       );
@@ -105,6 +106,7 @@
         r,
         spr,
         isCat,
+        isDog,
       };
     },
   });
@@ -123,7 +125,7 @@
     @submit.prevent="handleSubmit"
   >
     <legend>Pesquise pelo seu novo Pet!</legend>
-    <div v-for="i in inps" :key="`inp__${id}__${i.id}`">
+    <template v-for="i in inps" :key="`inp__${id}__${i.id}`">
       <FilterSelect v-if="i.id === 'species'" v-model:mv="spr" :id="i.id" :lab="i.lab" :opts="i.opts" />
       <FilterSelect
         v-else-if="i.type === 'select-one' || i.type === 'select-multiple'"
@@ -154,10 +156,21 @@
         :autocapitalize="i.autocapitalize"
         :required="i.required"
       />
-    </div>
+    </template>
     <template v-if="isCat">
       <FilterCheck id="felv" />
       <FilterCheck id="fiv" />
+    </template>
+    <template v-if="isDog">
+      <FilterSelect
+        id="size"
+        type="select-multiple"
+        :opts="[
+          { text: 'Médio', value: 'medium' },
+          { text: 'Grande', value: 'large' },
+          { text: 'Pequeno', value: 'small' },
+        ]"
+      />
     </template>
   </form>
 </template>
