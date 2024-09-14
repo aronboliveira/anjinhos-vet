@@ -97,11 +97,17 @@
           console.error(`Error updating datalist for ${props.id}: ${(e as Error).message}`);
         }
       };
-      const sanitazeValue = (n: string) => {
-        if (/[^0-9,\.]/g.test(n)) n = n.replace(/[^0-9,\.]/g, "");
-        if (parseNotNaN(n) < 0) n = 0;
-        if (n.length > 2) n = n.slice(0, 2);
-        return n && Number.isFinite(n) ? n : "0";
+      const sanitazeValue = (n: string | number) => {
+        if (typeof n === "number") n = parseInt(n);
+        if (!Number.isFinite(n)) n = 0;
+        if (n.toString().length > 2)
+          n = parseInt(
+            n
+              .toString()
+              .replace(/[^0-9]/g, "")
+              .slice(0, 2),
+          );
+        return n;
       };
       watch(
         () => s.req,
@@ -116,7 +122,7 @@
       );
       watch(
         () => s.vn,
-        n => (s.vn = parseNotNaN(s.v) || n),
+        n => (s.vn = sanitazeValue(n)),
       );
       if (s.lb === "" && props.id !== "") s.lb = labMap.get(props.id) || props.id || s.lb;
       if (!/{/g.test(s.pt)) {

@@ -124,12 +124,16 @@ select {
   &[data-type="select-multiple"] {
     scrollbar-width: none;
     option {
+      &:first-of-type {
+        margin-top: 0.1rem;
+      }
       padding-block: 0.25rem;
       margin-block: 0.25rem;
       font-size: 0.9rem;
       &:hover {
         background-color: var(--d-murky-green);
         color: rgb(255, 255, 255);
+        border-radius: 0.2rem;
       }
       &:checked,
       &::selection {

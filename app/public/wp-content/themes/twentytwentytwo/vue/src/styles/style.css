@@ -124,9 +124,13 @@ select[data-type=select-multiple] option {
   margin-block: 0.25rem;
   font-size: 0.9rem;
 }
+select[data-type=select-multiple] option:first-of-type {
+  margin-top: 0.1rem;
+}
 select[data-type=select-multiple] option:hover {
   background-color: var(--d-murky-green);
   color: rgb(255, 255, 255);
+  border-radius: 0.2rem;
 }
 select[data-type=select-multiple] option:checked, select[data-type=select-multiple] option::selection {
   background-color: var(--murky-green);

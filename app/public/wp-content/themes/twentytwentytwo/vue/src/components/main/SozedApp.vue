@@ -1,7 +1,7 @@
 <script lang="ts">
   import { defineComponent, onMounted } from "vue";
-  import FilterForm from "../../components/forms/FilterForm.vue";
   import { modelScripts, syncAriaStates } from "../../scripts/handlers/handlersModel.ts";
+  import FilterForm from "../../components/forms/FilterForm.vue";
   export default defineComponent({
     name: "SozedApp",
     components: {
@@ -40,7 +40,6 @@
                 <a href="http://sozed-vet-rj.local" target="_self" rel="home" aria-current="page">SOZED</a>
               </h1>
             </div>
-
             <div
               class="wp-block-group is-content-justification-left is-layout-flex wp-container-core-group-is-layout-2 wp-block-group-is-layout-flex"
             >
@@ -195,6 +194,16 @@
             opts: [
               { value: 'female', text: 'Fêmea' },
               { value: 'male', text: 'Macho' },
+            ],
+          },
+          {
+            id: 'humor',
+            type: 'select-multiple',
+            opts: [
+              { value: 'children', text: 'Crianças' },
+              { value: 'cats', text: 'Gatos' },
+              { value: 'dogs', text: 'Cães' },
+              { value: 'small', text: 'Outros pets pequenos (aves, roedores, etc)' },
             ],
           },
           {

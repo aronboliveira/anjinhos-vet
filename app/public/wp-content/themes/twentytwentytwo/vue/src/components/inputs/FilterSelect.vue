@@ -58,7 +58,9 @@
     setup(props, { emit }) {
       const r = ref<nSl>(null);
       const rlb = ref<nLb>(null);
-      const v = ref<string>(props.mv || props.defV || "dog");
+      const v = ref(
+        props.type === "select-multiple" ? (Array.isArray(props.mv) ? props.mv : []) : props.mv || props.defV || "dog",
+      );
       const s = reactive({
         req: props.required,
         ro: props.readOnly,
@@ -73,8 +75,8 @@
         () => v.value,
         n => {
           v.value = n || props.defV;
+          if (props.type === "select-multiple" && !Array.isArray(n)) n = [n];
           emit("update:mv", n);
-          console.log([n || "undefined", props.mv || "undefined"]);
         },
       );
       if (s.lb === "" && props.id !== "") s.lb = labMap.get(props.id) || props.id || s.lb;
