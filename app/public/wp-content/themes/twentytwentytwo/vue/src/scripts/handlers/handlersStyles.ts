@@ -19,8 +19,6 @@ export function recolorOpts(
           )
         )
           throw new Error(`Failed to validate option instance.`);
-        const targ = ev.currentTarget;
-        console.log(getComputedStyle(targ).backgroundColor);
         if (ev.currentTarget instanceof HTMLSelectElement || ev.currentTarget instanceof HTMLDataListElement) {
           for (const o of ev.currentTarget.options) {
             if (o.selected) o.style.backgroundColor = color;

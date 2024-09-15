@@ -123,6 +123,8 @@ ul {
 select {
   &[data-type="select-multiple"] {
     scrollbar-width: none;
+    resize: vertical;
+    max-height: max-content;
     option {
       &:first-of-type {
         margin-top: 0.1rem;

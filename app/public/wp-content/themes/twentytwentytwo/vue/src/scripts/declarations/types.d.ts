@@ -3,6 +3,7 @@ export type nSl = HTMLSelectElement | null;
 export type nDl = HTMLDataListElement | null;
 export type nLb = HTMLLabelElement | null;
 export type nFm = HTMLFormElement | null;
+export type nDv = HTMLDivElement | null;
 export type inpType =
   | "button"
   | "checkbox"

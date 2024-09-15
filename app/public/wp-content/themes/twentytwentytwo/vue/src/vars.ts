@@ -9,5 +9,6 @@ export const labMap = new Map<string, string>([
   ["fiv", "FIV"],
   ["size", "Porte"],
   ["humor", "Lida bem com:"],
+  ["fur", "Pelagem"],
 ]);
 export const rc: { [k: string]: { [k: string]: string[] } } = {};

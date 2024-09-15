@@ -5,6 +5,7 @@
   import { labMap } from "../../vars.ts";
   import { updateAttrs, assignFormAttrs, handleLabs } from "../../scripts/components/utils.ts";
   import { recolorOpts } from "../../scripts/handlers/handlersStyles.ts";
+  import methods from "./scripts/selectMethods.ts";
   export default defineComponent({
     name: "FilterSelect",
     props: {
@@ -55,6 +56,7 @@
       },
     },
     emits: ["update:mv"],
+    methods: methods,
     setup(props, { emit }) {
       const r = ref<nSl>(null);
       const rlb = ref<nLb>(null);
@@ -141,6 +143,7 @@
       :multiple="type === 'select-multiple' ? true : false"
       :autofocus="id === 'size' ? true : false"
       :size="type === 'select-multiple' ? 2 : null"
+      @click="handleMouseDown"
     >
       <optgroup v-if="o.options && o.lab" v-for="o in opts" :key="`optgrp__${o.lab}__${id}`" :label="o.lab">
         <option v-for="op in o.options" :key="`opt__${op.value}__${lab}__${id}`" :value="op.value">

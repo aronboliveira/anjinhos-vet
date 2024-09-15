@@ -115,7 +115,7 @@
   <form
     v-cloak
     :id="`filterForm${id}`"
-    :name="`filter_form_${id.replace(/([A-Z])/g, '_$1').toLowerCase()}`"
+    :name="`filter_form_${id.replace(/([A-Z])/g, (m, i) => (m === id.charAt(0) ? `${m.toLowerCase()}` : `_${m.toLowerCase()}`)).toLowerCase()}`"
     :action="action"
     method="post"
     target="_self"
@@ -158,8 +158,36 @@
       />
     </template>
     <template v-if="isCat">
-      <FilterCheck id="felv" />
-      <FilterCheck id="fiv" />
+      <FilterSelect
+        id="felv"
+        :opts="[
+          { value: 'undefined', text: 'Não informado' },
+          { value: 'positive', text: 'Positivo' },
+          { value: 'negative', text: 'Negativo' },
+        ]"
+      />
+      <FilterSelect
+        id="fiv"
+        :opts="[
+          { value: 'undefined', text: 'Não informado' },
+          { value: 'positive', text: 'Positivo' },
+          { value: 'negative', text: 'Negativo' },
+        ]"
+      />
+      <FilterSelect
+        id="fur"
+        type="select-multiple"
+        :opts="[
+          { value: 'white', text: 'Branco' },
+          { value: 'black', text: 'Preto' },
+          { value: 'yellow', text: 'Amarelo' },
+          { value: 'grey', text: 'Cinza' },
+          { value: 'tabby', text: 'Rajado' },
+          { value: 'colorpoint', text: 'Colorpoint' },
+          { value: 'tortoiseShell', text: 'Escaminha' },
+          { value: 'calico', text: 'Tricolor' },
+        ]"
+      />
     </template>
     <template v-if="isDog">
       <FilterSelect

@@ -118,6 +118,8 @@ ul {
 
 select[data-type=select-multiple] {
   scrollbar-width: none;
+  resize: vertical;
+  max-height: max-content;
 }
 select[data-type=select-multiple] option {
   padding-block: 0.25rem;
