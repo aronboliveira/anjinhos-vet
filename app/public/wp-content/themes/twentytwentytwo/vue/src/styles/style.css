@@ -62,11 +62,12 @@
   }
 }
 header {
-  margin-bottom: ridge 1px grey;
+  border-bottom: ridge 1px grey;
   background-color: rgb(232, 224, 224);
   display: flex;
   align-items: center;
   justify-content: center;
+  height: 5%;
 }
 
 body {
@@ -98,10 +99,14 @@ button {
   transition: border-color 0.25s;
 }
 button:hover {
-  border-color: #646cff;
+  border-color: #919197;
 }
 button:focus, button:focus-visible {
   outline: 0.25rem auto -webkit-focus-ring-color;
+}
+
+form {
+  max-width: 80vw;
 }
 
 h1 {
@@ -166,6 +171,17 @@ select[data-type=select-one] option:checked {
   padding: 2em;
 }
 
+.carousel {
+  margin-inline: 5%;
+  margin-block: 2%;
+  box-shadow: 0.25rem 0.4rem 0.35rem grey;
+  border-radius: 0.5rem;
+}
+.carousel .carousel-inner,
+.carousel .carousel-indicators {
+  border-radius: 0.5rem;
+}
+
 .fading {
   animation: fadeIn 1s ease-in-out;
 }
@@ -194,8 +210,19 @@ select[data-type=select-one] option:checked {
   color: rgba(0, 0, 0, 0.4);
 }
 
+.is-layout-constrained > .alignwide {
+  max-width: auto;
+}
+.is-layout-constrained > .alignwide > .wp-block-column {
+  width: 100%;
+}
+
+.wp-block-navigation__responsive-container-open {
+  background-color: transparent;
+}
+
 #app {
-  max-width: 1280px;
+  width: 100%;
   margin: 0 auto;
   padding: 0;
   text-align: center;

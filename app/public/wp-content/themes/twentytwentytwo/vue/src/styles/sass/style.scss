@@ -68,11 +68,12 @@
   }
 }
 header {
-  margin-bottom: ridge 1px grey;
+  border-bottom: ridge 1px grey;
   background-color: rgb(232, 224, 224);
   display: flex;
   align-items: center;
   justify-content: center;
+  height: 5%;
 }
 body {
   margin: 0;
@@ -100,12 +101,15 @@ button {
   cursor: pointer;
   transition: border-color 0.25s;
   &:hover {
-    border-color: #646cff;
+    border-color: #919197;
   }
   &:focus,
   &:focus-visible {
     outline: 0.25rem auto -webkit-focus-ring-color;
   }
+}
+form {
+  max-width: 80vw;
 }
 h1 {
   font-size: 3.2em;
@@ -138,12 +142,12 @@ select {
     resize: vertical;
     max-height: max-content;
     option {
-      &:first-of-type {
-        margin-top: 0.1rem;
-      }
       padding-block: 0.25rem;
       margin-block: 0.25rem;
       font-size: 0.9rem;
+      &:first-of-type {
+        margin-top: 0.1rem;
+      }
       &:hover {
         background-color: var(--d-murky-green);
         color: rgb(255, 255, 255);
@@ -172,6 +176,17 @@ select {
 .card {
   padding: 2em;
 }
+$carouselBorder: 0.5rem;
+.carousel {
+  margin-inline: 5%;
+  margin-block: 2%;
+  box-shadow: 0.25rem 0.4rem 0.35rem grey;
+  border-radius: $carouselBorder;
+  .carousel-inner,
+  .carousel-indicators {
+    border-radius: $carouselBorder;
+  }
+}
 .fading {
   animation: fadeIn 1s ease-in-out;
 }
@@ -195,8 +210,19 @@ select {
     color: rgba(0, 0, 0, 0.4);
   }
 }
+.is-layout-constrained {
+  > .alignwide {
+    max-width: auto;
+    > .wp-block-column {
+      width: 100%;
+    }
+  }
+}
+.wp-block-navigation__responsive-container-open {
+  background-color: transparent;
+}
 #app {
-  max-width: 1280px;
+  width: 100%;
   margin: 0 auto;
   padding: 0;
   text-align: center;

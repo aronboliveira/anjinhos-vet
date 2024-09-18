@@ -63,7 +63,7 @@
             const metaCs =
               document.querySelector('meta[charset*="utf-"]') ?? document.querySelector('meta[charset*="UTF-"]');
             if (!(metaCs instanceof HTMLMetaElement)) throw new Error(`Failed to fetch HTMLMetaElement for Charset`);
-            const cs = /utf\-16/gi.test(metaCs.outerHTML) ? "utf-16" : "utf-18";
+            const cs = /utf\-16/gi.test(metaCs.outerHTML) ? "utf-16" : "utf-8";
             r.value.acceptCharset = cs;
           } catch (e) {
             console.error(
@@ -233,6 +233,7 @@
     gap: 0.5rem;
     flex-flow: column wrap;
     min-width: 80%;
+    max-width: 80vw;
     transition: width 1s ease-in-out;
     animation: fadeIn 3s ease-in-out;
   }

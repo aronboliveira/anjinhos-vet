@@ -32,10 +32,6 @@
         <div class="wp-block-group is-layout-constrained wp-block-group-is-layout-constrained">
           <div
             class="wp-block-group alignwide is-content-justification-space-between is-layout-flex wp-container-core-group-is-layout-3 wp-block-group-is-layout-flex"
-            style="
-              padding-top: var(--wp--custom--spacing--small, 1.25rem);
-              padding-bottom: var(--wp--custom--spacing--large, 8rem);
-            "
           >
             <div class="wp-block-group is-layout-flex wp-block-group-is-layout-flex">
               <h1 class="wp-block-site-title">
@@ -138,7 +134,7 @@
           id="PetsCarousel"
           :hasIndicators="true"
           :hasLabels="true"
-          :fade="true"
+          :fade="false"
           ride="true"
           :defFig="0"
           :figures="[
@@ -150,9 +146,9 @@
             },
             {
               src: '../../../public/phs/dog_ph_1.jpeg',
-              alt: 'Camarelo Filhote',
-              labTitle: 'Camarelo Filhote',
-              labDesc: 'Filho de Camarelo simpático',
+              alt: 'Caramelo Filhote',
+              labTitle: 'Caramelo Filhote',
+              labDesc: 'Filho de Caramelo simpático',
             },
             {
               src: '../../../public/phs/dog_ph_2.jpeg',
@@ -174,14 +170,14 @@
             },
           ]"
         />
-        <img
+        <!-- <img
           id="main-animals"
           src="http://sozed-vet-rj.local/wp-content/themes/twentytwentytwo/assets/images/ph.png"
           decoding="async"
           fetchpriority="high"
           alt="Front Cachorro &amp; Gato"
           onerror="this.onerror=null; this.src='../../../public/ph.png';"
-        />
+        /> -->
       </figure>
     </div>
     <div style="height: 66px" aria-hidden="true" class="wp-block-spacer"></div>
@@ -197,7 +193,7 @@
             <div
               class="wp-block-columns alignwide is-layout-flex wp-container-core-columns-is-layout-1 wp-block-columns-is-layout-flex"
             >
-              <div class="wp-block-column is-layout-flow wp-block-column-is-layout-flow" style="flex-basis: 650px">
+              <div class="wp-block-column is-layout-flow wp-block-column-is-layout-flow">
                 <div class="wp-block-post-excerpt">
                   <p class="wp-block-post-excerpt__excerpt" style="color: black">Au au! Miau miau!</p>
                 </div>
@@ -208,10 +204,7 @@
                   </time>
                 </div>
               </div>
-
-              <div class="wp-block-column is-layout-flow wp-block-column-is-layout-flow"></div>
             </div>
-
             <div style="height: 112px" aria-hidden="true" class="wp-block-spacer"></div>
           </div>
         </li>

@@ -1,7 +1,7 @@
 import { pushSelectOpts } from "../../../scripts/components/utils";
 import { rc } from "../../../vars";
 const selectMethods = {
-  handleClick(ev: MouseEvent) {
+  handleClick(ev: MouseEvent): void {
     let targ = ev.currentTarget;
     if (!(targ instanceof HTMLSelectElement || targ instanceof HTMLOptionElement)) {
       console.warn(`Event target passed to handleClick is not a select`);
@@ -41,7 +41,7 @@ const selectMethods = {
       updateOpts(targ);
     }
   },
-  toggleOption(ev: MouseEvent) {
+  toggleOption(ev: MouseEvent): void {
     try {
       const clickEl = document.elementFromPoint(ev.clientX, ev.clientY);
       if (clickEl instanceof HTMLOptionElement) clickEl.classList.toggle("selected");

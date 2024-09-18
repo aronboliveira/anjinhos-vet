@@ -3,7 +3,7 @@
   import { nLb, nSl } from "../../scripts/declarations/types";
   import { OptGroupProps, OptProps } from "../../scripts/declarations/interfaceComponents";
   import { labMap } from "../../vars.ts";
-  import { updateAttrs, assignFormAttrs, handleLabs } from "../../scripts/components/utils.ts";
+  import { updateAttrs, assignFormAttrs, handleLabs, limitResize } from "../../scripts/components/utils.ts";
   import { recolorOpts } from "../../scripts/handlers/handlersStyles.ts";
   import methods from "./scripts/selectMethods.ts";
   export default defineComponent({
@@ -113,7 +113,10 @@
         } catch (e) {
           console.error(`Error executing procedures for defining default Value:\n${(e as Error).message}`);
         }
-        if (props.type === "select-multiple") recolorOpts(r.value, "red");
+        if (props.type === "select-multiple") {
+          recolorOpts(r.value, "red");
+          limitResize(r.value);
+        }
       });
       return {
         s,

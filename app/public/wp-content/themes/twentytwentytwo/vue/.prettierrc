@@ -1,1 +1,8 @@
-{ "arrowParens": "avoid", "printWidth": 120, "vueIndentScriptAndStyle": true }
+{
+  "arrowParens": "avoid",
+  "printWidth": 120,
+  "vueIndentScriptAndStyle": true,
+  "semi": true,
+  "trailingComma": "all",
+  "singleQuote": false
+}

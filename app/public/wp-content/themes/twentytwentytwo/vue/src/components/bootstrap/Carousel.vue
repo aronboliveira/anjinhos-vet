@@ -18,25 +18,18 @@
       ></button>
     </div>
     <div class="carousel-inner">
-      <figure
+      <div
         v-for="(figure, i) in figures"
         :key="`fig__carousel__${i}`"
         :class="{ 'carousel-item': true, active: i === (defFig ?? 0) }"
         :data-bs-interval="ride ? (figure.interval ?? 3000) : ''"
       >
-        <img
-          :src="figure.src"
-          :alt="figure.alt"
-          class="d-block w-100"
-          crossorigin="anonymous"
-          decoding="async"
-          fetchpriority="auto"
-        />
-        <figcaption v-if="hasLabels" class="carousel-caption d-none d-md-block">
+        <img :src="figure.src" :alt="figure.alt" class="d-block w-100" crossorigin="anonymous" fetchpriority="high" />
+        <div v-if="hasLabels" class="carousel-caption d-none d-md-block">
           <h5 class="carousel-caption-title">{{ figure.labTitle }}</h5>
           <p class="carousel-caption-description">{{ figure.labDesc }}</p>
-        </figcaption>
-      </figure>
+        </div>
+      </div>
     </div>
     <button
       class="carousel-control-prev"

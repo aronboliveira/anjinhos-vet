@@ -1,6 +1,7 @@
 import { rc } from "../../vars";
 import { InpProps } from "../declarations/interfaceComponents";
 import { nDl, nFm, nInp, nLb, nSl } from "../declarations/types";
+import { parseNotNaN } from "../handlers/handlersMath";
 export function updateAttrs(el: nInp | HTMLSelectElement, ro: boolean, dsb: boolean, req: boolean): void {
   if (!el) return;
   ro ? el.setAttribute("readonly", "true") : el.removeAttribute("readonly");
@@ -14,6 +15,15 @@ export function assignFormAttrs(inp: nInp, fm: nFm): void {
   inp.formMethod = fm.method;
   inp.formEnctype = fm.enctype;
   inp.formNoValidate = fm.noValidate;
+  Array.from(fm.elements).forEach(e => {
+    if (!(e instanceof HTMLElement)) return;
+    if (fm.id !== "") e.dataset.form = fm.id;
+    if (
+      (e instanceof HTMLFieldSetElement || e instanceof HTMLObjectElement || e instanceof HTMLButtonElement) &&
+      e.id !== ""
+    )
+      e.name = e.id.replace(/([A-Z])/g, m => (m === e.id.charAt(0) ? m.toLowerCase() : `_${m.toLowerCase()}`));
+  });
 }
 export function handleLabs(r: nInp | HTMLSelectElement, rlb: nLb, props: InpProps): void {
   try {
@@ -94,5 +104,24 @@ export function pushSelectOpts(el: nSl, idf: string, opts: HTMLOptionElement[]):
     rc[idf].lastOpts = opts.map(op => op.value);
   } catch (e) {
     console.error(`Error executing pushSelectOpts:\n${(e as Error).message}`);
+  }
+}
+export function limitResize(el: nSl): void {
+  try {
+    if (!(el instanceof HTMLSelectElement && (el.multiple || el.dataset.type === "select-multiple")))
+      throw new Error(`Failed to validate Select instance.`);
+    let msz = Array.from(el.options).reduce(
+      (a, o) =>
+        a +
+        parseNotNaN(getComputedStyle(o).height.replace("px", "").trim()) +
+        parseNotNaN(getComputedStyle(o).paddingTop.replace("px", "").trim()) +
+        parseNotNaN(getComputedStyle(o).paddingBottom.replace("px", "").trim()) +
+        parseNotNaN(getComputedStyle(el).paddingTop.replace("px", "").trim()) / 2,
+      0,
+    );
+    el.style.maxHeight = `${msz}px`;
+    console.log("Applied max height");
+  } catch (e) {
+    console.error(`Error executing limitResize:\n${(e as Error).message}`);
   }
 }
