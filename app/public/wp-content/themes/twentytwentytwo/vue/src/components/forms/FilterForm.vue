@@ -200,6 +200,23 @@
         ]"
       />
     </template>
+    <details>
+      <summary>Dicas</summary>
+      <section>
+        <strong>Com um teclado:</strong>
+        <ul>
+          <li>
+            Pressione <kbd>Ctrl</kbd> e aperte <kbd>Space</kbd> para selecionar multiplas opções, movendo com as setas
+            do teclado.
+          </li>
+        </ul>
+      </section>
+      <section>
+        <ul>
+          <li>Pressione o <b>Botão direito</b> para desselecionar uma opção já selecionada</li>
+        </ul>
+      </section>
+    </details>
   </form>
 </template>
 <style scoped>

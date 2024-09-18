@@ -1,6 +1,6 @@
 import { rc } from "../../vars";
 import { InpProps } from "../declarations/interfaceComponents";
-import { nDl, nFm, nInp, nLb } from "../declarations/types";
+import { nDl, nFm, nInp, nLb, nSl } from "../declarations/types";
 export function updateAttrs(el: nInp | HTMLSelectElement, ro: boolean, dsb: boolean, req: boolean): void {
   if (!el) return;
   ro ? el.setAttribute("readonly", "true") : el.removeAttribute("readonly");
@@ -82,5 +82,17 @@ export function handleDlUpdate(r: nInp, dr: nDl, n: string = ""): void {
     }
   } catch (e) {
     console.error(`Error handling Datalist update:\n${(e as Error).message}`);
+  }
+}
+export function pushSelectOpts(el: nSl, idf: string, opts: HTMLOptionElement[]): void {
+  try {
+    if (!(el instanceof HTMLSelectElement && (el.type === "select-multiple" || el.dataset.type === "select-multiple")))
+      throw new Error(`Invalid type for select`);
+    if (typeof idf !== "string") throw new Error(`Invalid type passed as identificator.`);
+    if (idf === "" || !document.getElementById(idf)) throw new Error(`Invalid id string passed as identificator.`);
+    if (!rc[idf]) rc[idf] = {};
+    rc[idf].lastOpts = opts.map(op => op.value);
+  } catch (e) {
+    console.error(`Error executing pushSelectOpts:\n${(e as Error).message}`);
   }
 }

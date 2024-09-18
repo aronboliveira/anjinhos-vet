@@ -2,10 +2,12 @@
   import { defineComponent, onMounted } from "vue";
   import { modelScripts, syncAriaStates } from "../../scripts/handlers/handlersModel.ts";
   import FilterForm from "../../components/forms/FilterForm.vue";
+  import Carousel from "../../components/bootstrap/Carousel.vue";
   export default defineComponent({
     name: "SozedApp",
     components: {
       FilterForm,
+      Carousel,
     },
     setup() {
       console.log("Running for App...");
@@ -37,7 +39,7 @@
           >
             <div class="wp-block-group is-layout-flex wp-block-group-is-layout-flex">
               <h1 class="wp-block-site-title">
-                <a href="http://sozed-vet-rj.local" target="_self" rel="home" aria-current="page">SOZED</a>
+                <a href="http://sozed-vet-rj.local" target="_self" rel="home" aria-current="page"></a>
               </h1>
             </div>
             <div
@@ -132,6 +134,46 @@
         </div>
       </header>
       <figure class="wp-block-image alignwide size-full is-resized">
+        <Carousel
+          id="PetsCarousel"
+          :hasIndicators="true"
+          :hasLabels="true"
+          :fade="true"
+          ride="true"
+          :defFig="0"
+          :figures="[
+            {
+              src: '../../../public/phs/cat_ph1.jpeg',
+              alt: 'Gato Preto',
+              labTitle: 'Gato Preto',
+              labDesc: 'Belíssimo gato preto',
+            },
+            {
+              src: '../../../public/phs/dog_ph_1.jpeg',
+              alt: 'Camarelo Filhote',
+              labTitle: 'Camarelo Filhote',
+              labDesc: 'Filho de Camarelo simpático',
+            },
+            {
+              src: '../../../public/phs/dog_ph_2.jpeg',
+              alt: 'Pitbull Cinza',
+              labTitle: 'Pitbull Cinza',
+              labDesc: 'Incrível Pitbull mestiço com American Bully',
+            },
+            {
+              src: '../../../public/phs/dog_ph_3.jpeg',
+              alt: 'Golden-lata',
+              labTitle: 'Vira-lata de Golden Retriever',
+              labDesc: 'Muito amigável e energético',
+            },
+            {
+              src: '../../../public/phs/cat_ph2.jpeg',
+              alt: 'Gato Tricolor',
+              labTitle: 'Gatinha Tricolor',
+              labDesc: 'Brincalhona e muito sociável',
+            },
+          ]"
+        />
         <img
           id="main-animals"
           src="http://sozed-vet-rj.local/wp-content/themes/twentytwentytwo/assets/images/ph.png"

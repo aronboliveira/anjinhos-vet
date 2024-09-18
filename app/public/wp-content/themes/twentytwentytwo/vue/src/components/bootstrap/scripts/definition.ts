@@ -1,6 +1,8 @@
-import { ref } from "vue";
+import { ref, onMounted } from "vue";
 import { nDv } from "../../../scripts/declarations/types";
+import { ImgProps } from "../../../scripts/declarations/interfaces";
 const carouselDefinition = {
+  name: "Carousel",
   props: {
     id: {
       type: String,
@@ -8,9 +10,29 @@ const carouselDefinition = {
       default: "",
     },
     figures: {
-      type: Array as () => {}[],
+      type: Array as () => ImgProps[],
       required: true,
-      default: [{ src: "" }],
+      default: () => [{ src: "", alt: "" }],
+    },
+    defFig: {
+      type: Number,
+      required: false,
+      default: 0,
+    },
+    hasIndicators: {
+      type: Boolean,
+      required: false,
+      default: false,
+    },
+    hasLabels: {
+      type: Boolean,
+      required: false,
+      default: false,
+    },
+    fade: {
+      type: Boolean,
+      required: false,
+      default: false,
     },
     ride: {
       type: String,
@@ -33,22 +55,26 @@ const carouselDefinition = {
       default: true,
     },
   },
-  setup(props: any) {
+  setup() {
     const r = ref<nDv>(null);
-    try {
-      if (!(r.value instanceof HTMLElement)) throw new Error(`Failed to validate instance of main reference`);
-      if (
-        r.value.getAttribute("data-bs-ride") !== "carousel" &&
-        r.value.getAttribute("data-bs-ride") !== "true" &&
-        r.value.getAttribute("data-bs-ride") !== "false"
-      )
-        r.value.setAttribute("data-bs-ride", "false");
-    } catch (e) {
-      console.error(`Error executing procedure to define pause behavior string:\n${(e as Error).message}`);
-    }
+
+    onMounted(() => {
+      try {
+        if (!(r.value instanceof HTMLElement)) {
+          throw new Error("Failed to validate instance of main reference");
+        }
+        const rideAttr = r.value.getAttribute("data-bs-ride");
+        if (rideAttr !== "carousel" && rideAttr !== "true" && rideAttr !== "false")
+          r.value.setAttribute("data-bs-ride", "false");
+      } catch (e) {
+        console.error(`Error executing procedure to define pause behavior string:\n${(e as Error).message}`);
+      }
+    });
+
     return {
       r,
     };
   },
 };
+
 export default carouselDefinition;

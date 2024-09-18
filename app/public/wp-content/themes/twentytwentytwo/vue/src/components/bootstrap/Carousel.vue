@@ -3,14 +3,60 @@
   import defn from "./scripts/definition.ts";
   export default defineComponent(defn);
 </script>
+
 <template>
-  <div ref="r" :id="id" class="carousel slide">
+  <div ref="r" :id="id" :class="{ 'carousel slide': true, 'carousel-fade': fade === true }" :data-bs-ride="ride">
+    <div v-if="hasIndicators" class="carousel-indicators">
+      <button
+        v-for="(f, i) in figures"
+        :key="`indicator-${i}`"
+        type="button"
+        :data-bs-target="`#${id}`"
+        :data-bs-slide-to="i"
+        :aria-label="`Slide ${i + 1}`"
+        :class="{ active: i === (defFig ?? 0) }"
+      ></button>
+    </div>
     <div class="carousel-inner">
-      <figure class="carousel-item active">
-        <img src="" />
+      <figure
+        v-for="(figure, i) in figures"
+        :key="`fig__carousel__${i}`"
+        :class="{ 'carousel-item': true, active: i === (defFig ?? 0) }"
+        :data-bs-interval="ride ? (figure.interval ?? 3000) : ''"
+      >
+        <img
+          :src="figure.src"
+          :alt="figure.alt"
+          class="d-block w-100"
+          crossorigin="anonymous"
+          decoding="async"
+          fetchpriority="auto"
+        />
+        <figcaption v-if="hasLabels" class="carousel-caption d-none d-md-block">
+          <h5 class="carousel-caption-title">{{ figure.labTitle }}</h5>
+          <p class="carousel-caption-description">{{ figure.labDesc }}</p>
+        </figcaption>
       </figure>
     </div>
-    <button></button>
+    <button
+      class="carousel-control-prev"
+      type="button"
+      :data-bs-target="`#${id}`"
+      data-bs-slide="prev"
+      title="Move to previous slide"
+    >
+      <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+      <span class="visually-hidden">Previous</span>
+    </button>
+    <button
+      class="carousel-control-next"
+      type="button"
+      :data-bs-target="`#${id}`"
+      data-bs-slide="next"
+      title="Move to next slide"
+    >
+      <span class="carousel-control-next-icon" aria-hidden="true"></span>
+      <span class="visually-hidden">Next</span>
+    </button>
   </div>
 </template>
-<style scoped></style>
