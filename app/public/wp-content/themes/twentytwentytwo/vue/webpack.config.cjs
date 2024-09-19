@@ -8,15 +8,17 @@ const { SubresourceIntegrityPlugin } = require("webpack-subresource-integrity");
 const webpack = require("webpack");
 const packageJson = require("./package.json");
 module.exports = {
+  mode: "production",
   entry: "./src/main.tsx",
+  devtool: "source-map",
+  resolve: {
+    extensions: [".tsx", ".ts", ".js", ".scss", ".css"],
+  },
   output: {
     filename: `sozed_bundle.${packageJson.version}.[contenthash].min.js`,
     path: path.resolve(__dirname, "../docs"),
     publicPath: "",
     crossOriginLoading: "anonymous",
-  },
-  resolve: {
-    extensions: [".tsx", ".ts", ".js", ".scss", ".css"],
   },
   module: {
     rules: [
@@ -89,6 +91,4 @@ module.exports = {
       filename: `sozed_styles.${packageJson.version}.[contenthash].min.css`,
     }),
   ],
-  devtool: "source-map",
-  mode: "production",
 };

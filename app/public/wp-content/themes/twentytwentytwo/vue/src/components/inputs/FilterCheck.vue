@@ -3,78 +3,18 @@
   import { nInp, nLb } from "../../scripts/declarations/types";
   import { labMap } from "../../vars";
   import { updateAttrs, assignFormAttrs, handleLabs } from "../../scripts/components/utils.ts";
+  import props from "./scripts/check/props.ts";
+  import isetup from "./scripts/check/setup.ts";
   export default defineComponent({
     name: "FilterCheck",
-    props: {
-      id: {
-        type: String,
-        required: true,
-        default: "",
-      },
-      lab: {
-        type: String,
-        required: false,
-        default: "",
-      },
-      required: {
-        type: Boolean,
-        required: false,
-        default: false,
-      },
-      disabled: {
-        type: Boolean,
-        required: false,
-        default: false,
-      },
-      readOnly: {
-        type: Boolean,
-        required: false,
-        default: false,
-      },
-      checked: {
-        type: Boolean,
-        required: false,
-        default: false,
-      },
-    },
+    props,
     setup(props) {
-      const r = ref<nInp>(null);
-      const rlb = ref<nLb>(null);
-      const s = reactive({
-        req: props.required,
-        ro: props.readOnly,
-        dsb: props.disabled,
-        v: r.value?.indeterminate || r.value?.defaultChecked || r.value?.checked || props.checked,
-        lb: props.lab,
-      });
-      watch(
-        () => s.req,
-        n => updateAttrs(r.value, s.ro, s.dsb, s.req),
-      );
-      watch(
-        () => s.v,
-        n => {
-          s.v = n ? n : r.value?.indeterminate || r.value?.defaultChecked || r.value?.checked || props.checked || n;
-        },
-      );
-      if (s.lb === "" && props.id !== "") s.lb = labMap.get(props.id) || props.id || s.lb;
-      onMounted(() => {
-        try {
-          if (!(r.value instanceof HTMLInputElement))
-            throw new Error(`Couldn't validate the Reference for the input ${props.id}`);
-          const form = r.value?.closest("form");
-          if (!(form instanceof HTMLFormElement)) throw new Error(`Couldn't found Form for the Input ${props.id}`);
-          assignFormAttrs(r.value, form);
-        } catch (e) {
-          console.error(`Error on defining form properties to the input:\n${(e as Error).message}`);
-        }
-        handleLabs(r.value, rlb.value, props);
-      });
+      const { s, r, rlb, tLab } = isetup(props);
       return {
         s,
         r,
         rlb,
-        tLab: labMap.get(s.lb) || s.lb || props.lab,
+        tLab,
       };
     },
   });

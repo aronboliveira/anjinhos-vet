@@ -1,5 +1,5 @@
-import { pushSelectOpts } from "../../../scripts/components/utils";
-import { rc } from "../../../vars";
+import { pushSelectOpts } from "../../../../scripts/components/utils";
+import { rc } from "../../../../vars";
 const selectMethods = {
   handleClick(ev: MouseEvent): void {
     let targ = ev.currentTarget;

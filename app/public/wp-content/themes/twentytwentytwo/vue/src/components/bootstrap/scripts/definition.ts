@@ -76,5 +76,4 @@ const carouselDefinition = {
     };
   },
 };
-
 export default carouselDefinition;

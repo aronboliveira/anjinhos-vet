@@ -1,0 +1,272 @@
+[
+  {
+    "name": "Buddy",
+    "age": 2,
+    "species": "dog",
+    "sex": "male",
+    "humor": ["children", "cats"],
+    "castrated": true,
+    "size": "medium"
+  },
+  {
+    "name": "Luna",
+    "age": 1,
+    "species": "cat",
+    "sex": "female",
+    "humor": ["dogs"],
+    "castrated": false,
+    "size": "small"
+  },
+  {
+    "name": "Max",
+    "age": 4,
+    "species": "dog",
+    "sex": "male",
+    "humor": ["children", "dogs"],
+    "castrated": true,
+    "size": "large"
+  },
+  {
+    "name": "Bella",
+    "age": 3,
+    "species": "cat",
+    "sex": "female",
+    "humor": ["cats", "children"],
+    "castrated": true,
+    "size": "small"
+  },
+  {
+    "name": "Charlie",
+    "age": 5,
+    "species": "dog",
+    "sex": "male",
+    "humor": ["small"],
+    "castrated": false,
+    "size": "large"
+  },
+  {
+    "name": "Daisy",
+    "age": 2,
+    "species": "dog",
+    "sex": "female",
+    "humor": ["cats", "small"],
+    "castrated": true,
+    "size": "medium"
+  },
+  {
+    "name": "Oliver",
+    "age": 1,
+    "species": "cat",
+    "sex": "male",
+    "humor": ["children"],
+    "castrated": false,
+    "size": "small"
+  },
+  {
+    "name": "Molly",
+    "age": 4,
+    "species": "dog",
+    "sex": "female",
+    "humor": ["dogs"],
+    "castrated": true,
+    "size": "medium"
+  },
+  {
+    "name": "Rocky",
+    "age": 3,
+    "species": "dog",
+    "sex": "male",
+    "humor": ["cats"],
+    "castrated": true,
+    "size": "small"
+  },
+  {
+    "name": "Coco",
+    "age": 2,
+    "species": "cat",
+    "sex": "female",
+    "humor": ["children", "small"],
+    "castrated": false,
+    "size": "small"
+  },
+  {
+    "name": "Oscar",
+    "age": 6,
+    "species": "dog",
+    "sex": "male",
+    "humor": ["children"],
+    "castrated": true,
+    "size": "large"
+  },
+  {
+    "name": "Lucy",
+    "age": 3,
+    "species": "cat",
+    "sex": "female",
+    "humor": ["dogs", "small"],
+    "castrated": false,
+    "size": "small"
+  },
+  {
+    "name": "Leo",
+    "age": 2,
+    "species": "dog",
+    "sex": "male",
+    "humor": ["cats", "children"],
+    "castrated": true,
+    "size": "medium"
+  },
+  {
+    "name": "Sophie",
+    "age": 5,
+    "species": "cat",
+    "sex": "female",
+    "humor": ["children"],
+    "castrated": true,
+    "size": "small"
+  },
+  {
+    "name": "Jack",
+    "age": 4,
+    "species": "dog",
+    "sex": "male",
+    "humor": ["small"],
+    "castrated": false,
+    "size": "medium"
+  },
+  {
+    "name": "Lola",
+    "age": 1,
+    "species": "cat",
+    "sex": "female",
+    "humor": ["cats", "dogs"],
+    "castrated": false,
+    "size": "small"
+  },
+  {
+    "name": "Sam",
+    "age": 3,
+    "species": "dog",
+    "sex": "male",
+    "humor": ["children"],
+    "castrated": true,
+    "size": "large"
+  },
+  {
+    "name": "Zoe",
+    "age": 2,
+    "species": "cat",
+    "sex": "female",
+    "humor": ["small"],
+    "castrated": true,
+    "size": "small"
+  },
+  {
+    "name": "Toby",
+    "age": 4,
+    "species": "dog",
+    "sex": "male",
+    "humor": ["cats"],
+    "castrated": false,
+    "size": "medium"
+  },
+  {
+    "name": "Mimi",
+    "age": 5,
+    "species": "cat",
+    "sex": "female",
+    "humor": ["dogs", "children"],
+    "castrated": true,
+    "size": "small"
+  },
+  {
+    "name": "Rex",
+    "age": 2,
+    "species": "dog",
+    "sex": "male",
+    "humor": ["small"],
+    "castrated": true,
+    "size": "large"
+  },
+  {
+    "name": "Ginger",
+    "age": 3,
+    "species": "cat",
+    "sex": "female",
+    "humor": ["children"],
+    "castrated": false,
+    "size": "small"
+  },
+  {
+    "name": "Jake",
+    "age": 1,
+    "species": "dog",
+    "sex": "male",
+    "humor": ["cats", "dogs"],
+    "castrated": true,
+    "size": "medium"
+  },
+  {
+    "name": "Ruby",
+    "age": 4,
+    "species": "cat",
+    "sex": "female",
+    "humor": ["small"],
+    "castrated": true,
+    "size": "small"
+  },
+  {
+    "name": "Buster",
+    "age": 5,
+    "species": "dog",
+    "sex": "male",
+    "humor": ["children"],
+    "castrated": false,
+    "size": "large"
+  },
+  {
+    "name": "Chloe",
+    "age": 2,
+    "species": "cat",
+    "sex": "female",
+    "humor": ["cats"],
+    "castrated": true,
+    "size": "small"
+  },
+  {
+    "name": "Henry",
+    "age": 3,
+    "species": "dog",
+    "sex": "male",
+    "humor": ["small"],
+    "castrated": true,
+    "size": "medium"
+  },
+  {
+    "name": "Nala",
+    "age": 1,
+    "species": "cat",
+    "sex": "female",
+    "humor": ["dogs", "children"],
+    "castrated": false,
+    "size": "small"
+  },
+  {
+    "name": "Riley",
+    "age": 4,
+    "species": "dog",
+    "sex": "male",
+    "humor": ["cats"],
+    "castrated": true,
+    "size": "large"
+  },
+  {
+    "name": "Simba",
+    "age": 2,
+    "species": "cat",
+    "sex": "male",
+    "humor": ["small"],
+    "castrated": false,
+    "size": "small"
+  }
+]

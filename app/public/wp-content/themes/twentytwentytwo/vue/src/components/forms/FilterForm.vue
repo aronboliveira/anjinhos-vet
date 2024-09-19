@@ -6,24 +6,19 @@
   import FilterCheck from "../inputs/FilterCheck.vue";
   import FilterSelect from "../inputs/FilterSelect.vue";
   import FilterNum from "../inputs/FilterNum.vue";
+  import axios from "axios";
+  import methods from "./scripts/methods.ts";
+  import props from "./scripts/props.ts";
+  import isetup from "./scripts/setup.ts";
   export default defineComponent({
     name: "FilterForm",
-    props: {
-      id: {
-        type: String,
-        required: true,
-        default: "",
-      },
-      action: {
-        type: String,
-        required: true,
-        default: "/",
-      },
-      inps: {
-        type: Array as () => InpProps[],
-        required: true,
-        default: [],
-      },
+    props,
+    methods,
+    components: {
+      FilterInp,
+      FilterNum,
+      FilterCheck,
+      FilterSelect,
     },
     data() {
       return {
@@ -32,76 +27,8 @@
         },
       };
     },
-    methods: {
-      handleSubmit() {
-        console.log(this.formData);
-      },
-    },
-    components: {
-      FilterInp,
-      FilterNum,
-      FilterCheck,
-      FilterSelect,
-    },
     setup(props) {
-      const r = ref<nFm>(null);
-      const spr = ref<string>("dog");
-      const isCat = ref<boolean>(spr.value === "cat");
-      const isDog = ref<boolean>(spr.value === "dog");
-      watch(
-        () => spr.value,
-        n => {
-          isCat.value = n === "cat";
-          isDog.value = n === "dog";
-        },
-        { immediate: true },
-      );
-      onMounted(() => {
-        try {
-          if (!(r.value instanceof HTMLFormElement)) throw new Error(`Failed to validate Form Reference`);
-          try {
-            const metaCs =
-              document.querySelector('meta[charset*="utf-"]') ?? document.querySelector('meta[charset*="UTF-"]');
-            if (!(metaCs instanceof HTMLMetaElement)) throw new Error(`Failed to fetch HTMLMetaElement for Charset`);
-            const cs = /utf\-16/gi.test(metaCs.outerHTML) ? "utf-16" : "utf-8";
-            r.value.acceptCharset = cs;
-          } catch (e) {
-            console.error(
-              `Error executing procedure for defining Accept Charset for ${props.id}:${(e as Error).message}`,
-            );
-          }
-          try {
-            let els = "",
-              len = 0;
-            [
-              ...r.value.querySelectorAll("button"),
-              ...r.value.querySelectorAll("fieldset"),
-              ...r.value.querySelectorAll("input"),
-              ...r.value.querySelectorAll("object"),
-              ...r.value.querySelectorAll("output"),
-              ...r.value.querySelectorAll("select"),
-              ...r.value.querySelectorAll("textarea"),
-            ].forEach((el, i) => {
-              try {
-                if (!(el instanceof HTMLElement) || el.id === "") return;
-                if (els === "") els = `#${el.id}`;
-                else els += `, #${el.id}`;
-                len += 1;
-              } catch (e) {
-                console.error(
-                  `Error executing iteration ${i} for adding ids do elements list:\n${(e as Error).message}`,
-                );
-              }
-            });
-            r.value.dataset.elements = els;
-            r.value.dataset.len = len.toString();
-          } catch (e) {
-            console.error(`Error executing procedures for defining Dataset for Elements:\n${(e as Error).message}`);
-          }
-        } catch (e) {
-          console.error(`Error executing onMounted procedures for Form ${props.id}:\n${(e as Error).message}`);
-        }
-      });
+      const { r, spr, isCat, isDog } = isetup(props);
       return {
         r,
         spr,
@@ -126,13 +53,21 @@
   >
     <legend>Pesquise pelo seu novo Pet!</legend>
     <template v-for="i in inps" :key="`inp__${id}__${i.id}`">
-      <FilterSelect v-if="i.id === 'species'" v-model:mv="spr" :id="i.id" :lab="i.lab" :opts="i.opts" />
+      <FilterSelect
+        v-if="i.id === 'species'"
+        v-model:mv="spr"
+        :id="i.id"
+        :lab="i.lab"
+        :opts="i.opts"
+        @change="handleSubmit"
+      />
       <FilterSelect
         v-else-if="i.type === 'select-one' || i.type === 'select-multiple'"
         :type="i.type"
         :id="i.id"
         :lab="i.lab"
         :opts="i.opts"
+        @change="handleSubmit"
       />
       <FilterCheck
         v-else-if="i.type === 'checkbox' || i.type === 'radio'"
@@ -140,6 +75,7 @@
         :lab="i.lab"
         :type="i.type"
         :required="i.required"
+        @change="handleSubmit"
       />
       <FilterNum
         v-else-if="i.type === 'number'"
@@ -147,6 +83,7 @@
         :lab="i.lab"
         :autocomplete="i.autocomplete"
         :required="i.required"
+        @change="handleSubmit"
       />
       <FilterInp
         v-else
@@ -155,6 +92,7 @@
         :autocomplete="i.autocomplete"
         :autocapitalize="i.autocapitalize"
         :required="i.required"
+        @change="handleSubmit"
       />
     </template>
     <template v-if="isCat">

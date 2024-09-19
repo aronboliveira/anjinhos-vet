@@ -5,7 +5,7 @@
   import { labMap } from "../../vars.ts";
   import { updateAttrs, assignFormAttrs, handleLabs, limitResize } from "../../scripts/components/utils.ts";
   import { recolorOpts } from "../../scripts/handlers/handlersStyles.ts";
-  import methods from "./scripts/selectMethods.ts";
+  import methods from "./scripts/select/methods.ts";
   export default defineComponent({
     name: "FilterSelect",
     props: {
