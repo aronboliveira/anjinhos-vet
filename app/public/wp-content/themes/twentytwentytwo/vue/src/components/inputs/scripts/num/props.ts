@@ -1,4 +1,5 @@
-const numProps = {
+import { NumProps } from "../../../../scripts/declarations/interfaces";
+const numProps: NumProps = {
   id: {
     type: String,
     required: true,
@@ -47,7 +48,7 @@ const numProps = {
   dataList: {
     type: Array as () => string[],
     required: false,
-    default: [],
+    default: () => [],
   },
   step: {
     type: Number,

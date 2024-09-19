@@ -1,6 +1,6 @@
 <script lang="ts">
   import { defineComponent, onMounted } from "vue";
-  import { modelScripts, syncAriaStates } from "../../scripts/handlers/handlersModel.ts";
+  import { modelScripts, syncAriaStates } from "../../scripts/model/utils.ts";
   import FilterForm from "../../components/forms/FilterForm.vue";
   import Carousel from "../../components/bootstrap/Carousel.vue";
   export default defineComponent({

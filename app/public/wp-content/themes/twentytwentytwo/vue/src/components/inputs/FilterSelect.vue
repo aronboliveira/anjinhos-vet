@@ -1,62 +1,17 @@
 <script lang="ts">
-  import { defineComponent, ref, reactive, watch, onMounted } from "vue";
+  import { defineComponent, ref, reactive, watch, onMounted, inject } from "vue";
   import { nLb, nSl } from "../../scripts/declarations/types";
   import { OptGroupProps, OptProps } from "../../scripts/declarations/interfaceComponents";
   import { labMap } from "../../vars.ts";
-  import { updateAttrs, assignFormAttrs, handleLabs, limitResize } from "../../scripts/components/utils.ts";
-  import { recolorOpts } from "../../scripts/handlers/handlersStyles.ts";
+  import { updateAttrs, assignFormAttrs, handleLabs } from "../../scripts/model/utils.ts";
+  import { recolorOpts, limitResize } from "../../scripts/handlers/handlersStyles.ts";
   import methods from "./scripts/select/methods.ts";
+  import props from "./scripts/select/props.ts";
   export default defineComponent({
     name: "FilterSelect",
-    props: {
-      id: {
-        type: String,
-        required: true,
-        default: "",
-      },
-      lab: {
-        type: String,
-        required: false,
-        default: "",
-      },
-      required: {
-        type: Boolean,
-        required: false,
-        default: false,
-      },
-      disabled: {
-        type: Boolean,
-        required: false,
-        default: false,
-      },
-      readOnly: {
-        type: Boolean,
-        required: false,
-        default: false,
-      },
-      defV: {
-        type: String,
-        required: false,
-        default: "",
-      },
-      type: {
-        type: String as () => "select-one" | "select-multiple",
-        required: false,
-        default: "select-one",
-      },
-      opts: {
-        type: Array as (() => OptProps[]) | (() => OptGroupProps[]),
-        required: true,
-        default: [],
-      },
-      mv: {
-        type: String,
-        required: false,
-        default: "",
-      },
-    },
+    props,
     emits: ["update:mv"],
-    methods: methods,
+    methods,
     setup(props, { emit }) {
       const r = ref<nSl>(null);
       const rlb = ref<nLb>(null);
@@ -69,6 +24,8 @@
         dsb: props.disabled,
         lb: props.lab,
       });
+      const canFetch = inject("canFetch");
+      const loading = inject("loading");
       watch(
         () => s.req,
         n => updateAttrs(r.value, s.ro, s.dsb, s.req),
@@ -83,6 +40,8 @@
       );
       if (s.lb === "" && props.id !== "") s.lb = labMap.get(props.id) || props.id || s.lb;
       onMounted(() => {
+        const fr = inject("fr");
+        console.log([canFetch.value, loading.value, fr.value]);
         try {
           if (!(r.value instanceof HTMLInputElement || r.value instanceof HTMLSelectElement))
             throw new Error(`Couldn't validate the Reference for the input ${props.id}`);
@@ -105,9 +64,7 @@
         }
         try {
           if (props.defV !== "") {
-            console.log("defV is " + props.defV || "undefined");
             v.value = props.defV;
-            console.log("v.value is " + v.value || "undefined");
             emit("update:mv", props.defV);
           }
         } catch (e) {

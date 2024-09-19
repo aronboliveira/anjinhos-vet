@@ -1,30 +1,30 @@
 import { ref, reactive, watch, onMounted } from "vue";
-import { assignFormAttrs, handleLabs, updateAttrs } from "../../../../scripts/components/utils";
+import { assignFormAttrs, handleLabs, updateAttrs } from "../../../../scripts/model/utils";
 import { nInp, nLb } from "../../../../scripts/declarations/types";
 import { labMap } from "../../../../vars";
-import { CheckProps } from "./props";
 import { InpProps } from "../../../../scripts/declarations/interfaceComponents";
+import { CheckProps } from "../../../../scripts/declarations/interfaces";
 export default function checkSetup(props: CheckProps) {
   const r = ref<nInp>(null);
   const rlb = ref<nLb>(null);
   const s = reactive({
-    req: props.required.default,
-    ro: props.readOnly.default,
-    dsb: props.disabled.default,
-    v: r.value?.indeterminate || r.value?.defaultChecked || r.value?.checked || props.checked.default,
-    lb: props.lab.default,
+    req: props.required,
+    ro: props.readOnly,
+    dsb: props.disabled,
+    v: r.value?.indeterminate || r.value?.defaultChecked || r.value?.checked || props.checked,
+    lb: props.lab,
   });
   watch(
     () => s.req,
-    _ => updateAttrs(r.value, s.ro, s.dsb, s.req),
+    _ => updateAttrs(r.value, s.ro as any, s.dsb as any, s.req as any),
   );
   watch(
     () => s.v,
     n => {
-      s.v = n ? n : r.value?.indeterminate || r.value?.defaultChecked || r.value?.checked || props.checked.default || n;
+      s.v = n ? n : r.value?.indeterminate || r.value?.defaultChecked || r.value?.checked || props.checked || n;
     },
   );
-  if (s.lb === "" && props.id.default !== "") s.lb = labMap.get(props.id.default) || props.id.default || s.lb;
+  if (s.lb === ("" as any) && props.id !== ("" as any)) (s.lb as any) = labMap.get(props.id as any) || props.id || s.lb;
   onMounted(() => {
     try {
       if (!(r.value instanceof HTMLInputElement))
@@ -36,10 +36,10 @@ export default function checkSetup(props: CheckProps) {
       console.error(`Error on defining form properties to the input:\n${(e as Error).message}`);
     }
     const extractedProps: Record<string, any> = {};
-    for (const [key, value] of Object.entries(props)) extractedProps[key] = value.default;
+    for (const [key, value] of Object.entries(props)) extractedProps[key] = value;
     handleLabs(r.value, rlb.value, extractedProps as InpProps);
   });
-  const tLab = labMap.get(s.lb) || s.lb || props.lab.default;
+  const tLab = labMap.get(s.lb as any) || s.lb || props.lab;
   return {
     s,
     r,

@@ -1,42 +1,7 @@
 <script lang="ts">
-  import { defineComponent, ref, watch, onMounted } from "vue";
-  import { InpProps } from "../../declarations/interfaceComponents";
-  import { nFm } from "../../declarations/types";
-  import FilterInp from "../inputs/FilterInp.vue";
-  import FilterCheck from "../inputs/FilterCheck.vue";
-  import FilterSelect from "../inputs/FilterSelect.vue";
-  import FilterNum from "../inputs/FilterNum.vue";
-  import axios from "axios";
-  import methods from "./scripts/methods.ts";
-  import props from "./scripts/props.ts";
-  import isetup from "./scripts/setup.ts";
-  export default defineComponent({
-    name: "FilterForm",
-    props,
-    methods,
-    components: {
-      FilterInp,
-      FilterNum,
-      FilterCheck,
-      FilterSelect,
-    },
-    data() {
-      return {
-        formData: {
-          formId: `${this.id}`,
-        },
-      };
-    },
-    setup(props) {
-      const { r, spr, isCat, isDog } = isetup(props);
-      return {
-        r,
-        spr,
-        isCat,
-        isDog,
-      };
-    },
-  });
+  import { defineComponent } from "vue";
+  import defn from "./scripts/definition.ts";
+  export default defineComponent(defn);
 </script>
 <template>
   <form
@@ -47,7 +12,7 @@
     method="post"
     target="_self"
     enctype="application/x-www-form-urlencoded"
-    ref="r"
+    ref="fr"
     class="filterForm"
     @submit.prevent="handleSubmit"
   >

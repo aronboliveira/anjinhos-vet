@@ -57,7 +57,6 @@ const carouselDefinition = {
   },
   setup() {
     const r = ref<nDv>(null);
-
     onMounted(() => {
       try {
         if (!(r.value instanceof HTMLElement)) {
@@ -70,7 +69,6 @@ const carouselDefinition = {
         console.error(`Error executing procedure to define pause behavior string:\n${(e as Error).message}`);
       }
     });
-
     return {
       r,
     };

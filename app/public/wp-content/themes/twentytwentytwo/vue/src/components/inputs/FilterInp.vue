@@ -3,13 +3,7 @@
   import { nDl, nInp, nLb } from "../../declarations/types";
   import { parseNotNaN } from "../../scripts/handlers/handlersMath.ts";
   import { labMap } from "../../vars.ts";
-  import {
-    updateAttrs,
-    assignFormAttrs,
-    handleLabs,
-    handleDl,
-    handleDlUpdate,
-  } from "../../scripts/components/utils.ts";
+  import { updateAttrs, assignFormAttrs, handleLabs, handleDl, handleDlUpdate } from "../../scripts/model/utils.ts";
   import props from "./scripts/text/props.ts";
   export default defineComponent({
     name: "FilterInp",

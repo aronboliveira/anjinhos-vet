@@ -1,5 +1,5 @@
 import { nSl } from "../declarations/types";
-
+import { parseNotNaN } from "./handlersMath";
 export function recolorOpts(
   el: nSl | HTMLDataListElement,
   color: string = "rgb(84, 84, 84)",
@@ -49,5 +49,23 @@ export function recolorOpts(
     }
   } catch (e) {
     console.error(`Error executing recolorOpts:\n${(e as Error).message}`);
+  }
+}
+export function limitResize(el: nSl): void {
+  try {
+    if (!(el instanceof HTMLSelectElement && (el.multiple || el.dataset.type === "select-multiple")))
+      throw new Error(`Failed to validate Select instance.`);
+    let msz = Array.from(el.options).reduce(
+      (a, o) =>
+        a +
+        parseNotNaN(getComputedStyle(o).height.replace("px", "").trim()) +
+        parseNotNaN(getComputedStyle(o).paddingTop.replace("px", "").trim()) +
+        parseNotNaN(getComputedStyle(o).paddingBottom.replace("px", "").trim()) +
+        parseNotNaN(getComputedStyle(el).paddingTop.replace("px", "").trim()) / 4,
+      0,
+    );
+    el.style.maxHeight = `${msz}px`;
+  } catch (e) {
+    console.error(`Error executing limitResize:\n${(e as Error).message}`);
   }
 }

@@ -1,104 +1,15 @@
 <script lang="ts">
-  import { defineComponent, ref, reactive, watch, onMounted } from "vue";
-  import { nDl, nInp, nLb } from "../../scripts/declarations/types";
-  import { parseNotNaN } from "../../scripts/handlers/handlersMath";
+  import { defineComponent, ref } from "vue";
   import { labMap, rc } from "../../vars";
-  import {
-    updateAttrs,
-    assignFormAttrs,
-    handleLabs,
-    handleDl,
-    handleDlUpdate,
-  } from "../../scripts/components/utils.ts";
   import props from "./scripts/num/props.ts";
+  import isetup from "./scripts/num/setup.ts";
   export default defineComponent({
     name: "FilterNum",
     props,
     setup(props) {
-      const r = ref<nInp>(null);
-      const rlb = ref<nLb>(null);
-      const dr = ref<nDl>(null);
-      const s = reactive({
-        req: props.required,
-        ro: props.readOnly,
-        dsb: props.disabled,
-        pt: props.pattern,
-        v: "",
-        vn: NaN,
-        lb: props.lab,
-      });
-      const updateDatalist = (n: string) => {
-        try {
-          if (!(r.value instanceof HTMLInputElement)) throw new Error(`Input reference for ${props.id} is not valid`);
-          sessionStorage.setItem(`${props.id}_v`, s.v);
-          if (!dr.value) {
-            dr.value = Object.assign(document.createElement("datalist"), {
-              id: `${props.id}List`,
-            });
-            r.value.insertAdjacentElement("afterend", dr.value);
-          }
-          handleDlUpdate(r.value, dr.value, n);
-        } catch (e) {
-          console.error(`Error updating datalist for ${props.id}: ${(e as Error).message}`);
-        }
-      };
-      const sanitazeValue = (n: string | number) => {
-        if (typeof n === "number") n = parseInt(n);
-        if (!Number.isFinite(n)) n = 0;
-        if (n.toString().length > 2)
-          n = parseInt(
-            n
-              .toString()
-              .replace(/[^0-9]/g, "")
-              .slice(0, 2),
-          );
-        return n;
-      };
-      watch(
-        () => s.req,
-        n => updateAttrs(r, handleLabs, handleDl.value, s.ro, s.dsb, s.req),
-      );
-      watch(
-        () => s.v,
-        n => {
-          s.v = sanitazeValue(n);
-          updateDatalist(s.v);
-        },
-      );
-      watch(
-        () => s.vn,
-        n => (s.vn = sanitazeValue(n)),
-      );
-      if (s.lb === "" && props.id !== "") s.lb = labMap.get(props.id) || props.id || s.lb;
-      if (!/{/g.test(s.pt)) {
-        if (props.minLength > 0) {
-          s.pt = `${s.pt}{${props.minLength},`;
-          if (props.maxLength) s.pt += `{props.maxLength}}`;
-          else s.pt += `}`;
-        }
-      }
-      onMounted(() => {
-        updateDatalist(s.v);
-        try {
-          if (!(r.value instanceof HTMLInputElement))
-            throw new Error(`Couldn't validate the Reference for the input ${props.id}`);
-          const form = r.value?.closest("form");
-          if (!(form instanceof HTMLFormElement)) throw new Error(`Couldn't found Form for the Input ${props.id}`);
-          assignFormAttrs(r.value, form);
-        } catch (e) {
-          console.error(`Error on defining form properties to the input:\n${(e as Error).message}`);
-        }
-        handleLabs(r.value, rlb.value, props);
-        handleDl(r.value, dr.value);
-      });
-      return {
-        s,
-        r,
-        rlb,
-        dr,
-        tLab: labMap.get(s.lb) || s.lb || props.lab,
-        setp: props.step,
-      };
+      console.log(props);
+      const { s, r, rlb, dr, tLab, step } = isetup(props);
+      return { s, r, rlb, dr, tLab, step };
     },
   });
 </script>

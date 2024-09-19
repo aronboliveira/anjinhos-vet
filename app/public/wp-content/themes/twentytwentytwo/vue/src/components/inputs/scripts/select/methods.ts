@@ -1,4 +1,4 @@
-import { pushSelectOpts } from "../../../../scripts/components/utils";
+import { pushSelectOpts } from "../../../../scripts/model/utils";
 import { rc } from "../../../../vars";
 const selectMethods = {
   handleClick(ev: MouseEvent): void {
