@@ -5,6 +5,7 @@ import { labMap } from "../../../../vars";
 import { InpProps } from "../../../../scripts/declarations/interfaceComponents";
 import { CheckProps } from "../../../../scripts/declarations/interfaces";
 import { PropType } from "vue";
+import { handleSubmit } from "../../../../scripts/handlers/handlersIO";
 export default {
   name: "FilterCheck",
   props: {
@@ -54,16 +55,32 @@ export default {
       default: "",
     },
   } as CheckProps,
+  methods: {
+    onChange(ev: Event) {
+      const t = ev.currentTarget;
+      if (
+        !(
+          t instanceof HTMLInputElement ||
+          t instanceof HTMLSelectElement ||
+          t instanceof HTMLButtonElement ||
+          t instanceof HTMLTextAreaElement ||
+          t instanceof HTMLFormElement
+        )
+      )
+        return;
+      handleSubmit(t, t.form);
+    },
+  },
   setup(props: CheckProps) {
-    const r = ref<nInp>(null);
-    const rlb = ref<nLb>(null);
-    const s = reactive({
-      req: props.required,
-      ro: props.readOnly,
-      dsb: props.disabled,
-      v: r.value?.indeterminate || r.value?.defaultChecked || r.value?.checked || props.checked,
-      lb: props.lab,
-    });
+    const r = ref<nInp>(null),
+      rlb = ref<nLb>(null),
+      s = reactive({
+        req: props.required,
+        ro: props.readOnly,
+        dsb: props.disabled,
+        v: r.value?.indeterminate || r.value?.defaultChecked || r.value?.checked || props.checked,
+        lb: props.lab,
+      });
     watch(
       () => s.req,
       _ => updateAttrs(r.value, s.ro as any, s.dsb as any, s.req as any),

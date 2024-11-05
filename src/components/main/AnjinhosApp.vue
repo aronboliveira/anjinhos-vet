@@ -85,7 +85,7 @@
             <h2
               class="alignwide wp-block-post-title has-var-wp-custom-typography-font-size-huge-clamp-2-25-rem-4-vw-2-75-rem-font-size"
             >
-              <a href="http://anjinhos-vet-rj.local/" target="_self"><strong>ONG Anjinhos</strong></a>
+              <a href="#" target="_self"><strong>ONG Anjinhos</strong></a>
             </h2>
             <div
               class="wp-block-columns alignwide is-layout-flex wp-container-core-columns-is-layout-1 wp-block-columns-is-layout-flex"
@@ -97,7 +97,7 @@
 
                 <div style="font-style: italic; font-weight: 400" class="wp-block-post-date has-small-font-size">
                   <time datetime="2024-09-05T03:26:30+00:00">
-                    <a href="http://anjinhos-vet-rj.local/hello-world/">September 5, 2024</a>
+                    <a href="#">September 5, 2024</a>
                   </time>
                 </div>
               </div>

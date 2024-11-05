@@ -29,7 +29,6 @@ export function handleSubmit(targ: nInpLike | HTMLButtonElement | HTMLFormElemen
     console.error(`Error executing handleSubmit:\n${(e as Error).message}`);
   }
 }
-const borderColors: { [k: string]: string } = {};
 export function validateForm(
   ev: SubmitEvent | HTMLFormElement,
   scope: HTMLElement | Document = document,
@@ -69,54 +68,16 @@ export function validateForm(
       ...form.querySelectorAll("select"),
       ...form.querySelectorAll("canvas"),
     ].forEach(entry => {
-      const displayInvalidity = (valid: boolean = true) => {
-        if (!valid && !(entry instanceof HTMLCanvasElement)) {
-          entry.scrollIntoView({ behavior: "smooth" });
-          if (!/border-color/g.test(getComputedStyle(entry).transition))
-            entry.style.transition = (getComputedStyle(entry).transition || "") + "border-color ease-in-out 1s";
-          if (!borderColors[entry.id || entry.name || entry.classList.toString().replace(/\s/g, "_")])
-            borderColors[entry.id || entry.name || entry.classList.toString().replace(/\s/g, "_")] =
-              getComputedStyle(entry).borderColor || getComputedStyle(entry).borderBottomColor;
-          entry.style.borderColor = "red";
-          setTimeout(
-            () =>
-              (entry.style.borderColor =
-                borderColors[entry.id || entry.name || entry.classList.toString().replace(/\s/g, "_")] ||
-                "rgb(222, 226, 230)"),
-            1000,
-          );
-          if (
-            (entry instanceof HTMLInputElement &&
-              !(
-                entry.type === "checkbox" ||
-                entry.type === "radio" ||
-                entry.type === "file" ||
-                entry.type === "submit" ||
-                entry.type === "button" ||
-                entry.type === "reset"
-              )) ||
-            entry instanceof HTMLTextAreaElement
-          ) {
-            const prevPlaceholder = entry.placeholder;
-            entry.placeholder = `Entrada inválida`;
-            setTimeout(() => {
-              entry.placeholder = prevPlaceholder;
-            }, 2000);
-          }
-        }
-      };
       let isValid = true;
       if (entry instanceof HTMLSelectElement) {
         if (entry.value === "") {
           isValid = false;
           invalidEntries.push(entry.name || entry.id || entry.dataset.title || entry.tagName);
-          displayInvalidity(isValid);
         }
       } else if (entry instanceof HTMLInputElement || entry instanceof HTMLTextAreaElement) {
         if (!entry.checkValidity()) {
           isValid = false;
           invalidEntries.push(entry.id || entry.name || entry.dataset.title || entry.tagName);
-          displayInvalidity(isValid);
         }
         if (entry instanceof HTMLInputElement && entry.type === "date") {
           if (entry.classList.contains("minCurrDate")) {
@@ -144,7 +105,6 @@ export function validateForm(
             if (entryNumDateValue < currNumDate) {
               isValid = false;
               invalidEntries.push(entry.id || entry.name || entry.dataset.title || entry.tagName);
-              displayInvalidity(isValid);
             }
           }
           if (entry.classList.contains("maxCurrDate")) {
@@ -172,7 +132,6 @@ export function validateForm(
             if (entryNumDateValue > currNumDate) {
               isValid = false;
               invalidEntries.push(entry.id || entry.name || entry.dataset.title || entry.tagName);
-              displayInvalidity(isValid);
             }
           }
         } else if (entry instanceof HTMLInputElement && entry.type === "radio") {
@@ -204,7 +163,6 @@ export function validateForm(
                 .some(radio => radio instanceof HTMLInputElement && radio.type === "radio" && radio.checked)
             ) {
               isValid = false;
-              displayInvalidity(isValid);
             }
             const cbGrpL = parent.querySelectorAll('input[type="checkbox"]');
             if (cbGrpL.length === 0) throw new Error(`Error populating list of checkboxes from parent`);
@@ -224,7 +182,6 @@ export function validateForm(
                 )
             ) {
               isValid = false;
-              displayInvalidity(isValid);
             }
           } catch (e) {
             console.error(`Error executing procedure for validating radio:\n${(e as Error).message}`);
@@ -233,18 +190,15 @@ export function validateForm(
           if (!(entry.files && entry.files[0])) {
             isValid = false;
             invalidEntries.push(entry.name || entry.id || entry.dataset.title || entry.tagName);
-            displayInvalidity(isValid);
           }
         } else {
           if (entry.classList.contains("minText") && entry.value.length < parseNotNaN(entry.dataset.reqlength || "3")) {
             isValid = false;
             invalidEntries.push(entry.id || entry.name || entry.dataset.title || entry.tagName);
-            displayInvalidity(isValid);
           }
           if (entry.classList.contains("maxText") && entry.value.length > parseNotNaN(entry.dataset.maxlength || "3")) {
             isValid = false;
             invalidEntries.push(entry.id || entry.name || entry.dataset.title || entry.tagName);
-            displayInvalidity(isValid);
           }
           if (
             entry.classList.contains("minNum") &&
@@ -252,7 +206,6 @@ export function validateForm(
           ) {
             isValid = false;
             invalidEntries.push(entry.id || entry.name || entry.dataset.title || entry.tagName);
-            displayInvalidity(isValid);
           }
           if (
             entry.classList.contains("maxNum") &&
@@ -260,7 +213,6 @@ export function validateForm(
           ) {
             isValid = false;
             invalidEntries.push(entry.id || entry.name || entry.dataset.title || entry.tagName);
-            displayInvalidity(isValid);
           }
           if (
             entry.classList.contains("patternText") &&
@@ -269,7 +221,6 @@ export function validateForm(
           ) {
             isValid = false;
             invalidEntries.push(entry.id || entry.name || entry.dataset.title || entry.tagName);
-            displayInvalidity(isValid);
           }
         }
         arrValidity.push(isValid);
@@ -376,6 +327,39 @@ export function validateForm(
     submitForm(form, form.dataset.ep || form.action.replace("submit_", "").replace("_form", ""));
   return { validated, invalids: invalidEntries.map(invalidIdf => `${invalidIdf} \n`), valids: validEntries };
 }
+type ComparableValue = string | number | boolean | undefined;
+type RegexValue = string | RegExp;
+export function where(value: ComparableValue): {
+  isGreaterThanOrEqualTo: (comp: number) => boolean;
+  matchesRegex: (regex: RegexValue) => boolean;
+  isEqualTo: (comp: ComparableValue) => boolean;
+  isEither: (...options: ComparableValue[]) => boolean;
+  is: (type: ComparableValue) => boolean;
+  has: (property: string) => boolean;
+  isType: (type: string) => boolean;
+  matchesAnyIn: (array: string[]) => boolean;
+  matchesAllIn: (array: string[]) => boolean;
+} {
+  return {
+    isGreaterThanOrEqualTo: (comp: number): boolean => typeof value === "number" && value >= comp,
+    matchesRegex: (regex: RegexValue): boolean =>
+      typeof value === "string" && (typeof regex === "string" ? new RegExp(regex) : regex).test(value),
+    isEqualTo: (comp: ComparableValue): boolean => value === comp,
+    isEither: (...options: ComparableValue[]): boolean => options.includes(value),
+    is: (type: ComparableValue): boolean => value === type,
+    has: (property: string): boolean => typeof value === "object" && value !== null && property in value,
+    isType: (type: string): boolean => typeof value === type,
+    matchesAnyIn: (array: string[]): boolean =>
+      Array.isArray(array) && typeof value === "string" && array.some(item => value.includes(item)),
+    matchesAllIn: (array: string[]): boolean =>
+      Array.isArray(array) && typeof value === "string" && array.every(item => value.includes(item)),
+  };
+}
+export const select = ({ q, from }: { q: string; from: Document | DocumentFragment | HTMLElement }): nHtEl =>
+  from instanceof Document
+    ? (from.getElementById(q) ?? from.getElementsByName(q)[0])
+    : (from.querySelector(`#${q || "UNDEFINED"}`) ?? from.querySelector(`[name="${q || "UNDEFINED"}"]`));
+export const escapeRegex = (string: string): string => string.replace(/[.*+?^${}()|[\]\\]/g, "\\$&");
 export async function submitForm(form: nFm, ep: string) {
   try {
     if (!(form instanceof HTMLFormElement)) throw new Error(`Failed to validate form instance.`);
@@ -524,7 +508,6 @@ export async function submitForm(form: nFm, ep: string) {
     });
     try {
       if (typeof ep !== "string") throw new Error(`Error validating apiRoute type`);
-      console.log(formVars.animals);
       const res = await fetch(`/${formVars.animals}.json`, {
         method: "GET",
         headers: {
@@ -535,92 +518,79 @@ export async function submitForm(form: nFm, ep: string) {
       let parsed = await res.json();
       if (!("length" in parsed)) throw new Error(`Parsed response is not an iterable`);
       if (!Array.isArray(parsed)) parsed = Array.from(parsed);
-      console.log(parsed);
       const entries = Array.from(fd.entries())
         .map(e => {
           return { constraint: e[0], value: e[1] };
         })
         .filter(c => c.value !== "" && !(c.value instanceof File));
+      let mapped = parsed;
+      function toComparableString(value: any): string {
+        if (typeof value === "boolean") return value ? "true" : "false";
+        if (typeof value === "string") return value;
+        return value.toString();
+      }
       for (const c of entries) {
-        parsed = parsed.map((a: any) => {
-          if (a && a.hasOwnProperty(c.constraint) && typeof c.value === "string") {
-            switch (c.constraint) {
-              case "age":
-                console.log("age: " + a[c.constraint] >= c.value);
-                if (a[c.constraint] >= c.value) return a;
-                else return;
-              case "fur":
-                console.log("fur: " + Array.isArray(a[c.value]) && a[c.constraint].includes(c.value));
-                if (Array.isArray(a[c.value])) return a[c.value].includes(c.value) ? a : undefined;
-                else return a;
-              case "humor":
-                console.log("humor: " + Array.isArray(a[c.value]) && a[c.constraint].includes(c.value));
-                if (Array.isArray(a[c.value])) return a[c.value].includes(c.value) ? a : undefined;
-                else return a;
-              case "name":
-                console.log("name: " + typeof a[c.constraint] === "string" && a[c.constraint].includes(c.value));
-                if (typeof a[c.constraint] === "string") {
-                  return a[c.constraint].includes(c.value) ? a : undefined;
-                } else return a;
-              case "castrated":
-                const aV =
-                  typeof a[c.constraint] === "boolean"
-                    ? a[c.constraint]
-                      ? "true"
-                      : "false"
-                    : typeof a[c.constraint] === "string"
-                      ? a[c.constraint]
-                      : a[c.constraint].toString();
-                const cV = typeof c.value === "boolean" ? (c.value ? "true" : "false") : c.value;
-                return c.value === "false" || aV === cV ? a : undefined;
-              case "sex":
-                const sav =
-                  typeof a[c.constraint] === "boolean"
-                    ? a[c.constraint]
-                      ? "true"
-                      : "false"
-                    : typeof a[c.constraint] === "string"
-                      ? a[c.constraint]
-                      : a[c.constraint].toString();
-                const scv = typeof c.value === "boolean" ? (c.value ? "true" : "false") : c.value;
-                if (c.value === "both") return a;
-                else return c.value === "false" || sav === scv ? a : undefined;
-              case "fiv":
-                if (c.value === "undefined") return a;
-                else return a[c.constraint] === c.value ? a : undefined;
-              case "felv":
-                if (c.value === "undefined") return a;
-                else return a[c.constraint] === c.value ? a : undefined;
-              default:
-                const aValue =
-                  typeof a[c.constraint] === "boolean"
-                    ? a[c.constraint]
-                      ? "true"
-                      : "false"
-                    : typeof a[c.constraint] === "string"
-                      ? a[c.constraint]
-                      : a[c.constraint].toString();
-                const cValue = typeof c.value === "boolean" ? (c.value ? "true" : "false") : c.value;
-                return aValue === cValue ? a : undefined;
-            }
-          } else return a;
+        mapped = mapped.filter((a: any) => {
+          if (!a || !a.hasOwnProperty(c.constraint) || typeof c.value !== "string") return true;
+          switch (c.constraint) {
+            case "age":
+              return where(a[c.constraint]).isGreaterThanOrEqualTo(Number(c.value));
+            case "fur":
+              const fur = select({ q: "fur", from: document });
+              if (!(fur instanceof HTMLSelectElement)) return a;
+              return Array.from(fur.selectedOptions)
+                .map(o => o.value)
+                .map(o => a[c.constraint].includes(o))
+                .some(o => o);
+            case "humor":
+              const humor = select({ q: "humor", from: document });
+              if (!(humor instanceof HTMLSelectElement)) return a;
+              return Array.from(humor.selectedOptions)
+                .map(o => o.value)
+                .map(o => a[c.constraint].includes(o))
+                .every(o => o);
+            case "size":
+              const size = select({ q: "size", from: document });
+              if (!(size instanceof HTMLSelectElement)) return a;
+              return Array.from(size.selectedOptions)
+                .map(o => o.value)
+                .map(o => a[c.constraint].includes(o))
+                .some(o => o);
+            case "name":
+              return (
+                typeof a[c.constraint] === "string" &&
+                where(a[c.constraint]).matchesRegex(new RegExp(`^${escapeRegex(c.value)}.*$`, "i"))
+              );
+            case "castrated":
+            case "sex":
+              const aValue = toComparableString(a[c.constraint]),
+                cValue = toComparableString(c.value);
+              return where(c.value).isEither("both", "false") || where(aValue).isEqualTo(cValue);
+            case "fiv":
+            case "felv":
+              return where(c.value).is("undefined") || where(a[c.constraint]).isEqualTo(c.value);
+            default:
+              return where(toComparableString(a[c.constraint])).isEqualTo(toComparableString(c.value));
+          }
         });
       }
-      parsed = parsed
+      const filtered = mapped
         .filter((a: any) => a && "name" in a && typeof a.name === "string")
-        .sort((a: any, b: any) => {
+        .toSorted((a: any, b: any) => {
           return a.name.toLowerCase().trim().localeCompare(b.name.toLowerCase().trim());
         });
-      console.log(parsed);
+      if (!("length" in filtered)) return;
       const table = document.getElementById("petsTable");
       if (!(table instanceof HTMLTableElement)) return;
-      if (!("length" in parsed)) return;
-      for (let i = table.rows.length - 1; i > 0; i--) table.deleteRow(i);
+      const tbody = table.querySelector("tbody");
+      if (!(tbody instanceof HTMLTableSectionElement)) return;
+      tbody.innerHTML = ``;
       const thead = table.querySelector("thead");
       if (!(thead instanceof HTMLTableSectionElement)) return;
-      for (let h = 0; h < thead.rows.length; h++) thead.deleteRow(h);
-      for (let i = 0; i < parsed.length; i++) {
-        const a = (parsed as any)[i];
+      thead.innerHTML = ``;
+      for (let i = 0; i < filtered.length + 1; i++) {
+        const a = (filtered as any)[i === 0 ? 0 : i - 1];
+        if (!a) continue;
         if (i === 0) {
           const thead = table.querySelector("thead");
           if (thead) {
@@ -668,7 +638,7 @@ export async function submitForm(form: nFm, ep: string) {
         }
         const tbody = table.querySelector("tbody");
         if (!(tbody instanceof HTMLTableSectionElement)) continue;
-        const row = tbody.insertRow(i - 1);
+        const row = tbody.appendChild(document.createElement("tr"));
         row.dataset.row = (i + 1).toString();
         row.dataset.animal = a.species;
         let acc = 0;
@@ -693,8 +663,10 @@ export async function submitForm(form: nFm, ep: string) {
                 .replace(/black/gi, "Preto")
                 .replace(/grey/gi, "Cinza")
                 .replace(/orange/gi, "Laranja")
-                .replace(/tortoiseshell/gi, "Casco de Tartaruga")
-                .replace(/tabby/gi, "Tigrado")
+                .replace(/yellow/gi, "Amarelo")
+                .replace(/fur/gi, "Pelugem")
+                .replace(/tortoiseshell/gi, "Escaminha")
+                .replace(/tabby/gi, "Rajado")
             : typeof a[p] === "string"
               ? a[p]
               : (a[p] as any).toString();

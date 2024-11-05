@@ -152,22 +152,6 @@
   --wp--style--block-gap: 1.5rem;
 }
 @font-face {
-  font-family: "Source Serif Pro";
-  font-style: normal;
-  font-weight: 200 900;
-  font-display: fallback;
-  src: url("http://anjinhos-vet-rj.local/wp-content/themes/twentytwentytwo/assets/fonts/source-serif-pro/SourceSerif4Variable-Roman.ttf.woff2")
-    format("woff2");
-}
-@font-face {
-  font-family: "Source Serif Pro";
-  font-style: italic;
-  font-weight: 200 900;
-  font-display: fallback;
-  src: url("http://anjinhos-vet-rj.local/wp-content/themes/twentytwentytwo/assets/fonts/source-serif-pro/SourceSerif4Variable-Italic.ttf.woff2")
-    format("woff2");
-}
-@font-face {
   font-family: dashicons;
   src: url("../fonts/dashicons.eot?99ac726223c749443b642ce33df8b800");
   src:

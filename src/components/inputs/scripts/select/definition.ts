@@ -3,7 +3,7 @@ import { OptGroupProps, OptProps } from "../../../../scripts/declarations/interf
 import { assignFormAttrs, handleLabs, pushSelectOpts, updateAttrs } from "../../../../scripts/model/utils";
 import { labMap, rc } from "../../../../vars";
 import { SelectProps } from "../../../../scripts/declarations/interfaces";
-import { nFm, nLb, nSl } from "../../../../scripts/declarations/types";
+import { nLb, nSl } from "../../../../scripts/declarations/types";
 import { limitResize, recolorOpts } from "../../../../scripts/handlers/handlersStyles";
 import { formVars } from "../../../../scripts/vars";
 import { handleSubmit } from "../../../../scripts/handlers/handlersIO";
@@ -97,6 +97,7 @@ export default {
         }
         updateOpts(targ);
       }
+      if (targ.multiple && targ.selectedOptions.length === 0) handleSubmit(targ, targ.form);
     },
     toggleOption(ev: MouseEvent): void {
       try {
@@ -108,28 +109,36 @@ export default {
     },
     onChange(ev: MouseEvent): void {
       const t = ev.currentTarget;
-      if (!(t instanceof HTMLSelectElement && t.id === "species")) return;
-      formVars.animals = `${t.value}s` as "cats" | "dogs";
-      const form = document.getElementById("filterFormPetsTable");
-      handleSubmit(form as nFm, form as nFm);
+      if (t instanceof HTMLSelectElement && t.id === "species") formVars.animals = `${t.value}s` as "cats" | "dogs";
+      if (
+        !(
+          t instanceof HTMLInputElement ||
+          t instanceof HTMLSelectElement ||
+          t instanceof HTMLButtonElement ||
+          t instanceof HTMLTextAreaElement ||
+          t instanceof HTMLFormElement
+        )
+      )
+        return;
+      handleSubmit(t, t.form);
     },
   },
   setup(props: SelectProps, { emit }: SetupContext<EmitsOptions>) {
-    const r = ref<nSl>(null);
-    const rlb = ref<nLb>(null);
-    const v = ref(
-      (props.type as any) === "select-multiple"
-        ? Array.isArray(props.mv)
-          ? props.mv
-          : []
-        : props.mv || props.defV || "dog",
-    );
-    const s = reactive({
-      req: props.required,
-      ro: props.readOnly,
-      dsb: props.disabled,
-      lb: props.lab,
-    });
+    const r = ref<nSl>(null),
+      rlb = ref<nLb>(null),
+      v = ref(
+        (props.type as any) === "select-multiple"
+          ? Array.isArray(props.mv)
+            ? props.mv
+            : []
+          : props.mv || props.defV || "dog",
+      ),
+      s = reactive({
+        req: props.required,
+        ro: props.readOnly,
+        dsb: props.disabled,
+        lb: props.lab,
+      });
     watch(
       () => s.req as any,
       _ => updateAttrs(r.value, s.ro as any, s.dsb as any, s.req as any),

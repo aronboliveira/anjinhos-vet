@@ -19,6 +19,7 @@
       :readonly="s.ro"
       :data-check="s.ck"
       :autofocus="id === 'felv' ? true : false"
+      @change="onChange"
     />
   </fieldset>
 </template>

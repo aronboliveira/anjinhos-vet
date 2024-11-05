@@ -67,7 +67,7 @@ export default {
     },
   } as TextProps,
   methods: {
-    handleChange(ev: Event) {
+    onChange(ev: Event) {
       const t = ev.currentTarget;
       if (
         !(
@@ -79,23 +79,23 @@ export default {
         )
       )
         return;
-      handleSubmit(t);
+      handleSubmit(t, t.form);
     },
   },
   setup(props: TextProps) {
-    const r = ref<nInp>(null);
-    const rlb = ref<nLb>(null);
-    const dr = ref<nDl>(null);
-    const rc = ref<{ [k: string]: string[] }>({});
-    const s = reactive({
-      req: props.required,
-      ro: props.readOnly,
-      dsb: props.disabled,
-      pt: props.pattern,
-      lb: props.lab,
-      v: "",
-      vn: NaN,
-    });
+    const r = ref<nInp>(null),
+      rlb = ref<nLb>(null),
+      dr = ref<nDl>(null),
+      rc = ref<{ [k: string]: string[] }>({}),
+      s = reactive({
+        req: props.required,
+        ro: props.readOnly,
+        dsb: props.disabled,
+        pt: props.pattern,
+        lb: props.lab,
+        v: "",
+        vn: NaN,
+      });
     const updateDatalist = (n: string) => {
       try {
         if (!(r.value instanceof HTMLInputElement)) throw new Error(`Input reference for ${props.id} is not valid`);

@@ -28,6 +28,7 @@
       :disabled="s.dsb"
       :readonly="s.ro"
       :step="Number.isFinite(step) ? step.toFixed(0) : 1"
+      @input="onChange"
     />
     <datalist v-if="dataList.length > 0" :id="`${id}List`" ref="dr" :data-inp="id">
       <option v-for="d in recentSelections[id] ?? dataList" :key="`opt__${id}List__${d}`" :value="d"></option>
