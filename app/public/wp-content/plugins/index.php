@@ -1,1 +1,0 @@
-<div>THIS IS A PLUGIN</div>
