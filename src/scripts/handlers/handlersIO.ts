@@ -667,6 +667,7 @@ export async function submitForm(form: nFm, ep: string) {
                 .replace(/fur/gi, "Pelugem")
                 .replace(/tortoiseshell/gi, "Escaminha")
                 .replace(/tabby/gi, "Rajado")
+                .replace(/calico/gi, "Tricolor")
             : typeof a[p] === "string"
               ? a[p]
               : (a[p] as any).toString();
