@@ -173,6 +173,41 @@ select {
     }
   }
 }
+table {
+  width: 90vw;
+  font-family: Poppins, sans-serif;
+  caption {
+    caption-side: "top";
+    font-weight: 700;
+    border: 1px solid #dee2e6;
+    padding: 0.5rem;
+    background-color: #dee2e6;
+    * {
+      margin-left: 0.5rem;
+      font-weight: 700;
+      font-size: 1.5rem;
+      font-family: Poppins, sans-serif;
+    }
+  }
+  thead {
+    font-weight: 700;
+    border: 1px solid #dee2e6;
+    border-top: 0;
+    padding: 0.5rem;
+  }
+  tr {
+    border-right: 1px solid #dee2e6;
+    border-left: 1px solid #dee2e6;
+    td {
+      font-size: 0.9rem !important;
+      vertical-align: middle;
+      text-align: left;
+    }
+  }
+  th {
+    width: 10%;
+  }
+}
 .card {
   padding: 2em;
 }

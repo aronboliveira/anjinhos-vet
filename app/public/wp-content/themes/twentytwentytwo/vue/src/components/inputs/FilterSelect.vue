@@ -1,90 +1,8 @@
 <script lang="ts">
-  import { defineComponent, ref, reactive, watch, onMounted, inject } from "vue";
-  import { nLb, nSl } from "../../scripts/declarations/types";
-  import { OptGroupProps, OptProps } from "../../scripts/declarations/interfaceComponents";
-  import { labMap } from "../../vars.ts";
-  import { updateAttrs, assignFormAttrs, handleLabs } from "../../scripts/model/utils.ts";
-  import { recolorOpts, limitResize } from "../../scripts/handlers/handlersStyles.ts";
-  import methods from "./scripts/select/methods.ts";
-  import props from "./scripts/select/props.ts";
-  export default defineComponent({
-    name: "FilterSelect",
-    props,
-    emits: ["update:mv"],
-    methods,
-    setup(props, { emit }) {
-      const r = ref<nSl>(null);
-      const rlb = ref<nLb>(null);
-      const v = ref(
-        props.type === "select-multiple" ? (Array.isArray(props.mv) ? props.mv : []) : props.mv || props.defV || "dog",
-      );
-      const s = reactive({
-        req: props.required,
-        ro: props.readOnly,
-        dsb: props.disabled,
-        lb: props.lab,
-      });
-      const canFetch = inject("canFetch");
-      const loading = inject("loading");
-      watch(
-        () => s.req,
-        n => updateAttrs(r.value, s.ro, s.dsb, s.req),
-      );
-      watch(
-        () => v.value,
-        n => {
-          v.value = n || props.defV;
-          if (props.type === "select-multiple" && !Array.isArray(n)) n = [n];
-          emit("update:mv", n);
-        },
-      );
-      if (s.lb === "" && props.id !== "") s.lb = labMap.get(props.id) || props.id || s.lb;
-      onMounted(() => {
-        const fr = inject("fr");
-        console.log([canFetch.value, loading.value, fr.value]);
-        try {
-          if (!(r.value instanceof HTMLInputElement || r.value instanceof HTMLSelectElement))
-            throw new Error(`Couldn't validate the Reference for the input ${props.id}`);
-          const form = r.value?.closest("form");
-          if (!(form instanceof HTMLFormElement)) throw new Error(`Couldn't found Form for the Input ${props.id}`);
-          assignFormAttrs(r.value, form);
-        } catch (e) {
-          console.error(`Error on defining form properties to the input:\n${(e as Error).message}`);
-        }
-        handleLabs(r.value, rlb.value, props);
-        try {
-          if (!(r.value instanceof HTMLSelectElement)) throw new Error(`Failed to validate main reference instance`);
-          v.value = props.defV;
-          if (v.value === "" && r.value.options.length > 0) v.value = r.value.options[0].value;
-          r.value.dataset.default = props.defV;
-        } catch (e) {
-          console.error(
-            `Error executing procedure for defining default value for Select ${props.id}:\n${(e as Error).message}`,
-          );
-        }
-        try {
-          if (props.defV !== "") {
-            v.value = props.defV;
-            emit("update:mv", props.defV);
-          }
-        } catch (e) {
-          console.error(`Error executing procedures for defining default Value:\n${(e as Error).message}`);
-        }
-        if (props.type === "select-multiple") {
-          recolorOpts(r.value, "red");
-          limitResize(r.value);
-        }
-      });
-      return {
-        s,
-        v,
-        r,
-        rlb,
-        tLab: labMap.get(s.lb) || s.lb || props.lab,
-        o: props.opts,
-      };
-    },
-  });
+  import { defineComponent } from "vue";
+  import defn from "./scripts/select/definition";
+  //@ts-ignore
+  export default defineComponent(defn);
 </script>
 <template>
   <fieldset :id="`${id}Fs`" :class="{ 'form-group': true, fading: id === 'size' }">
@@ -95,16 +13,17 @@
       v-model="v"
       :data-model="mv"
       :id="id"
-      :name="id.replace(/([A-Z])/g, (m, i) => (m === id.charAt(0) ? `${m.toLowerCase()}` : `_${m.toLowerCase()}`))"
+      :name="id.replace(/([A-Z])/g, (m: any) => (m === id.charAt(0) ? `${m.toLowerCase()}` : `_${m.toLowerCase()}`))"
       :required="s.req"
       :readonly="s.ro"
       :disabled="s.dsb"
       :data-type="type"
       :multiple="type === 'select-multiple' ? true : false"
       :autofocus="id === 'size' ? true : false"
-      :size="type === 'select-multiple' ? 2 : null"
+      :size="type === 'select-multiple' ? 2 : undefined"
       @click.prevent="handleClick"
       @mousedown="toggleOption"
+      @change="onChange"
     >
       <optgroup v-if="o.options && o.lab" v-for="o in opts" :key="`optgrp__${o.lab}__${id}`" :label="o.lab">
         <option v-for="op in o.options" :key="`opt__${op.value}__${lab}__${id}`" :value="op.value">

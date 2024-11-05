@@ -1,23 +1,8 @@
 <script lang="ts">
-  import { defineComponent, ref, reactive, watch, onMounted } from "vue";
-  import { nInp, nLb } from "../../scripts/declarations/types";
-  import { labMap } from "../../vars";
-  import { updateAttrs, assignFormAttrs, handleLabs } from "../../scripts/components/utils.ts";
-  import props from "./scripts/check/props.ts";
-  import isetup from "./scripts/check/setup.ts";
-  export default defineComponent({
-    name: "FilterCheck",
-    props,
-    setup(props) {
-      const { s, r, rlb, tLab } = isetup(props);
-      return {
-        s,
-        r,
-        rlb,
-        tLab,
-      };
-    },
-  });
+  import { defineComponent } from "vue";
+  import defn from "./scripts/check/definition";
+  //@ts-ignore
+  export default defineComponent(defn);
 </script>
 <template>
   <fieldset :id="`${id}Fs`" :class="{ 'form-group form-check': true, fading: id === 'felv' || id === 'fiv' }">
@@ -28,7 +13,7 @@
       type="checkbox"
       class="form-check-input"
       :id="id"
-      :name="id.replace(/([A-Z])/g, (m, i) => (m === id.charAt(0) ? `${m.toLowerCase()}` : `_${m.toLowerCase()}`))"
+      :name="id.replace(/([A-Z])/g, (m: any) => (m === id.charAt(0) ? `${m.toLowerCase()}` : `_${m.toLowerCase()}`))"
       :required="s.req"
       :disabled="s.dsb"
       :readonly="s.ro"

@@ -1,19 +1,26 @@
 import { rc } from "../../vars";
 import { InpProps } from "../declarations/interfaceComponents";
-import { nDl, nFm, nInp, nLb, nSl } from "../declarations/types";
-export function updateAttrs(el: nInp | HTMLSelectElement, ro: boolean, dsb: boolean, req: boolean): void {
+import { nDl, nFm, nInp, nInpLike, nLb, nSl } from "../declarations/types";
+export function updateAttrs(el: nInpLike, ro: boolean, dsb: boolean, req: boolean): void {
   if (!el) return;
   ro ? el.setAttribute("readonly", "true") : el.removeAttribute("readonly");
   dsb ? el.setAttribute("disabled", "true") : el.removeAttribute("disabled");
   req ? el.setAttribute("required", "true") : el.removeAttribute("required");
 }
-export function assignFormAttrs(inp: nInp, fm: nFm): void {
+export function assignFormAttrs(inp: nInpLike, fm: nFm): void {
   if (!inp || !fm) return;
   inp.dataset.form = `#${fm.id}`;
-  inp.formAction = fm.action;
-  inp.formMethod = fm.method;
-  inp.formEnctype = fm.enctype;
-  inp.formNoValidate = fm.noValidate;
+  if (inp instanceof HTMLInputElement) {
+    inp.formAction = fm.action;
+    inp.formMethod = fm.method;
+    inp.formEnctype = fm.enctype;
+    inp.formNoValidate = fm.noValidate;
+  } else if (inp instanceof HTMLSelectElement || inp instanceof HTMLTextAreaElement) {
+    inp.dataset.formAction = fm.action;
+    inp.dataset.formMethod = fm.method;
+    inp.dataset.formEnctype = fm.enctype;
+    inp.dataset.formNoValidate = fm.noValidate.toString();
+  }
   Array.from(fm.elements).forEach(e => {
     if (!(e instanceof HTMLElement)) return;
     if (fm.id !== "") e.dataset.form = fm.id;

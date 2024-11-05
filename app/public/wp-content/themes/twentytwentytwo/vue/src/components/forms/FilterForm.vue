@@ -1,38 +1,29 @@
 <script lang="ts">
   import { defineComponent } from "vue";
-  import defn from "./scripts/definition.ts";
+  import defn from "./scripts/definition";
   export default defineComponent(defn);
 </script>
 <template>
   <form
     v-cloak
     :id="`filterForm${id}`"
-    :name="`filter_form_${id.replace(/([A-Z])/g, (m, i) => (m === id.charAt(0) ? `${m.toLowerCase()}` : `_${m.toLowerCase()}`)).toLowerCase()}`"
+    :name="`filter_form_${id.replace(/([A-Z])/g, m => (m === id.charAt(0) ? `${m.toLowerCase()}` : `_${m.toLowerCase()}`)).toLowerCase()}`"
     :action="action"
     method="post"
     target="_self"
     enctype="application/x-www-form-urlencoded"
     ref="fr"
     class="filterForm"
-    @submit.prevent="handleSubmit"
   >
     <legend>Pesquise pelo seu novo Pet!</legend>
     <template v-for="i in inps" :key="`inp__${id}__${i.id}`">
-      <FilterSelect
-        v-if="i.id === 'species'"
-        v-model:mv="spr"
-        :id="i.id"
-        :lab="i.lab"
-        :opts="i.opts"
-        @change="handleSubmit"
-      />
+      <FilterSelect v-if="(i.id as any) === 'species'" v-model:mv="spr" :id="i.id" :lab="i.lab" :opts="i.opts" />
       <FilterSelect
         v-else-if="i.type === 'select-one' || i.type === 'select-multiple'"
         :type="i.type"
         :id="i.id"
         :lab="i.lab"
         :opts="i.opts"
-        @change="handleSubmit"
       />
       <FilterCheck
         v-else-if="i.type === 'checkbox' || i.type === 'radio'"
@@ -40,7 +31,6 @@
         :lab="i.lab"
         :type="i.type"
         :required="i.required"
-        @change="handleSubmit"
       />
       <FilterNum
         v-else-if="i.type === 'number'"
@@ -48,17 +38,8 @@
         :lab="i.lab"
         :autocomplete="i.autocomplete"
         :required="i.required"
-        @change="handleSubmit"
       />
-      <FilterInp
-        v-else
-        :id="i.id"
-        :lab="i.lab"
-        :autocomplete="i.autocomplete"
-        :autocapitalize="i.autocapitalize"
-        :required="i.required"
-        @change="handleSubmit"
-      />
+      <FilterInp v-else :id="i.id" :lab="i.lab" :autocomplete="i.autocomplete" :required="i.required" />
     </template>
     <template v-if="isCat">
       <FilterSelect

@@ -24,6 +24,11 @@ export interface FormProps extends IdfProps {
     default: () => never[];
   };
 }
+export interface FormValidationRes {
+  validated: boolean;
+  invalids: string[];
+  valids: [string, string | File][];
+}
 export interface BaseInpProps extends IdfProps {
   lab: {
     type: PropType<string>;
@@ -96,14 +101,14 @@ export interface SelectProps extends BaseInpProps {
   type: {
     type: PropType<"select-one" | "select-multiple">;
     required: false;
-    default: "select-one" | "select-multiple";
+    default: string;
   };
   opts: {
     type: PropType<OptProps[] | OptGroupProps[]>;
     required: true;
     default: () => OptProps[] | OptGroupProps[];
   };
-  mv: {
+  mv?: {
     type: PropType<string>;
     required: false;
     default: string;
@@ -116,16 +121,11 @@ export interface CheckProps extends BaseInpProps {
     default: boolean;
   };
   type: {
-    type: PropType<"select-one" | "select-multiple">;
+    type: PropType<"checkbox" | "radio">;
     required: false;
-    default: "select-one" | "select-multiple";
+    default: string;
   };
-  opts: {
-    type: PropType<OptProps[] | OptGroupProps[]>;
-    required: true;
-    default: () => OptProps[] | OptGroupProps[];
-  };
-  mv: {
+  mv?: {
     type: PropType<string>;
     required: false;
     default: string;

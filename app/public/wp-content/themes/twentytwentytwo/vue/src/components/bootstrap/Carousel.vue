@@ -1,14 +1,13 @@
 <script lang="ts">
   import { defineComponent } from "vue";
-  import defn from "./scripts/definition.ts";
+  import defn from "./scripts/definition";
   export default defineComponent(defn);
 </script>
-
 <template>
   <div ref="r" :id="id" :class="{ 'carousel slide': true, 'carousel-fade': fade === true }" :data-bs-ride="ride">
     <div v-if="hasIndicators" class="carousel-indicators">
       <button
-        v-for="(f, i) in figures"
+        v-for="(_, i) in figures"
         :key="`indicator-${i}`"
         type="button"
         :data-bs-target="`#${id}`"
@@ -22,7 +21,7 @@
         v-for="(figure, i) in figures"
         :key="`fig__carousel__${i}`"
         :class="{ 'carousel-item': true, active: i === (defFig ?? 0) }"
-        :data-bs-interval="ride ? (figure.interval ?? 3000) : ''"
+        :data-bs-interval="ride ? (figure.interv ?? 3000) : ''"
       >
         <img :src="figure.src" :alt="figure.alt" class="d-block w-100" crossorigin="anonymous" fetchpriority="high" />
         <div v-if="hasLabels" class="carousel-caption d-none d-md-block">
@@ -53,3 +52,8 @@
     </button>
   </div>
 </template>
+<style scoped>
+  .carousel-caption.d-none {
+    display: block !important;
+  }
+</style>

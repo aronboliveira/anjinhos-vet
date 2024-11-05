@@ -1,0 +1,551 @@
+[
+  {
+    "name": "Ace",
+    "age": 4,
+    "species": "dog",
+    "sex": "male",
+    "humor": ["children", "small"],
+    "castrated": true,
+    "size": "medium"
+  },
+  {
+    "name": "Chance",
+    "age": 5,
+    "species": "dog",
+    "sex": "male",
+    "humor": ["children", "dogs"],
+    "castrated": true,
+    "size": "large"
+  },
+  {
+    "name": "Bruno",
+    "age": 7,
+    "species": "dog",
+    "sex": "male",
+    "humor": ["children", "small"],
+    "castrated": false,
+    "size": "medium"
+  },
+  {
+    "name": "Diesel",
+    "age": 6,
+    "species": "dog",
+    "sex": "male",
+    "humor": ["children", "dogs"],
+    "castrated": false,
+    "size": "large"
+  },
+  {
+    "name": "Hank",
+    "age": 4,
+    "species": "dog",
+    "sex": "male",
+    "humor": ["children"],
+    "castrated": true,
+    "size": "medium"
+  },
+  {
+    "name": "Roxy",
+    "age": 5,
+    "species": "dog",
+    "sex": "female",
+    "humor": ["children", "small"],
+    "castrated": false,
+    "size": "large"
+  },
+  {
+    "name": "Moose",
+    "age": 6,
+    "species": "dog",
+    "sex": "male",
+    "humor": ["children", "dogs"],
+    "castrated": false,
+    "size": "large"
+  },
+  {
+    "name": "Bandit",
+    "age": 5,
+    "species": "dog",
+    "sex": "male",
+    "humor": ["children", "small"],
+    "castrated": false,
+    "size": "medium"
+  },
+  {
+    "name": "Shadow",
+    "age": 7,
+    "species": "dog",
+    "sex": "male",
+    "humor": ["children"],
+    "castrated": true,
+    "size": "large"
+  },
+  {
+    "name": "Ranger",
+    "age": 4,
+    "species": "dog",
+    "sex": "male",
+    "humor": ["children", "dogs"],
+    "castrated": true,
+    "size": "medium"
+  },
+  {
+    "name": "Gunner",
+    "age": 6,
+    "species": "dog",
+    "sex": "male",
+    "humor": ["children", "small"],
+    "castrated": false,
+    "size": "large"
+  },
+  {
+    "name": "Rusty",
+    "age": 3,
+    "species": "dog",
+    "sex": "male",
+    "humor": ["children"],
+    "castrated": false,
+    "size": "medium"
+  },
+  {
+    "name": "Hunter",
+    "age": 4,
+    "species": "dog",
+    "sex": "male",
+    "humor": ["children"],
+    "castrated": true,
+    "size": "large"
+  },
+  {
+    "name": "Flash",
+    "age": 1,
+    "species": "dog",
+    "sex": "male",
+    "humor": ["children", "small"],
+    "castrated": true,
+    "size": "small"
+  },
+  {
+    "name": "Jasper",
+    "age": 5,
+    "species": "dog",
+    "sex": "male",
+    "humor": ["children"],
+    "castrated": true,
+    "size": "medium"
+  },
+  {
+    "name": "Chief",
+    "age": 6,
+    "species": "dog",
+    "sex": "male",
+    "humor": ["children", "small"],
+    "castrated": false,
+    "size": "large"
+  },
+  {
+    "name": "Diesel",
+    "age": 7,
+    "species": "dog",
+    "sex": "male",
+    "humor": ["small", "children"],
+    "castrated": true,
+    "size": "large"
+  },
+  {
+    "name": "Echo",
+    "age": 3,
+    "species": "dog",
+    "sex": "female",
+    "humor": ["children"],
+    "castrated": true,
+    "size": "medium"
+  },
+  {
+    "name": "Ranger",
+    "age": 4,
+    "species": "dog",
+    "sex": "male",
+    "humor": ["children", "dogs"],
+    "castrated": false,
+    "size": "medium"
+  },
+  {
+    "name": "Rocket",
+    "age": 3,
+    "species": "dog",
+    "sex": "male",
+    "humor": ["children", "small"],
+    "castrated": true,
+    "size": "medium"
+  },
+  {
+    "name": "Sadie",
+    "age": 2,
+    "species": "dog",
+    "sex": "female",
+    "humor": ["children"],
+    "castrated": true,
+    "size": "large"
+  },
+  {
+    "name": "Blaze",
+    "age": 4,
+    "species": "dog",
+    "sex": "male",
+    "humor": ["children"],
+    "castrated": false,
+    "size": "medium"
+  },
+  {
+    "name": "Scout",
+    "age": 6,
+    "species": "dog",
+    "sex": "male",
+    "humor": ["children", "small"],
+    "castrated": true,
+    "size": "large"
+  },
+  {
+    "name": "Blue",
+    "age": 7,
+    "species": "dog",
+    "sex": "female",
+    "humor": ["small"],
+    "castrated": true,
+    "size": "medium"
+  },
+  {
+    "name": "Copper",
+    "age": 3,
+    "species": "dog",
+    "sex": "male",
+    "humor": ["children", "small"],
+    "castrated": true,
+    "size": "medium"
+  },
+  {
+    "name": "Trooper",
+    "age": 6,
+    "species": "dog",
+    "sex": "male",
+    "humor": ["children", "dogs"],
+    "castrated": false,
+    "size": "large"
+  },
+  {
+    "name": "Ryder",
+    "age": 2,
+    "species": "dog",
+    "sex": "male",
+    "humor": ["children"],
+    "castrated": true,
+    "size": "large"
+  },
+  {
+    "name": "Dash",
+    "age": 4,
+    "species": "dog",
+    "sex": "male",
+    "humor": ["children", "small"],
+    "castrated": true,
+    "size": "medium"
+  },
+  {
+    "name": "Bear",
+    "age": 6,
+    "species": "dog",
+    "sex": "male",
+    "humor": ["children", "dogs"],
+    "castrated": true,
+    "size": "large"
+  },
+  {
+    "name": "Chase",
+    "age": 2,
+    "species": "dog",
+    "sex": "male",
+    "humor": ["children"],
+    "castrated": false,
+    "size": "large"
+  },
+  {
+    "name": "King",
+    "age": 4,
+    "species": "dog",
+    "sex": "male",
+    "humor": ["children"],
+    "castrated": true,
+    "size": "large"
+  },
+  {
+    "name": "Django",
+    "age": 6,
+    "species": "dog",
+    "sex": "male",
+    "humor": ["children", "small"],
+    "castrated": true,
+    "size": "medium"
+  },
+  {
+    "name": "Bolt",
+    "age": 7,
+    "species": "dog",
+    "sex": "male",
+    "humor": ["children", "small"],
+    "castrated": false,
+    "size": "large"
+  },
+  {
+    "name": "Scout",
+    "age": 1,
+    "species": "dog",
+    "sex": "female",
+    "humor": ["children", "dogs"],
+    "castrated": true,
+    "size": "medium"
+  },
+  {
+    "name": "Rusty",
+    "age": 6,
+    "species": "dog",
+    "sex": "male",
+    "humor": ["children", "small"],
+    "castrated": true,
+    "size": "medium"
+  },
+  {
+    "name": "Tank",
+    "age": 5,
+    "species": "dog",
+    "sex": "male",
+    "humor": ["children", "dogs"],
+    "castrated": true,
+    "size": "large"
+  },
+  {
+    "name": "Daisy",
+    "age": 1,
+    "species": "dog",
+    "sex": "female",
+    "humor": ["children"],
+    "castrated": true,
+    "size": "medium"
+  },
+  {
+    "name": "Buddy",
+    "age": 3,
+    "species": "dog",
+    "sex": "male",
+    "humor": ["children", "dogs"],
+    "castrated": true,
+    "size": "medium"
+  },
+  {
+    "name": "Charlie",
+    "age": 5,
+    "species": "dog",
+    "sex": "male",
+    "humor": ["children", "small"],
+    "castrated": true,
+    "size": "large"
+  },
+  {
+    "name": "Max",
+    "age": 4,
+    "species": "dog",
+    "sex": "male",
+    "humor": ["children"],
+    "castrated": false,
+    "size": "large"
+  },
+  {
+    "name": "Coco",
+    "age": 6,
+    "species": "dog",
+    "sex": "female",
+    "humor": ["children", "cats"],
+    "castrated": true,
+    "size": "medium"
+  },
+  {
+    "name": "Bella",
+    "age": 3,
+    "species": "dog",
+    "sex": "female",
+    "humor": ["children", "dogs"],
+    "castrated": true,
+    "size": "medium"
+  },
+  {
+    "name": "Lucy",
+    "age": 5,
+    "species": "dog",
+    "sex": "female",
+    "humor": ["children", "small"],
+    "castrated": true,
+    "size": "large"
+  },
+  {
+    "name": "Oscar",
+    "age": 8,
+    "species": "dog",
+    "sex": "male",
+    "humor": ["children", "cats"],
+    "castrated": false,
+    "size": "large"
+  },
+  {
+    "name": "Rocky",
+    "age": 1,
+    "species": "dog",
+    "sex": "male",
+    "humor": ["children"],
+    "castrated": false,
+    "size": "medium"
+  },
+  {
+    "name": "Lola",
+    "age": 6,
+    "species": "dog",
+    "sex": "female",
+    "humor": ["children", "dogs"],
+    "castrated": true,
+    "size": "large"
+  },
+  {
+    "name": "Molly",
+    "age": 2,
+    "species": "dog",
+    "sex": "female",
+    "humor": ["children", "small"],
+    "castrated": true,
+    "size": "medium"
+  },
+  {
+    "name": "Zeus",
+    "age": 3,
+    "species": "dog",
+    "sex": "male",
+    "humor": ["children"],
+    "castrated": false,
+    "size": "large"
+  },
+  {
+    "name": "Bailey",
+    "age": 4,
+    "species": "dog",
+    "sex": "female",
+    "humor": ["children", "cats"],
+    "castrated": true,
+    "size": "large"
+  },
+  {
+    "name": "Rex",
+    "age": 3,
+    "species": "dog",
+    "sex": "male",
+    "humor": ["children"],
+    "castrated": true,
+    "size": "medium"
+  },
+  {
+    "name": "Apollo",
+    "age": 1,
+    "species": "dog",
+    "sex": "male",
+    "humor": ["children", "dogs"],
+    "castrated": false,
+    "size": "large"
+  },
+  {
+    "name": "Duke",
+    "age": 8,
+    "species": "dog",
+    "sex": "male",
+    "humor": ["children", "small"],
+    "castrated": false,
+    "size": "medium"
+  },
+  {
+    "name": "Buster",
+    "age": 7,
+    "species": "dog",
+    "sex": "male",
+    "humor": ["children"],
+    "castrated": true,
+    "size": "large"
+  },
+  {
+    "name": "Ziggy",
+    "age": 4,
+    "species": "dog",
+    "sex": "male",
+    "humor": ["small"],
+    "castrated": true,
+    "size": "medium"
+  },
+  {
+    "name": "Riley",
+    "age": 3,
+    "species": "dog",
+    "sex": "female",
+    "humor": ["children", "dogs"],
+    "castrated": false,
+    "size": "large"
+  },
+  {
+    "name": "Finn",
+    "age": 2,
+    "species": "dog",
+    "sex": "male",
+    "humor": ["children"],
+    "castrated": true,
+    "size": "medium"
+  },
+  {
+    "name": "Thor",
+    "age": 6,
+    "species": "dog",
+    "sex": "male",
+    "humor": ["children", "small"],
+    "castrated": true,
+    "size": "large"
+  },
+  {
+    "name": "Tank",
+    "age": 7,
+    "species": "dog",
+    "sex": "male",
+    "humor": ["children", "dogs"],
+    "castrated": false,
+    "size": "large"
+  },
+  {
+    "name": "Harley",
+    "age": 5,
+    "species": "dog",
+    "sex": "female",
+    "humor": ["children", "small"],
+    "castrated": false,
+    "size": "medium"
+  },
+  {
+    "name": "Zara",
+    "age": 2,
+    "species": "dog",
+    "sex": "female",
+    "humor": ["children"],
+    "castrated": false,
+    "size": "large"
+  },
+  {
+    "name": "Maverick",
+    "age": 8,
+    "species": "dog",
+    "sex": "male",
+    "humor": ["children", "dogs"],
+    "castrated": true,
+    "size": "large"
+  }
+]

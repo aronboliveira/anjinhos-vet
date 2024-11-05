@@ -15,7 +15,7 @@ module.exports = {
     extensions: [".tsx", ".ts", ".js", ".scss", ".css"],
   },
   output: {
-    filename: `sozed_bundle.${packageJson.version}.[contenthash].min.js`,
+    filename: `anjinhos_bundle.${packageJson.version}.[contenthash].min.js`,
     path: path.resolve(__dirname, "../docs"),
     publicPath: "",
     crossOriginLoading: "anonymous",
@@ -88,7 +88,7 @@ module.exports = {
       enabled: true,
     }),
     new MiniCssExtractPlugin({
-      filename: `sozed_styles.${packageJson.version}.[contenthash].min.css`,
+      filename: `anjinhos_styles.${packageJson.version}.[contenthash].min.css`,
     }),
   ],
 };

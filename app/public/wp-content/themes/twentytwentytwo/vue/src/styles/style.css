@@ -167,6 +167,42 @@ select[data-type=select-one] option:checked {
   color: rgb(255, 255, 255);
 }
 
+table {
+  width: 90vw;
+  font-family: Poppins, sans-serif;
+}
+table caption {
+  caption-side: "top";
+  font-weight: 700;
+  border: 1px solid #dee2e6;
+  padding: 0.5rem;
+  background-color: #dee2e6;
+}
+table caption * {
+  margin-left: 0.5rem;
+  font-weight: 700;
+  font-size: 1.5rem;
+  font-family: Poppins, sans-serif;
+}
+table thead {
+  font-weight: 700;
+  border: 1px solid #dee2e6;
+  border-top: 0;
+  padding: 0.5rem;
+}
+table tr {
+  border-right: 1px solid #dee2e6;
+  border-left: 1px solid #dee2e6;
+}
+table tr td {
+  font-size: 0.9rem !important;
+  vertical-align: middle;
+  text-align: left;
+}
+table th {
+  width: 10%;
+}
+
 .card {
   padding: 2em;
 }
@@ -258,4 +294,4 @@ select[data-type=select-one] option:checked {
   }
 }
 
-/*# sourceMappingURL=style.css.map */
+/*# sourceMappingURL=data:application/json;charset=utf-8,%7B%22version%22:3,%22sourceRoot%22:%22%22,%22sources%22:%5B%22sass/style.scss%22%5D,%22names%22:%5B%5D,%22mappings%22:%22AAAA;EACE;IACE;;EAEF;IACE;;;AAGJ;EACE;IACE;;EAEF;IACE;;;AAGJ;EACE;IACE;;EAEF;IACE;;;AAGJ;EACE;EACA;EACA;EACA;EACA;EACA;EACA;EACA;EACA;EACA;EACA;EACA;;;AAGA;AAAA;EAEE;;;AAGJ;EACE;IACE;;;AAGJ;EAEI;AAAA;IAEE;;EAIF;IACE;IACA;;EAGA;IACE;IACA;;;AAKR;EACE;EACA;EACA;EACA;EACA;EACA;;;AAEF;EACE;EACA;EACA;EACA;EACA;;;AAEF;EACE;EACA;EACA;;AACA;EACE;;;AAGJ;EACE;EACA;EACA;EACA;EACA;EACA;EACA;EACA;EACA;;AACA;EACE;;AAEF;EAEE;;;AAGJ;EACE;;;AAEF;EACE;EACA;;;AAGA;EACE;;AAEF;EACE;;AAEE;EACE;EACA;;;AAKR;EACE;;;AAEF;EACE;EACA;;;AAGA;EACE;EACA;EACA;;AACA;EACE;EACA;EACA;;AACA;EACE;;AAEF;EACE;EACA;EACA;;AAEF;EAEE;EACA;EACA;;AAKJ;EACE;EACA;EACA;;AACA;EACE;EACA;;;AAKR;EACE;EACA;;AACA;EACE;EACA;EACA;EACA;EACA;;AACA;EACE;EACA;EACA;EACA;;AAGJ;EACE;EACA;EACA;EACA;;AAEF;EACE;EACA;;AACA;EACE;EACA;EACA;;AAGJ;EACE;;;AAGJ;EACE;;;AAGF;EACE;EACA;EACA;EACA,eALe;;AAMf;AAAA;EAEE,eARa;;;AAWjB;EACE;;;AAEF;EACE;;AACA;EACE;;;AAGJ;AAAA;EAEE;EACA;;;AAEF;AAAA;EAEE;EACA;;AACA;AAAA;EACE;EACA;;;AAIF;EACE;;AACA;EACE;;;AAIN;EACE;;;AAEF;EACE;EACA;EACA;EACA;;AACA;EACE;;AAEF;EACE;EACA;;AAEF;EACE;;AAGA;EACE;;AAGJ;EACE;EACA;;;AAGJ;EACE;IACE;IACA;;EAGA;IACE;;EAGJ;IACE%22,%22file%22:%22style.css%22%7D */

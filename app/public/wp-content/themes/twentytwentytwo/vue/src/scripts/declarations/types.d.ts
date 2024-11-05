@@ -1,4 +1,6 @@
+export type nHtEl = HTMLElement | null;
 export type nInp = HTMLInputElement | null;
+export type nInpLike = nInp | HTMLSelectElement | HTMLTextAreaElement;
 export type nSl = HTMLSelectElement | null;
 export type nDl = HTMLDataListElement | null;
 export type nLb = HTMLLabelElement | null;

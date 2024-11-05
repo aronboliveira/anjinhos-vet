@@ -26,6 +26,9 @@ export interface InpProps {
     required: boolean;
     default: boolean;
   };
+  opts?: string[] | { [k: string]: any };
+  type?: string;
+  autocomplete?: string;
 }
 export interface TypedInpProps extends InpProps {
   type: {

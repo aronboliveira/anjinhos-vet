@@ -1,10 +1,10 @@
 <script setup lang="ts">
-  import SozedApp from "../src/components/main/SozedApp.vue";
+  import AnjinhosApp from "../src/components/main/AnjinhosApp.vue";
 </script>
 
 <template>
   <div id="wp_wrapper">
-    <SozedApp />
+    <AnjinhosApp />
   </div>
 </template>
 

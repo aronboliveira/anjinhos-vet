@@ -1,17 +1,8 @@
 <script lang="ts">
-  import { defineComponent, ref } from "vue";
-  import { labMap, rc } from "../../vars";
-  import props from "./scripts/num/props.ts";
-  import isetup from "./scripts/num/setup.ts";
-  export default defineComponent({
-    name: "FilterNum",
-    props,
-    setup(props) {
-      console.log(props);
-      const { s, r, rlb, dr, tLab, step } = isetup(props);
-      return { s, r, rlb, dr, tLab, step };
-    },
-  });
+  import { defineComponent } from "vue";
+  import defn from "./scripts/num/definition";
+  //@ts-ignore
+  export default defineComponent(defn);
 </script>
 <template>
   <fieldset :id="`${id}Fs`" class="form-group">
@@ -24,8 +15,8 @@
       dir="ltr"
       min="0"
       max="999"
-      :name="id.replace(/([A-Z])/g, (m, i) => (m === id.charAt(0) ? `${m.toLowerCase()}` : `_${m.toLowerCase()}`))"
-      :dirName="`${id.replace(/([A-Z])/g, (m, i) => (m === id.charAt(0) ? `${m.toLowerCase()}` : `_${m.toLowerCase()}`))?.direction ?? ''}`"
+      :name="id.replace(/([A-Z])/g, (m: any) => (m === id.charAt(0) ? `${m.toLowerCase()}` : `_${m.toLowerCase()}`))"
+      :dirName="`${id.replace(/([A-Z])/g, (m: any) => (m === id.charAt(0) ? `${m.toLowerCase()}` : `_${m.toLowerCase()}`))?.direction ?? ''}`"
       :data-number="s.vn"
       :placeholder="`Digite ${tLab.toLowerCase() === 'idade' ? 'a' : 'o'} ${tLab} aqui`"
       :id="id"
