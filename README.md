@@ -1,5 +1,13 @@
-# Vue 3 + TypeScript + Vite
+# pt-BR
 
-This template should help get you started developing with Vue 3 and TypeScript in Vite. The template uses Vue 3 `<script setup>` SFCs, check out the [script setup docs](https://v3.vuejs.org/api/sfc-script-setup.html#sfc-script-setup) to learn more.
+Este é um projeto fictício para representar a construção de um formulário para filtragem de tabela de um pseudo banco de dados (na prática funcionando como NoSQL), tendo como cenário uma ONG de resgate e adoção de animais fictícia.
 
-Learn more about the recommended Project Setup and IDE Support in the [Vue Docs TypeScript Guide](https://vuejs.org/guide/typescript/overview.html#project-setup).
+Visite https://anjinhos-ong.netlify.app/ para conferir o deploy da página.
+
+# en-US
+
+This is a ficticious project to represent the construction of a form for filtering a table with a pseudo database (in practice working as a NoSQL), taking as a scenario a ficticious animal rescue and adopting NGO.
+
+Visit https://anjinhos-ong.netlify.app/ for checking the deploy of the page.
+
+# Vue 3.4.37 + TypeScript 5.6.2 + Vite 5.4.1

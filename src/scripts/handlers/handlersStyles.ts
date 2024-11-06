@@ -24,14 +24,6 @@ export function recolorOpts(
             if (o.selected) o.style.backgroundColor = color;
             else o.style.backgroundColor = altcolor;
           }
-        } else {
-          // when clicked -> rgb(153, 200, 255), but not changed
-          // when selected -> background-color rgb(84, 84, 84), rgb(255, 255, 255)
-          // default -> none;
-          // if (getComputedStyle(targ).backgroundColor === "rgb(153, 200, 255)") targ.style.backgroundColor = "blue";
-          // if (getComputedStyle(targ).backgroundColor === "rgb(84, 84, 84)") targ.style.backgroundColor = "green";
-          // targ.style.backgroundColor = color;
-          // else targ.style.backgroundColor = altcolor;
         }
       } catch (e) {
         console.error(`Error executing recolor for options:\n${(e as Error).message}`);
