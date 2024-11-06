@@ -77,7 +77,11 @@
         />
       </figure>
     </div>
-    <div style="height: 66px" aria-hidden="true" class="wp-block-spacer"></div>
+    <div aria-hidden="false" class="wp-block-spacer" style="height: 66px">
+      <p style="font-size: 0.8rem; opacity: 1; color: darkolivegreen; filter: drop-shadow(-2px 4px 6px black)">
+        Imagens geradas pelo Dall-E 3
+      </p>
+    </div>
     <main class="wp-block-query is-layout-constrained wp-block-query-is-layout-constrained" id="wp--skip-link--target">
       <ul class="alignwide wp-block-post-template is-layout-flow wp-block-post-template-is-layout-flow">
         <li class="wp-block-post post-1 post type-post status-publish format-standard hentry category-uncategorized">
