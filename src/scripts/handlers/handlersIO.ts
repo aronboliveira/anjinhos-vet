@@ -626,6 +626,15 @@ export async function submitForm(form: nFm, ep: string) {
                 case "size":
                   cell.textContent = "Porte";
                   break;
+                case "fiv":
+                  cell.textContent = "FIV";
+                  break;
+                case "felv":
+                  cell.textContent = "FELV";
+                  break;
+                case "fur":
+                  cell.textContent = "Pelugem";
+                  break;
                 default:
                   cell.textContent = `${stringP.charAt(0).toUpperCase()}${stringP.slice(1)}`;
                   break;

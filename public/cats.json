@@ -8,8 +8,7 @@
     "castrated": false,
     "felv": "negative",
     "fiv": "negative",
-    "fur": ["black"],
-    "size": "small"
+    "fur": ["black"]
   },
   {
     "name": "Cleo",
@@ -20,8 +19,7 @@
     "castrated": true,
     "felv": "undefined",
     "fiv": "negative",
-    "fur": ["white"],
-    "size": "small"
+    "fur": ["white"]
   },
   {
     "name": "Mochi",
@@ -32,8 +30,7 @@
     "castrated": true,
     "felv": "negative",
     "fiv": "positive",
-    "fur": ["calico"],
-    "size": "small"
+    "fur": ["calico"]
   },
   {
     "name": "Sasha",
@@ -44,8 +41,7 @@
     "castrated": true,
     "felv": "positive",
     "fiv": "negative",
-    "fur": ["tortoiseShell"],
-    "size": "small"
+    "fur": ["tortoiseShell"]
   },
   {
     "name": "Milo",
@@ -56,8 +52,7 @@
     "castrated": true,
     "felv": "negative",
     "fiv": "negative",
-    "fur": ["tabby"],
-    "size": "small"
+    "fur": ["tabby"]
   },
   {
     "name": "Boots",
@@ -68,8 +63,7 @@
     "castrated": true,
     "felv": "undefined",
     "fiv": "negative",
-    "fur": ["black", "white"],
-    "size": "small"
+    "fur": ["black", "white"]
   },
   {
     "name": "Piper",
@@ -80,8 +74,7 @@
     "castrated": true,
     "felv": "negative",
     "fiv": "positive",
-    "fur": ["grey"],
-    "size": "small"
+    "fur": ["grey"]
   },
   {
     "name": "Cinnamon",
@@ -92,8 +85,7 @@
     "castrated": true,
     "felv": "negative",
     "fiv": "negative",
-    "fur": ["orange"],
-    "size": "small"
+    "fur": ["orange"]
   },
   {
     "name": "Blue",
@@ -104,8 +96,7 @@
     "castrated": false,
     "felv": "positive",
     "fiv": "undefined",
-    "fur": ["grey"],
-    "size": "small"
+    "fur": ["grey"]
   },
   {
     "name": "Sprinkles",
@@ -116,8 +107,7 @@
     "castrated": true,
     "felv": "negative",
     "fiv": "negative",
-    "fur": ["calico"],
-    "size": "small"
+    "fur": ["calico"]
   },
   {
     "name": "Felix",
@@ -128,8 +118,7 @@
     "castrated": true,
     "felv": "undefined",
     "fiv": "negative",
-    "fur": ["black"],
-    "size": "small"
+    "fur": ["black"]
   },
   {
     "name": "Callie",
@@ -140,8 +129,7 @@
     "castrated": true,
     "felv": "negative",
     "fiv": "positive",
-    "fur": ["tortoiseShell"],
-    "size": "small"
+    "fur": ["tortoiseShell"]
   },
   {
     "name": "Hazel",
@@ -152,8 +140,7 @@
     "castrated": false,
     "felv": "positive",
     "fiv": "negative",
-    "fur": ["tabby"],
-    "size": "small"
+    "fur": ["tabby"]
   },
   {
     "name": "Lilly",
@@ -164,8 +151,7 @@
     "castrated": true,
     "felv": "negative",
     "fiv": "negative",
-    "fur": ["white"],
-    "size": "small"
+    "fur": ["white"]
   },
   {
     "name": "Toffee",
@@ -176,8 +162,7 @@
     "castrated": true,
     "felv": "negative",
     "fiv": "positive",
-    "fur": ["tabby"],
-    "size": "small"
+    "fur": ["tabby"]
   },
   {
     "name": "Mango",
@@ -188,8 +173,7 @@
     "castrated": false,
     "felv": "positive",
     "fiv": "undefined",
-    "fur": ["orange"],
-    "size": "small"
+    "fur": ["orange"]
   },
   {
     "name": "Cookie",
@@ -200,8 +184,7 @@
     "castrated": true,
     "felv": "negative",
     "fiv": "negative",
-    "fur": ["calico"],
-    "size": "small"
+    "fur": ["calico"]
   },
   {
     "name": "Sushi",
@@ -212,8 +195,7 @@
     "castrated": true,
     "felv": "negative",
     "fiv": "negative",
-    "fur": ["colorpoint"],
-    "size": "small"
+    "fur": ["colorpoint"]
   },
   {
     "name": "Tiger",
@@ -224,8 +206,7 @@
     "castrated": false,
     "felv": "undefined",
     "fiv": "positive",
-    "fur": ["tabby"],
-    "size": "small"
+    "fur": ["tabby"]
   },
   {
     "name": "Nutmeg",
@@ -236,8 +217,7 @@
     "castrated": true,
     "felv": "positive",
     "fiv": "negative",
-    "fur": ["tortoiseShell"],
-    "size": "small"
+    "fur": ["tortoiseShell"]
   },
   {
     "name": "Sprout",
@@ -248,8 +228,7 @@
     "castrated": true,
     "felv": "negative",
     "fiv": "negative",
-    "fur": ["calico"],
-    "size": "small"
+    "fur": ["calico"]
   },
   {
     "name": "Biscuit",
@@ -260,8 +239,7 @@
     "castrated": false,
     "felv": "negative",
     "fiv": "undefined",
-    "fur": ["white"],
-    "size": "small"
+    "fur": ["white"]
   },
   {
     "name": "Ash",
@@ -272,8 +250,7 @@
     "castrated": false,
     "felv": "positive",
     "fiv": "negative",
-    "fur": ["grey"],
-    "size": "small"
+    "fur": ["grey"]
   },
   {
     "name": "Mocha",
@@ -284,8 +261,7 @@
     "castrated": true,
     "felv": "negative",
     "fiv": "negative",
-    "fur": ["brown"],
-    "size": "small"
+    "fur": ["brown"]
   },
   {
     "name": "Penny",
@@ -296,8 +272,7 @@
     "castrated": true,
     "felv": "undefined",
     "fiv": "negative",
-    "fur": ["tabby"],
-    "size": "small"
+    "fur": ["tabby"]
   },
   {
     "name": "Cinnamon",
@@ -308,8 +283,7 @@
     "castrated": false,
     "felv": "negative",
     "fiv": "positive",
-    "fur": ["orange"],
-    "size": "small"
+    "fur": ["orange"]
   },
   {
     "name": "Fiona",
@@ -320,8 +294,7 @@
     "castrated": true,
     "felv": "positive",
     "fiv": "negative",
-    "fur": ["calico"],
-    "size": "small"
+    "fur": ["calico"]
   },
   {
     "name": "Toby",
@@ -332,8 +305,7 @@
     "castrated": true,
     "felv": "negative",
     "fiv": "undefined",
-    "fur": ["tabby"],
-    "size": "small"
+    "fur": ["tabby"]
   },
   {
     "name": "Rose",
@@ -344,8 +316,7 @@
     "castrated": true,
     "felv": "undefined",
     "fiv": "negative",
-    "fur": ["tortoiseShell"],
-    "size": "small"
+    "fur": ["tortoiseShell"]
   },
   {
     "name": "Petunia",
@@ -356,8 +327,7 @@
     "castrated": false,
     "felv": "positive",
     "fiv": "positive",
-    "fur": ["calico"],
-    "size": "small"
+    "fur": ["calico"]
   },
   {
     "name": "Sunny",
@@ -368,8 +338,7 @@
     "castrated": true,
     "felv": "negative",
     "fiv": "negative",
-    "fur": ["yellow"],
-    "size": "small"
+    "fur": ["yellow"]
   },
   {
     "name": "Jade",
@@ -380,8 +349,7 @@
     "castrated": true,
     "felv": "undefined",
     "fiv": "negative",
-    "fur": ["grey"],
-    "size": "small"
+    "fur": ["grey"]
   },
   {
     "name": "Ivy",
@@ -392,8 +360,7 @@
     "castrated": false,
     "felv": "positive",
     "fiv": "negative",
-    "fur": ["white"],
-    "size": "small"
+    "fur": ["white"]
   },
   {
     "name": "Milo",
@@ -404,8 +371,7 @@
     "castrated": true,
     "felv": "negative",
     "fiv": "negative",
-    "fur": ["tabby"],
-    "size": "small"
+    "fur": ["tabby"]
   },
   {
     "name": "Olive",
@@ -416,8 +382,7 @@
     "castrated": true,
     "felv": "undefined",
     "fiv": "negative",
-    "fur": ["black"],
-    "size": "small"
+    "fur": ["black"]
   },
   {
     "name": "Tigger",
@@ -428,8 +393,7 @@
     "castrated": false,
     "felv": "positive",
     "fiv": "negative",
-    "fur": ["tabby"],
-    "size": "small"
+    "fur": ["tabby"]
   },
   {
     "name": "Mittens",
@@ -440,8 +404,7 @@
     "castrated": false,
     "felv": "negative",
     "fiv": "negative",
-    "fur": ["tabby"],
-    "size": "small"
+    "fur": ["tabby"]
   },
   {
     "name": "Luna",
@@ -452,8 +415,7 @@
     "castrated": true,
     "felv": "positive",
     "fiv": "negative",
-    "fur": ["calico"],
-    "size": "small"
+    "fur": ["calico"]
   },
   {
     "name": "Shadow",
@@ -464,8 +426,7 @@
     "castrated": false,
     "felv": "undefined",
     "fiv": "positive",
-    "fur": ["black"],
-    "size": "small"
+    "fur": ["black"]
   },
   {
     "name": "Whiskers",
@@ -476,8 +437,7 @@
     "castrated": true,
     "felv": "negative",
     "fiv": "negative",
-    "fur": ["white"],
-    "size": "small"
+    "fur": ["white"]
   },
   {
     "name": "Daisy",
@@ -488,8 +448,7 @@
     "castrated": true,
     "felv": "negative",
     "fiv": "undefined",
-    "fur": ["tortoiseShell"],
-    "size": "small"
+    "fur": ["tortoiseShell"]
   },
   {
     "name": "Kitty",
@@ -500,8 +459,7 @@
     "castrated": true,
     "felv": "positive",
     "fiv": "negative",
-    "fur": ["tabby"],
-    "size": "small"
+    "fur": ["tabby"]
   },
   {
     "name": "Simba",
@@ -512,8 +470,7 @@
     "castrated": false,
     "felv": "negative",
     "fiv": "negative",
-    "fur": ["yellow"],
-    "size": "small"
+    "fur": ["yellow"]
   },
   {
     "name": "Chester",
@@ -524,8 +481,7 @@
     "castrated": true,
     "felv": "undefined",
     "fiv": "positive",
-    "fur": ["grey"],
-    "size": "small"
+    "fur": ["grey"]
   },
   {
     "name": "Mimi",
@@ -536,8 +492,7 @@
     "castrated": true,
     "felv": "negative",
     "fiv": "negative",
-    "fur": ["calico"],
-    "size": "small"
+    "fur": ["calico"]
   },
   {
     "name": "Gizmo",
@@ -548,8 +503,7 @@
     "castrated": false,
     "felv": "positive",
     "fiv": "negative",
-    "fur": ["black", "white"],
-    "size": "small"
+    "fur": ["black", "white"]
   },
   {
     "name": "Princess",
@@ -560,8 +514,7 @@
     "castrated": true,
     "felv": "negative",
     "fiv": "negative",
-    "fur": ["white"],
-    "size": "small"
+    "fur": ["white"]
   },
   {
     "name": "Socks",
@@ -572,8 +525,7 @@
     "castrated": true,
     "felv": "undefined",
     "fiv": "negative",
-    "fur": ["black", "white"],
-    "size": "small"
+    "fur": ["black", "white"]
   },
   {
     "name": "Snowball",
@@ -584,8 +536,7 @@
     "castrated": false,
     "felv": "negative",
     "fiv": "negative",
-    "fur": ["white"],
-    "size": "small"
+    "fur": ["white"]
   },
   {
     "name": "Nala",
@@ -596,8 +547,7 @@
     "castrated": true,
     "felv": "positive",
     "fiv": "undefined",
-    "fur": ["yellow"],
-    "size": "small"
+    "fur": ["yellow"]
   },
   {
     "name": "Peaches",
@@ -608,8 +558,7 @@
     "castrated": false,
     "felv": "negative",
     "fiv": "negative",
-    "fur": ["tortoiseShell"],
-    "size": "small"
+    "fur": ["tortoiseShell"]
   },
   {
     "name": "Whisper",
@@ -620,8 +569,7 @@
     "castrated": true,
     "felv": "undefined",
     "fiv": "positive",
-    "fur": ["grey"],
-    "size": "small"
+    "fur": ["grey"]
   },
   {
     "name": "Leo",
@@ -632,8 +580,7 @@
     "castrated": false,
     "felv": "negative",
     "fiv": "negative",
-    "fur": ["orange"],
-    "size": "small"
+    "fur": ["orange"]
   },
   {
     "name": "Pumpkin",
@@ -644,8 +591,7 @@
     "castrated": true,
     "felv": "positive",
     "fiv": "negative",
-    "fur": ["orange"],
-    "size": "small"
+    "fur": ["orange"]
   },
   {
     "name": "Misty",
@@ -656,8 +602,7 @@
     "castrated": true,
     "felv": "negative",
     "fiv": "negative",
-    "fur": ["grey"],
-    "size": "small"
+    "fur": ["grey"]
   },
   {
     "name": "Oreo",
@@ -668,8 +613,7 @@
     "castrated": true,
     "felv": "negative",
     "fiv": "positive",
-    "fur": ["black", "white"],
-    "size": "small"
+    "fur": ["black", "white"]
   },
   {
     "name": "Smokey",
@@ -680,8 +624,7 @@
     "castrated": true,
     "felv": "undefined",
     "fiv": "negative",
-    "fur": ["grey"],
-    "size": "small"
+    "fur": ["grey"]
   },
   {
     "name": "Pepper",
@@ -692,7 +635,6 @@
     "castrated": false,
     "felv": "negative",
     "fiv": "negative",
-    "fur": ["black"],
-    "size": "small"
+    "fur": ["black"]
   }
 ]
