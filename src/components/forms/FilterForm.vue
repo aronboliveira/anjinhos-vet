@@ -15,7 +15,24 @@
     ref="fr"
     class="filterForm"
   >
-    <legend>Pesquise pelo seu novo Pet!</legend>
+    <legend style="transform: translateY(-1rem)">Pesquise pelo seu novo Pet!</legend>
+    <video
+      id="dog_and_woman_video"
+      class="bg_video"
+      crossorigin="anonymous"
+      preload="metadata"
+      disablepictureinpicture
+      autoplay
+      playsinline
+      loop
+      muted
+      controls
+      controlslist="nofullscreen nodownload noplaybackrate"
+    >
+      <source src="/dog_and_woman_pexels.webm" type="video/webm" />
+      <source src="/dog_and_woman_pexels.mp4" type="video/mp4" />
+      Your browser does not support videos
+    </video>
     <template v-for="i in inps" :key="`inp__${id}__${i.id}`">
       <FilterSelect v-if="(i.id as any) === 'species'" v-model:mv="spr" :id="i.id" :lab="i.lab" :opts="i.opts" />
       <FilterSelect
@@ -120,6 +137,16 @@
     max-width: 80vw;
     transition: width 1s ease-in-out;
     animation: fadeIn 3s ease-in-out;
+    position: relative;
+    z-index: 1;
+    *:not(video) {
+      z-index: 2;
+    }
+    video {
+      width: 100vw;
+      transform: translateX(-10vw) scale(1.28);
+      opacity: 0.3;
+    }
   }
   .filterForm {
     fieldset {

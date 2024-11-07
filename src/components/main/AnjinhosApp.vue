@@ -33,6 +33,12 @@
 </script>
 <template>
   <div id="wp-body" class="home blog logged-in admin-bar no-customize-support wp-embed-responsive">
+    <h2
+      class="alignwide wp-block-post-title has-var-wp-custom-typography-font-size-huge-clamp-2-25-rem-4-vw-2-75-rem-font-size"
+      style="padding-block: 2rem"
+    >
+      <a href="#" target="_self"><strong>ONG Anjinhos</strong></a>
+    </h2>
     <div class="wp-site-blocks">
       <figure class="wp-block-image alignwide size-full is-resized">
         <Carousel
@@ -86,11 +92,6 @@
       <ul class="alignwide wp-block-post-template is-layout-flow wp-block-post-template-is-layout-flow">
         <li class="wp-block-post post-1 post type-post status-publish format-standard hentry category-uncategorized">
           <div class="wp-block-group is-layout-constrained wp-block-group-is-layout-constrained">
-            <h2
-              class="alignwide wp-block-post-title has-var-wp-custom-typography-font-size-huge-clamp-2-25-rem-4-vw-2-75-rem-font-size"
-            >
-              <a href="#" target="_self"><strong>ONG Anjinhos</strong></a>
-            </h2>
             <div
               class="wp-block-columns alignwide is-layout-flex wp-container-core-columns-is-layout-1 wp-block-columns-is-layout-flex"
             >
@@ -169,7 +170,24 @@
           },
         ]"
       />
-      <section id="tab-wrapper" style="overflow: auto; min-width: 90vw; padding-inline: 5%">
+      <section id="tab-wrapper" style="overflow: auto; min-width: 100vw; padding-inline: 5%; position: relative">
+        <video
+          id="cat_video"
+          class="bg_video"
+          crossorigin="anonymous"
+          preload="metadata"
+          disablepictureinpicture
+          autoplay
+          playsinline
+          loop
+          muted
+          controls
+          controlslist="nofullscreen nodownload noplaybackrate"
+        >
+          <source src="/cat_clean_pexels.webm" type="video/webm" />
+          <source src="/cat_clean_pexels.mp4" type="video/mp4" />
+          Your browser does not support videos
+        </video>
         <table class="table table-striped table-hover" id="petsTable" style="min-width: 90%">
           <caption style="caption-side: top">
             <h2>Tabela de Animais</h2>
@@ -183,10 +201,27 @@
         </table>
       </section>
     </main>
-    <footer class="wp-block-template-part">
+    <footer class="wp-block-template-part" style="position: relative">
+      <video
+        id="dog_video"
+        class="bg_video"
+        crossorigin="anonymous"
+        preload="metadata"
+        disablepictureinpicture
+        autoplay
+        playsinline
+        loop
+        muted
+        controls
+        controlslist="nofullscreen nodownload noplaybackrate"
+      >
+        <source src="/charming_dog.webm" type="video/webm" />
+        <source src="/charming_dog.mp4" type="video/mp4" />
+        Your browser does not support videos
+      </video>
       <div
         class="wp-block-group is-layout-constrained wp-block-group-is-layout-constrained"
-        style="padding-top: var(--wp--custom--spacing--large, 8rem)"
+        style="padding-top: var(--wp--custom--spacing--large, 8rem); height: 10vh; background-color: #000"
       >
         <div class="wp-block-group alignfull is-layout-constrained wp-block-group-is-layout-constrained">
           <div
@@ -201,4 +236,23 @@
   </div>
 </template>
 
-<style scoped></style>
+<style scoped>
+  video {
+    z-index: 0;
+    transform: scale(1.5);
+    width: 100vw;
+  }
+  #dog_video {
+    transform: scale(3) translateY(-75vh);
+    width: 100vw;
+    min-width: 100vw;
+  }
+  table {
+    position: relative;
+    z-index: 10;
+    opacity: 0.9;
+  }
+  table * {
+    z-index: 12;
+  }
+</style>

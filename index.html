@@ -70,5 +70,17 @@
       integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz"
       crossorigin="anonymous"
     ></script>
+    <script defer crossorigin="anonymous">
+      addEventListener("DOMContentLoaded", () => {
+        document.querySelectorAll("video").forEach(video => {
+          video.addEventListener("canplaythrough", video.play);
+          video.addEventListener("play", ev => {
+            if (video.readyState >= 4) return;
+            ev.preventDefault();
+            video.pause();
+          });
+        });
+      });
+    </script>
   </body>
 </html>

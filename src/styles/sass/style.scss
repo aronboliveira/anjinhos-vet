@@ -208,6 +208,18 @@ table {
     width: 10%;
   }
 }
+video {
+  max-width: 100vw;
+  max-height: 100vh;
+  z-index: 0;
+  &.bg_video {
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 100%;
+    width: 100%;
+  }
+}
 .card {
   padding: 2em;
 }
@@ -252,6 +264,9 @@ $carouselBorder: 0.5rem;
       width: 100%;
     }
   }
+}
+.wp-body {
+  position: relative;
 }
 .wp-block-navigation__responsive-container-open {
   background-color: transparent;
