@@ -164,6 +164,9 @@
       border-radius: 0.5rem;
       object-fit: cover;
       transform: translateY(-3%);
+      @media (max-width: 460px) {
+        min-height: 100%;
+      }
     }
   }
   .filterForm {
@@ -184,6 +187,10 @@
   video {
     object-fit: fill;
     width: 100vw;
+  }
+  #dog_and_woman_video {
+    min-width: 100vw;
+    z-index: 0;
   }
   #dog_video {
     transform: translateY(200%);
