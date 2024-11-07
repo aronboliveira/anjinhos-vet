@@ -10,6 +10,7 @@
     <select
       ref="r"
       class="form-select"
+      style="min-width: max-content !important"
       v-model="v"
       :data-model="mv"
       :id="id"

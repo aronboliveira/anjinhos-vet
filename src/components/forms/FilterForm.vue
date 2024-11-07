@@ -172,7 +172,7 @@
   .filterForm {
     fieldset {
       display: flex;
-      flex-flow: column wrap;
+      flex-flow: column nowrap;
       width: 100%;
       align-items: flex-start;
       justify-content: flex-start;
