@@ -228,9 +228,10 @@
   video {
     z-index: 1;
     object-fit: cover;
-    width: 100vw;
+    object-position: center;
+    width: 98.8vw;
     opacity: 0.6;
-    transform: translateY(35%);
+    transform: translateY(-10%);
   }
   table {
     position: relative;

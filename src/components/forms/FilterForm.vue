@@ -16,21 +16,23 @@
     class="filterForm"
   >
     <legend>Pesquise pelo seu novo Pet!</legend>
-    <video
-      id="dog_and_woman_video"
-      class="bg_video"
-      crossorigin="anonymous"
-      preload="metadata"
-      disablepictureinpicture
-      autoplay
-      playsinline
-      loop
-      muted
-    >
-      <source src="/dog_and_woman_pexels.webm" type="video/webm" />
-      <source src="/dog_and_woman_pexels.mp4" type="video/mp4" />
-      Your browser does not support videos
-    </video>
+    <section style="min-width: 100vw; height: 150%">
+      <video
+        id="dog_and_woman_video"
+        class="bg_video"
+        crossorigin="anonymous"
+        preload="metadata"
+        disablepictureinpicture
+        autoplay
+        playsinline
+        loop
+        muted
+      >
+        <source src="/dog_and_woman_pexels.webm" type="video/webm" />
+        <source src="/dog_and_woman_pexels.mp4" type="video/mp4" />
+        Your browser does not support videos
+      </video>
+    </section>
     <div id="fieldsets-wrapper" style="width: 90%; margin-inline: 5%">
       <template v-for="i in inps" :key="`inp__${id}__${i.id}`">
         <FilterSelect v-if="(i.id as any) === 'species'" v-model:mv="spr" :id="i.id" :lab="i.lab" :opts="i.opts" />
@@ -159,14 +161,12 @@
     }
     video {
       width: 100vw;
-      min-height: 150%;
       opacity: 0.2;
       border-radius: 0.5rem;
       object-fit: cover;
+      object-position: center;
       transform: translateY(-3%);
-      @media (max-width: 460px) {
-        min-height: 100%;
-      }
+      height: 100rem;
     }
   }
   .filterForm {
@@ -188,12 +188,8 @@
     object-fit: fill;
     width: 100vw;
   }
-  #dog_and_woman_video {
-    min-width: 100vw;
-    z-index: 0;
-  }
   #dog_video {
-    transform: translateY(200%);
+    transform: translateY(175%);
     border-radius: 0;
   }
   [v-cloak] {
