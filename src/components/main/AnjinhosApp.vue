@@ -227,9 +227,8 @@
 <style scoped>
   video {
     z-index: 1;
-    object-fit: cover;
+    object-fit: fill;
     width: 100vw;
-    object-align: bottom;
     opacity: 0.6;
     transform: translateY(35%);
   }

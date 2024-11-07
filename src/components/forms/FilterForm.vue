@@ -181,8 +181,12 @@
       font-weight: 800;
     }
   }
+  video {
+    object-fit: fill;
+    width: 100vw;
+  }
   #dog_video {
-    transform: translateY(176.1%);
+    transform: translateY(200%);
     border-radius: 0;
   }
   [v-cloak] {
