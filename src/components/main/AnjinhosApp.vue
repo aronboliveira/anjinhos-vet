@@ -83,9 +83,21 @@
         />
       </figure>
     </div>
-    <div aria-hidden="false" class="wp-block-spacer" style="height: 66px">
-      <p style="font-size: 0.8rem; opacity: 1; color: darkolivegreen; filter: drop-shadow(-2px 4px 6px black)">
+    <div aria-hidden="false" class="wp-block-spacer" style="margin-bottom: 1rem">
+      <p style="font-size: 0.8rem; opacity: 1; color: rgb(85, 107, 47, 0.4); filter: drop-shadow(-2px 6px 4px #fff1)">
         Imagens geradas pelo Dall-E 3
+      </p>
+    </div>
+    <div aria-hidden="false" class="wp-block-spacer" style="margin-bottom: 4rem">
+      <p style="font-size: 0.8rem; opacity: 1; color: rgb(85, 107, 47, 0.4); filter: drop-shadow(-2px 6px 4px #fff1)">
+        Vídeo obtidos em
+        <a
+          href="https://www.pexels.com/"
+          target="_blank"
+          rel="external noreferrer noopener"
+          style="color: inherit; filter: inherit"
+          >pexels.com</a
+        >
       </p>
     </div>
     <main class="wp-block-query is-layout-constrained wp-block-query-is-layout-constrained" id="wp--skip-link--target">
@@ -181,8 +193,6 @@
           playsinline
           loop
           muted
-          controls
-          controlslist="nofullscreen nodownload noplaybackrate"
         >
           <source src="/cat_clean_pexels.webm" type="video/webm" />
           <source src="/cat_clean_pexels.mp4" type="video/mp4" />
@@ -202,17 +212,12 @@
       </section>
     </main>
     <footer class="wp-block-template-part" style="position: relative">
-      <div
-        class="wp-block-group is-layout-constrained wp-block-group-is-layout-constrained"
-        style="padding-top: var(--wp--custom--spacing--large, 8rem); height: 10vh; background-color: #000"
-      >
-        <div class="wp-block-group alignfull is-layout-constrained wp-block-group-is-layout-constrained">
-          <div
-            class="wp-block-group alignwide is-content-justification-space-between is-layout-flex wp-container-core-group-is-layout-7 wp-block-group-is-layout-flex"
-            style="padding-top: 4rem; padding-bottom: 4rem"
-          >
-            <p class="wp-block-site-title"></p>
-          </div>
+      <div class="wp-block-group alignfull is-layout-constrained wp-block-group-is-layout-constrained">
+        <div
+          class="wp-block-group alignwide is-content-justification-space-between is-layout-flex wp-container-core-group-is-layout-7 wp-block-group-is-layout-flex"
+          style="padding-top: 4rem; padding-bottom: 4rem"
+        >
+          <p class="wp-block-site-title"></p>
         </div>
       </div>
     </footer>
@@ -221,10 +226,12 @@
 
 <style scoped>
   video {
-    z-index: 0;
-    transform: scale(1.5) translateY(130vh);
+    z-index: 1;
     object-fit: cover;
     width: 100vw;
+    object-align: bottom;
+    opacity: 0.6;
+    transform: translateY(35%);
   }
   table {
     position: relative;
