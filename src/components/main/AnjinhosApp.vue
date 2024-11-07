@@ -32,13 +32,21 @@
   });
 </script>
 <template>
-  <div id="wp-body" class="home blog logged-in admin-bar no-customize-support wp-embed-responsive">
-    <h2
-      class="alignwide wp-block-post-title has-var-wp-custom-typography-font-size-huge-clamp-2-25-rem-4-vw-2-75-rem-font-size"
-      style="padding-block: 2rem"
-    >
-      <a href="#" target="_self"><strong>ONG Anjinhos</strong></a>
-    </h2>
+  <div
+    id="wp-body"
+    class="home blog logged-in admin-bar no-customize-support wp-embed-responsive"
+    style="position: relative"
+  >
+    <header>
+      <h2
+        class="alignwide wp-block-post-title has-var-wp-custom-typography-font-size-huge-clamp-2-25-rem-4-vw-2-75-rem-font-size"
+        style="padding-block: 2rem; color: #fff2 !important; padding-block: 1rem"
+      >
+        <a href="#" target="_self" style="color: #0006; filter: drop-shadow(1px 6px 2px #0001)"
+          ><strong>ONG Anjinhos</strong></a
+        >
+      </h2>
+    </header>
     <div class="wp-site-blocks">
       <figure class="wp-block-image alignwide size-full is-resized">
         <Carousel
@@ -182,7 +190,10 @@
           },
         ]"
       />
-      <section id="tab-wrapper" style="overflow: auto; min-width: 100vw; padding-inline: 5%; position: relative">
+      <section
+        id="tab-wrapper"
+        style="overflow: auto; min-width: 100vw; padding-inline: 5%; position: relative; margin-top: 0"
+      >
         <video
           id="cat_video"
           class="bg_video"
@@ -225,18 +236,36 @@
 </template>
 
 <style scoped>
+  header {
+    position: sticky;
+    top: 0;
+    bottom: 0;
+    z-index: 99;
+    opacity: 0.7;
+    height: min-content;
+    border-style: ridge;
+    border-top-width: 1px;
+    border-top-color: #0003;
+    border-inline-width: 0;
+    background: radial-gradient(
+      ellipse at left,
+      rgba(200, 245, 210, 0.5),
+      rgba(150, 220, 190, 0.5),
+      rgba(70, 150, 120, 0.5)
+    );
+  }
   video {
     z-index: 1;
     object-fit: cover;
     object-position: center;
     width: 98.8vw;
-    opacity: 0.6;
-    transform: translateY(-10%);
+    opacity: 0.3;
   }
   table {
     position: relative;
     z-index: 10;
     opacity: 0.9;
+    transform: translateY(2rem);
   }
   table * {
     z-index: 12;

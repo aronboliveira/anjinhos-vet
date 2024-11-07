@@ -15,8 +15,8 @@
     ref="fr"
     class="filterForm"
   >
-    <legend>Pesquise pelo seu novo Pet!</legend>
-    <section style="min-width: 100vw; height: 150%">
+    <legend style="margin-top: 2rem">Pesquise pelo seu novo Pet!</legend>
+    <section style="min-width: 100vw">
       <video
         id="dog_and_woman_video"
         class="bg_video"
@@ -102,7 +102,7 @@
           ]"
         />
       </template>
-      <details>
+      <details style="margin-block: 2rem">
         <summary>Dicas</summary>
         <section>
           <strong>Com um teclado:</strong>
@@ -156,6 +156,7 @@
     animation: fadeIn 3s ease-in-out;
     position: relative;
     z-index: 1;
+    overflow: hidden;
     *:not(video) {
       z-index: 2;
     }
@@ -166,7 +167,7 @@
       object-fit: cover;
       object-position: center;
       transform: translateY(-3%);
-      height: 100rem;
+      height: 150rem;
     }
   }
   .filterForm {
@@ -191,6 +192,9 @@
   #dog_video {
     transform: translateY(175%);
     border-radius: 0;
+  }
+  #dog_and_woman_video {
+    transform: scale(1.2);
   }
   [v-cloak] {
     display: none;
