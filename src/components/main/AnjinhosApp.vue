@@ -202,23 +202,6 @@
       </section>
     </main>
     <footer class="wp-block-template-part" style="position: relative">
-      <video
-        id="dog_video"
-        class="bg_video"
-        crossorigin="anonymous"
-        preload="metadata"
-        disablepictureinpicture
-        autoplay
-        playsinline
-        loop
-        muted
-        controls
-        controlslist="nofullscreen nodownload noplaybackrate"
-      >
-        <source src="/charming_dog.webm" type="video/webm" />
-        <source src="/charming_dog.mp4" type="video/mp4" />
-        Your browser does not support videos
-      </video>
       <div
         class="wp-block-group is-layout-constrained wp-block-group-is-layout-constrained"
         style="padding-top: var(--wp--custom--spacing--large, 8rem); height: 10vh; background-color: #000"
@@ -239,13 +222,9 @@
 <style scoped>
   video {
     z-index: 0;
-    transform: scale(1.5);
+    transform: scale(1.5) translateY(130vh);
+    object-fit: cover;
     width: 100vw;
-  }
-  #dog_video {
-    transform: scale(3) translateY(-75vh);
-    width: 100vw;
-    min-width: 100vw;
   }
   table {
     position: relative;

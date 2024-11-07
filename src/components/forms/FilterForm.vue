@@ -26,8 +26,6 @@
       playsinline
       loop
       muted
-      controls
-      controlslist="nofullscreen nodownload noplaybackrate"
     >
       <source src="/dog_and_woman_pexels.webm" type="video/webm" />
       <source src="/dog_and_woman_pexels.mp4" type="video/mp4" />
@@ -144,8 +142,10 @@
     }
     video {
       width: 100vw;
-      transform: translateX(-10vw) scale(1.28);
-      opacity: 0.3;
+      transform: translate(-10vw, 75vh) scale(3);
+      opacity: 0.2;
+      border-radius: 0.5rem;
+      object-fit: cover;
     }
   }
   .filterForm {
