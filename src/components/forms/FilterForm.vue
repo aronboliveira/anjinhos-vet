@@ -120,21 +120,6 @@
         </section>
       </details>
     </div>
-    <video
-      id="dog_video"
-      class="bg_video"
-      crossorigin="anonymous"
-      preload="metadata"
-      disablepictureinpicture
-      autoplay
-      playsinline
-      loop
-      muted
-    >
-      <source src="/charming_dog.webm" type="video/webm" />
-      <source src="/charming_dog.mp4" type="video/mp4" />
-      Your browser does not support videos
-    </video>
   </form>
 </template>
 <style scoped>

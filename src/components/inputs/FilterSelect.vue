@@ -47,5 +47,8 @@
     select {
       width: 100%;
     }
+    select[multiple] {
+      min-height: 2rem !important;
+    }
   }
 </style>

@@ -63,15 +63,52 @@
       })();
     </script>
     <script>
-      (() => {
+      addEventListener("DOMContentLoaded", () => {
         setTimeout(
           () =>
             alert(
               "Este é um projeto fictício em Vue.js para representar a filtragem de tabelas HTML com uso de formulários.\nVisite https://github.com/aronboliveira/anjinhos-vet para consultar o código aberto.",
             ),
-          1000,
+          3000,
         );
-      })();
+      });
+    </script>
+    <script>
+      addEventListener("DOMContentLoaded", () => {
+        const wrapper = document.getElementById("tab-wrapper");
+        if (!wrapper || innerWidth <= 460) return;
+        const v = document.createElement("video");
+        Object.assign(v, {
+          id: "cat_video",
+          className: "bg_video",
+          crossOrigin: "anonymous",
+          preload: "metadata",
+          disablepictureinpicture: true,
+          autoplay: true,
+          playsinline: true,
+          loop: true,
+          muted: true,
+        });
+        Object.assign(v.style, {
+          zIndex: 1,
+          objectFit: "cover",
+          transform: "matrix(1, 0, 0, 1, 0, 16)",
+          objectPosition: "center",
+          width: "98.8vw",
+          opacity: "0.3",
+        });
+        wrapper.prepend(v);
+        const s1 = document.createElement("source");
+        s1.src = "/cat_clean_pexels.webm";
+        s1.type = "video/webm";
+        v.append(s1);
+        const s2 = document.createElement("source");
+        s2.src = "/cat_clean_pexels.mp4";
+        s2.type = "video/mp4";
+        v.append(s2);
+        const t = document.createTextNode("Your Browser does not support videos");
+        v.append(t);
+      });
     </script>
     <script
       defer

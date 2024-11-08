@@ -91,14 +91,22 @@
         />
       </figure>
     </div>
-    <div aria-hidden="false" class="wp-block-spacer" style="margin-bottom: 1rem">
-      <p style="font-size: 0.8rem; opacity: 1; color: rgb(85, 107, 47, 0.4); filter: drop-shadow(-2px 6px 4px #fff1)">
+    <div aria-hidden="false" class="wp-block-spacer" style="margin-bottom: 0.25rem">
+      <p
+        style="
+          font-size: 0.8rem;
+          opacity: 1;
+          color: rgb(85, 107, 47, 0.4);
+          filter: drop-shadow(-2px 6px 4px #fff1);
+          margin-bottom: 0;
+        "
+      >
         Imagens geradas pelo Dall-E 3
       </p>
     </div>
-    <div aria-hidden="false" class="wp-block-spacer" style="margin-bottom: 4rem">
+    <div aria-hidden="false" class="wp-block-spacer" style="margin-bottom: 1rem">
       <p style="font-size: 0.8rem; opacity: 1; color: rgb(85, 107, 47, 0.4); filter: drop-shadow(-2px 6px 4px #fff1)">
-        Vídeo obtidos em
+        Vídeos obtidos em
         <a
           href="https://www.pexels.com/"
           target="_blank"
@@ -109,7 +117,10 @@
       </p>
     </div>
     <main class="wp-block-query is-layout-constrained wp-block-query-is-layout-constrained" id="wp--skip-link--target">
-      <ul class="alignwide wp-block-post-template is-layout-flow wp-block-post-template-is-layout-flow">
+      <ul
+        class="alignwide wp-block-post-template is-layout-flow wp-block-post-template-is-layout-flow"
+        style="height: 2rem"
+      >
         <li class="wp-block-post post-1 post type-post status-publish format-standard hentry category-uncategorized">
           <div class="wp-block-group is-layout-constrained wp-block-group-is-layout-constrained">
             <div
@@ -119,12 +130,7 @@
                 <div class="wp-block-post-excerpt">
                   <p class="wp-block-post-excerpt__excerpt" style="color: black">Au au! Miau miau!</p>
                 </div>
-
-                <div style="font-style: italic; font-weight: 400" class="wp-block-post-date has-small-font-size">
-                  <time datetime="2024-09-05T03:26:30+00:00">
-                    <a href="#">September 5, 2024</a>
-                  </time>
-                </div>
+                <div style="font-style: italic; font-weight: 400" class="wp-block-post-date has-small-font-size"></div>
               </div>
             </div>
             <div style="height: 112px" aria-hidden="true" class="wp-block-spacer"></div>
@@ -192,23 +198,8 @@
       />
       <section
         id="tab-wrapper"
-        style="overflow: auto; min-width: 100vw; padding-inline: 5%; position: relative; margin-top: 0"
+        style="overflow: auto; min-width: 100vw; padding: 5% 5%; position: relative; margin-top: 0; max-width: 100vw"
       >
-        <video
-          id="cat_video"
-          class="bg_video"
-          crossorigin="anonymous"
-          preload="metadata"
-          disablepictureinpicture
-          autoplay
-          playsinline
-          loop
-          muted
-        >
-          <source src="/cat_clean_pexels.webm" type="video/webm" />
-          <source src="/cat_clean_pexels.mp4" type="video/mp4" />
-          Your browser does not support videos
-        </video>
         <table class="table table-striped table-hover" id="petsTable" style="min-width: 90%">
           <caption style="caption-side: top">
             <h2>Tabela de Animais</h2>
@@ -254,18 +245,15 @@
       rgba(70, 150, 120, 0.5)
     );
   }
-  video {
-    z-index: 1;
-    object-fit: cover;
-    object-position: center;
-    width: 98.8vw;
-    opacity: 0.3;
+  main {
+    overflow: auto;
   }
   table {
     position: relative;
     z-index: 10;
     opacity: 0.9;
     transform: translateY(2rem);
+    outline: #fff7 4px ridge;
   }
   table * {
     z-index: 12;

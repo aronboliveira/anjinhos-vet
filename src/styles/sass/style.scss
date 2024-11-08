@@ -41,10 +41,17 @@
   option:focus-within {
     outline: black auto 1px;
   }
+  &::selection {
+    background-color: rgba(162, 242, 83, 0.207);
+  }
 }
 @supports (scrollbar-width: auto) {
   * {
-    scrollbar-width: thin;
+    scrollbar-width: none;
+    scrollbar-color: rgba(162, 242, 83, 0.207) rgba(127, 185, 131, 0.215);
+    &:hover {
+      scrollbar-width: thin;
+    }
   }
 }
 @supports (-webkit-appearence: none) {
