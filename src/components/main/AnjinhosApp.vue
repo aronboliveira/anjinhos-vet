@@ -54,7 +54,7 @@
           :hasIndicators="true"
           :hasLabels="true"
           :fade="false"
-          ride="true"
+          ride="carousel"
           :defFig="0"
           :figures="[
             {

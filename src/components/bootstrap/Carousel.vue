@@ -5,7 +5,7 @@
 </script>
 <template>
   <div ref="r" :id="id" :class="{ 'carousel slide': true, 'carousel-fade': fade === true }" :data-bs-ride="ride">
-    <div v-if="hasIndicators" class="carousel-indicators">
+    <fieldset v-if="hasIndicators" class="carousel-indicators">
       <button
         v-for="(_, i) in figures"
         :key="`indicator-${i}`"
@@ -15,19 +15,19 @@
         :aria-label="`Slide ${i + 1}`"
         :class="{ active: i === (defFig ?? 0) }"
       ></button>
-    </div>
+    </fieldset>
     <div class="carousel-inner">
       <div
         v-for="(figure, i) in figures"
         :key="`fig__carousel__${i}`"
         :class="{ 'carousel-item': true, active: i === (defFig ?? 0) }"
-        :data-bs-interval="ride ? (figure.interv ?? 3000) : ''"
+        :data-bs-interval="ride ? (figure.interv ?? 2000) : ''"
       >
         <img :src="figure.src" :alt="figure.alt" class="d-block w-100" crossorigin="anonymous" fetchpriority="high" />
-        <div v-if="hasLabels" class="carousel-caption d-none d-md-block">
+        <hgroup v-if="hasLabels" class="carousel-caption d-none d-md-block">
           <h5 class="carousel-caption-title">{{ figure.labTitle }}</h5>
           <p class="carousel-caption-description">{{ figure.labDesc }}</p>
-        </div>
+        </hgroup>
       </div>
     </div>
     <button

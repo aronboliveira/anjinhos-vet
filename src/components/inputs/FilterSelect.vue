@@ -48,7 +48,7 @@
       width: 100%;
     }
     select[multiple] {
-      min-height: 2rem !important;
+      min-height: 2.5rem !important;
     }
   }
 </style>
